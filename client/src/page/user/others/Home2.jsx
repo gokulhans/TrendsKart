@@ -15,48 +15,6 @@ export default function Home2() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1>
-            </Link>
-            <div className="relative hidden flex-1 max-w-xl lg:block">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-              <Input
-                className="w-full bg-gray-100 pl-10"
-                placeholder="Search for Products"
-                type="search"
-              />
-            </div>
-            <div className="flex items-center gap-4">
-              <Link to="/dashboard/profile" variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Link>
-              {/* <Button variant="ghost" size="icon">
-                <Heart className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <ShoppingCart className="h-5 w-5" />
-              </Button> */}
-            </div>
-          </div>
-          <nav className="mt-4 hidden lg:block">
-            <ul className="flex gap-8">
-              {categories.map((category) => (
-                <li key={category}>
-                  <Link
-                    className="text-sm font-medium text-gray-600 hover:text-gray-900"
-                    href={`/category/${category.toLowerCase()}`}
-                  >
-                    {category}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </header>
       <main>
         <section className="relative bg-[#C84332] px-4 py-12">
           <div className="container mx-auto">

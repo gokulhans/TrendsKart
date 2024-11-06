@@ -101,7 +101,7 @@ function App() {
       <Toaster position="top-center" />
 
       <BrowserRouter>
-        {/* {user ? user.role === "user" && <Navbar /> : <Navbar />} */}
+        {user ? user.role === "user" && <Navbar /> : <Navbar />}
 
         <Routes>
           <Route
