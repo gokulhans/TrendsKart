@@ -3,7 +3,7 @@ import { Search, User, Heart, ShoppingCart, ChevronLeft, ChevronRight } from 'lu
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
   import HomeImg from "../../../assets/home.png";
 
@@ -30,15 +30,15 @@ export default function Home2() {
               />
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
+              <Link to="/dashboard/profile" variant="ghost" size="icon">
                 <User className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
+              </Link>
+              {/* <Button variant="ghost" size="icon">
                 <Heart className="h-5 w-5" />
               </Button>
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-5 w-5" />
-              </Button>
+              </Button> */}
             </div>
           </div>
           <nav className="mt-4 hidden lg:block">
