@@ -190,7 +190,7 @@ function App() {
 
           {/* <Route path="*" element={<Error404 />} /> */}
         </Routes>
-        {user ? user.role === "user" && <Footer /> : <Footer />}
+        {/* {user ? user.role === "user" && <Footer /> : <Footer />} */}
       </BrowserRouter>
     </>
   );
