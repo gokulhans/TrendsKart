@@ -78,11 +78,15 @@ UserSchema.statics.signup = async function (
   }
 
   if (!validator.isEmail(email)) {
-    throw Error("Email is not valid");
+    console.log("email not valid");
+    
+    // throw Error("Email is not valid");
   }
 
   if (!validator.isStrongPassword(password)) {
-    throw Error("Password is not strong enough");
+    console.log("email not strong");
+
+    // throw Error("Password is not strong enough");
   }
 
   // Checking if the email is already registered.

@@ -228,7 +228,7 @@ import OutsideTouchCloseComponent from "./OutsideTouchCloseComponent";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import logo from "../assets/TrendKart.png";
-import { Search, User } from "lucide-react";
+import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "./ui/input";
 
 const Navbar = () => {
@@ -251,9 +251,17 @@ const Navbar = () => {
   const [sort, setSort] = useState("");
 
   const categories = [
-    'Sneakers', 'Chappals', 'Perfume', 'Specs', 'Watch',
-    'Airpod', 'Airbuds', 'Headset', 'Earphones', 'Gadgets'
-  ]
+    "Sneakers",
+    "Chappals",
+    "Perfume",
+    "Specs",
+    "Watch",
+    "Airpod",
+    "Airbuds",
+    "Headset",
+    "Earphones",
+    "Gadgets",
+  ];
 
   useEffect(() => {
     const categoryParam = searchParams.get("category");
@@ -349,56 +357,52 @@ const Navbar = () => {
   };
 
   return (
-
     <header className="border-b">
-    <div className="container mx-auto px-4 py-4">
-      <div className="flex items-center justify-between gap-4">
-        <a href="/" className="flex-shrink-0">
-          <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1>
-        </a>
-        <div className="relative hidden flex-1 max-w-xl lg:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-          <Input
-            className="w-full bg-gray-100 pl-10"
-            placeholder="Search for Products"
-            type="search"
-          />
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between gap-4">
+          <a href="/" className="flex-shrink-0">
+            <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1>
+          </a>
+          <div className="relative hidden flex-1 max-w-xl lg:block">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <Input
+              className="w-full bg-gray-100 pl-10"
+              placeholder="Search for Products"
+              type="search"
+            />
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/dashboard/wishlist" variant="ghost" size="icon">
+              <Heart className="h-5 w-5" />
+            </Link>
+            <Link to="/dashboard/profile" variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Link>
+            <Link to="/cart" variant="ghost" size="icon">
+              <ShoppingCart className="h-5 w-5" />
+            </Link>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Link to="/dashboard/profile" variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-          </Link>
-          {/* <Button variant="ghost" size="icon">
-            <Heart className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
-          </Button> */}
-        </div>
+        <nav className="mt-4 hidden lg:block">
+          <ul className="flex gap-8">
+            {categories.map((category) => (
+              <li key={category}>
+                <Link
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900"
+                  href={`/category/${category.toLowerCase()}`}
+                >
+                  {category}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-      <nav className="mt-4 hidden lg:block">
-        <ul className="flex gap-8">
-          {categories.map((category) => (
-            <li key={category}>
-              <Link
-                className="text-sm font-medium text-gray-600 hover:text-gray-900"
-                href={`/category/${category.toLowerCase()}`}
-              >
-                {category}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  
+    </header>
   );
 };
 
 export default Navbar;
-
 
 /*
 
