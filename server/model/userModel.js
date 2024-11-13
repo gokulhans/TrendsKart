@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       type: String,
     },
     phoneNumber: {
-      type: Number,
+      type: String,
     },
     dateOfBirth: {
       type: Date,
@@ -92,7 +92,9 @@ UserSchema.statics.signup = async function (
   // Checking if the email is already registered.
   const exists = await this.findOne({ email });
   if (exists) {
-    throw Error("Email already in use");
+    console.log("email not strong");
+
+    // throw Error("Email already in use");
   }
 
   const salt = await bcrypt.genSalt(10);

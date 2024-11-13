@@ -4,6 +4,7 @@ import LogoSlider from "@/components/Home/LogoSlider";
 import NewArrivals from "@/components/Home/NewArrivals";
 import OurProducts from "@/components/Home/OurProducts";
 import ReviewSlider from "@/components/Home/ReviewSlider";
+import BestSellers from "@/components/Others/BestSellers";
 
 export default function Home2() {
   return (
@@ -12,6 +13,7 @@ export default function Home2() {
       <LogoSlider />
       <NewArrivals />
       <OurProducts />
+      {/* <BestSellers /> */}
       <CategoriesGroup />
       <ReviewSlider />
     </>
