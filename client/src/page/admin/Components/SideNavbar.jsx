@@ -50,10 +50,10 @@ const SideNavbar = () => {
           <HiOutlineTicket />
           Coupon
         </NavLink>
-        <NavLink className="side-nav-link-sp" to="banner">
+        {/* <NavLink className="side-nav-link-sp" to="banner">
           <AiOutlineTags />
           Banner
-        </NavLink>
+        </NavLink> */}
         <NavLink className="side-nav-link-sp" to="payments">
           <BsCreditCard />
           Payments

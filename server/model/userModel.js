@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       type: String,
     },
     phoneNumber: {
-      type: String,
+      type: Number,
     },
     dateOfBirth: {
       type: Date,
@@ -78,23 +78,17 @@ UserSchema.statics.signup = async function (
   }
 
   if (!validator.isEmail(email)) {
-    console.log("email not valid");
-    
-    // throw Error("Email is not valid");
+    throw Error("Email is not valid");
   }
 
   if (!validator.isStrongPassword(password)) {
-    console.log("email not strong");
-
-    // throw Error("Password is not strong enough");
+    throw Error("Password is not strong enough");
   }
 
   // Checking if the email is already registered.
   const exists = await this.findOne({ email });
   if (exists) {
-    console.log("email not strong");
-
-    // throw Error("Email already in use");
+    throw Error("Email already in use");
   }
 
   const salt = await bcrypt.genSalt(10);

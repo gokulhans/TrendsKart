@@ -364,12 +364,18 @@ const Navbar = () => {
             <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1>
           </a>
           <div className="relative hidden flex-1 max-w-xl lg:block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <SearchBar
+              handleClick={handleClick}
+              search={search}
+              setSearch={setSearch}
+            />
+            {/* <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+
             <Input
               className="w-full bg-gray-100 pl-10"
               placeholder="Search for Products"
               type="search"
-            />
+            /> */}
           </div>
           <div className="flex items-center gap-4">
             <Link to="/dashboard/wishlist" variant="ghost" size="icon">

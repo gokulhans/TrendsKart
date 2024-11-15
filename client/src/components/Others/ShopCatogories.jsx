@@ -47,3 +47,17 @@ const ShopCategories = () => {
 };
 
 export default ShopCategories;
+
+{
+  /* {categories.map((item, index) => {
+        
+        <li key={index}>
+          <Link
+            className="text-sm font-medium text-gray-600 hover:text-gray-900"
+            href={`/collections?category=${item._id}`}
+          >
+            {item.name}
+          </Link>
+        </li>;
+      })} */
+}

@@ -7,7 +7,7 @@ import JustLoading from "../JustLoading";
 
 const BestSellers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+ 
   const { userProducts, loading, error, totalAvailableProducts } = useSelector(
     (state) => state.userProducts
   );

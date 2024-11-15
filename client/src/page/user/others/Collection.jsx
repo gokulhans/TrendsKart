@@ -191,7 +191,7 @@ const Collections = () => {
               />
               <DropDownCheckbox
                 title="category"
-                text="Jewelry Type"
+                text=" Type"
                 filters={category}
                 subItems={categories}
                 onSubItemClick={handleClick}
@@ -229,7 +229,7 @@ const Collections = () => {
                 />
                 <DropDownCheckbox
                   title="category"
-                  text="Jewelry Type"
+                  text=" Type"
                   filters={category}
                   subItems={categories}
                   onSubItemClick={handleClick}
