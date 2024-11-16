@@ -71,7 +71,7 @@ const NewArrivals = () => {
   }, [searchParams]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 " id="newArrival">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">New Arrivals </h1>
         <div

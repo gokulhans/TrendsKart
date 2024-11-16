@@ -6,6 +6,25 @@ check indexcss tst file 🤣😢🎶😎
 
 */
 
+/* Add this to your global CSS file or within your component's styles */
+
+/* Add this to your global CSS file or within your component's styles */
+/* Add this to your global CSS file or in your component's styles */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite; /* Adjust the 30s for speed */
+}
+
+
 *,body,:root{
   padding: 0;
   margin: 0;
