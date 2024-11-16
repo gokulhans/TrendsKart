@@ -2,7 +2,7 @@ import React from "react";
 import { BiSearch } from "react-icons/bi";
 import { GrClose } from "react-icons/gr";
 
-const SearchBar = ({ handleClick, search, setSearch, placeholder }) => {
+const SearchBar = ({ handleClick, search, setSearch, placeholder, label }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     window.location.href = `${
@@ -11,14 +11,18 @@ const SearchBar = ({ handleClick, search, setSearch, placeholder }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full flex items-center space-x-4">
+      {/* Text near the search bar */}
+      {label && <span className="text-gray-700 text-lg">{label}</span>}
+
+      {/* Search bar */}
       <form
-        className="flex items-center bg-[#CC4254] py-2 px-4 rounded-lg border border-red-100"
+        className="flex items-center bg-gray-200 py-2 px-4 rounded-lg border border-gray-300 flex-grow"
         onSubmit={(e) => handleSubmit(e)}
       >
         <input
           type="text"
-          className="outline-none w-full bg-[#CC4254] rounded px-2 py-1 placeholder-white text-white"
+          className="outline-none w-full bg-gray-200 rounded px-2 py-1 placeholder-gray-500 text-gray-800"
           placeholder={placeholder || "Search for Products..."}
           value={search}
           onChange={(e) => {
@@ -35,23 +39,16 @@ const SearchBar = ({ handleClick, search, setSearch, placeholder }) => {
               setSearch("");
             }}
           >
-            <GrClose className="text-xl text-white hover:text-gray-200" />
+            <GrClose className="text-xl text-gray-500 hover:text-gray-800" />
           </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => {
-              handleClick("search", search);
-            }}
-          >
-            <BiSearch className="text-xl text-white hover:text-gray-200" />
-          </button>
-        )}
+        ) : null}
+
+        {/* Submit button replaced with icon */}
         <button
           type="submit"
-          className="ml-2 bg-white text-red-500 py-2 px-4 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+          className="ml-2 text-gray-500 hover:text-gray-800 transition-colors"
         >
-          Search
+          <BiSearch className="text-2xl" />
         </button>
       </form>
     </div>

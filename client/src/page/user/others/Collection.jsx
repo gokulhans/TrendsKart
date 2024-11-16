@@ -166,7 +166,7 @@ const Collections = () => {
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white w-full max-w-md p-4 rounded-lg">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Filter & Sort</h2>
+            <h2 className="text-xl  font-semibold">Filter & Sort</h2>
             <button onClick={onClose} className="text-gray-700">
               Close
             </button>
@@ -267,6 +267,7 @@ const Collections = () => {
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 py-5">
                     {userProducts && userProducts.length > 0 ? (
                       userProducts.map((pro, index) => (
+                       
                         <ProductCard2
                           star
                           className="{w-[15%]}"

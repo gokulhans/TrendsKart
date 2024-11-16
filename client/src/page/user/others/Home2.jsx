@@ -5,6 +5,7 @@ import NewArrivals from "@/components/Home/NewArrivals";
 import OurProducts from "@/components/Home/OurProducts";
 import ReviewSlider from "@/components/Home/ReviewSlider";
 import BestSellers from "@/components/Others/BestSellers";
+import BannerSection from "../../../components/Home/InstaBanner"
 
 export default function Home2() {
   return (
@@ -15,6 +16,7 @@ export default function Home2() {
       <OurProducts />
       {/* <BestSellers /> */}
       <CategoriesGroup />
+      <BannerSection/>
       <ReviewSlider />
     </>
   );

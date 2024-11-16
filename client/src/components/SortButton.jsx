@@ -6,7 +6,7 @@ const SortButton = ({ sort, handleClick }) => {
   };
 
   return (
-    <div className="shadow-md lg:w-[406px]  sm:w-[300px] w-[250px] h-[50px] lg:h-[74px] font-[300] border-[1px] flex items-center border-[#9F9F9F] rounded-[10px]">
+    <div className="lg:w-[406px]  sm:w-[300px] w-[250px] h-[50px] lg:h-[74px] font-[300]  flex items-center border-[#9F9F9F] rounded-[10px]">
       <div className="w-1/3 text-center sm:text-[20px]  text-[15px] font-Inter font-bold border-r-[1px]  border-[#9F9F9F]">
         Sort by:
       </div>

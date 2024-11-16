@@ -6,11 +6,11 @@ function LogoSlider() {
   const logos = [
     { id: 1, src: Nike, alt: "Nike" },
     { id: 2, src: Adidas, alt: "Adidas" },
-    { id: 1, src: Nike, alt: "Nike" },
-    { id: 2, src: Adidas, alt: "Adidas" },
-    { id: 1, src: Nike, alt: "Nike" },
-    { id: 2, src: Adidas, alt: "Adidas" },
-    { id: 1, src: Nike, alt: "Nike" },
+    // { id: 1, src: Nike, alt: "Nike" },
+    // { id: 2, src: Adidas, alt: "Adidas" },
+    // { id: 1, src: Nike, alt: "Nike" },
+    // { id: 2, src: Adidas, alt: "Adidas" },
+    // { id: 1, src: Nike, alt: "Nike" },
     // { id: 2, src: Adidas, alt: "Adidas" },
     // Add more logos as needed
   ];

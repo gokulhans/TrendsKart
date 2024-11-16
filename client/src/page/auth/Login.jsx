@@ -3,7 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { googleLoginOrSignUp, loginUser } from "../../redux/actions/userActions";
+import { loginUser } from "../../redux/actions/userActions";
 import { updateError } from "../../redux/reducers/userSlice";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -46,10 +46,20 @@ const Login = () => {
   };
 
   return (
-    <div className="grid min-h-screen lg:grid-cols-2">
-      <div className="flex items-center justify-center px-8 py-12 md:px-12">
-        <div className="w-full max-w-[440px] space-y-8">
-          <h1 className="text-4xl font-bold tracking-tight">Welcome Back</h1>
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-gray-50">
+      {/* Left Side - Image */}
+      <div className="hidden lg:block lg:w-1/2 h-full">
+        <img
+          src={LoginImg}
+          alt="Login Background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Right Side - Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 lg:px-16">
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
+          <h1 className="text-4xl font-bold mb-6 text-center">Welcome Back</h1>
           <Formik
             initialValues={initialValues}
             onSubmit={handleLoginSubmit}
@@ -65,7 +75,7 @@ const Login = () => {
                     as={Input}
                     id="email"
                     name="email"
-                    placeholder="Enter your E-mail id"
+                    placeholder="Enter your email"
                     type="email"
                     className="h-12"
                   />
@@ -102,7 +112,7 @@ const Login = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="remember" />
-                    <label htmlFor="remember" className="text-sm font-medium leading-none">
+                    <label htmlFor="remember" className="text-sm font-medium">
                       Remember me
                     </label>
                   </div>
@@ -110,23 +120,22 @@ const Login = () => {
                     Forgot Password?
                   </Link>
                 </div>
-                <Button type="submit" className="h-12 w-full bg-black text-white hover:bg-black/90" disabled={loading}>
+                <Button
+                  type="submit"
+                  className="h-12 w-full bg-black text-white hover:bg-black/90"
+                  disabled={loading}
+                >
                   {loading ? "Loading..." : "Login"}
                 </Button>
               </Form>
             )}
           </Formik>
-          <div className="text-center text-sm">
-            Don't have an account?{" "}
+          <p className="mt-6 text-center text-sm">
+            Don’t have an account?{" "}
             <Link to="/register" className="font-medium text-primary hover:underline">
               Sign Up now
             </Link>
-          </div>
-        </div>
-      </div>
-      <div className="hidden bg-muted lg:block">
-        <div className="relative flex h-full items-center justify-center">
-          <img alt="Login background" className="object-cover" src={LoginImg} />
+          </p>
         </div>
       </div>
     </div>
