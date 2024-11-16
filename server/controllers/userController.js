@@ -38,6 +38,28 @@ const getUserDataFirst = async (req, res) => {
   }
 };
 
+const signupManager = async (req, res) => {
+  try {
+    let userCredentials = req.body;
+
+    const profileImgURL = req?.file?.filename;
+
+    if (profileImgURL) {
+      userCredentials = { ...userCredentials, profileImgURL: profileImgURL };
+    }
+
+    const user = await User.managersignup(userCredentials, "manager", true);
+
+    const token = createToken(user._id);
+    console.log(token);
+    res.cookie("user_token", token, cookieConfig);
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const signUpUser = async (req, res) => {
   try {
     let userCredentials = req.body;
@@ -153,7 +175,7 @@ async function signUpSuperAdmin() {
   };
 
   // const role = "superAdmin"; // Specify the role as superAdmin
-  const role = "admin"; // Specify the role as superAdmin
+  const role = "superAdmin"; // Specify the role as superAdmin
   const isEmailVerified = true; // Set this based on your application's logic
 
   try {
@@ -174,6 +196,7 @@ async function signUpSuperAdmin() {
 module.exports = {
   getUserDataFirst,
   signUpUser,
+  signupManager,
   loginUser,
   logoutUser,
   editUser,

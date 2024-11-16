@@ -3,9 +3,21 @@ New Bugs Trends Kart
 OurProducts 118 lines
 categories now static looping
 
+manageradding
+use this text to find edited libes of this feature
 
+// TODOS
 
+// Project DeadLine tomorrow
 
+manager
+signup form fixing
+shamil chat features
+new feature
+email, frgt pswd
+
+change products to new
+size color
 
 
 

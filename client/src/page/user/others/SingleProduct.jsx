@@ -106,33 +106,28 @@ const SingleProduct = () => {
 
   const { user } = useSelector((state) => state.user);
 
-  // const addToCart = async () => {
-  //   if (!user) {
-  //     window.scrollTo({
-  //       top: 0,
-  //       behavior: "smooth",
-  //     });
-  //     navigate("/login");
-  //     return;
-  //   }
-  //   setCartLoading(true);
-  //   await axios
-  //     .post(
-  //       `${URL}/user/cart`,
-  //       { product: id, quantity: count },
-  //       { ...config, withCredentials: true }
-  //     )
-  //     .then((data) => {
-  //       toast.success("Added to cart");
-  //       setCartLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       const err = error.response.data.error;
-  //       toast.error(err);
-  //       setCartLoading(false);
-  //     });
-  // };
-
+  const notifyManager = async () => {
+    // if (!user) {
+    //   window.scrollTo({
+    //     top: 0,
+    //     behavior: "smooth",
+    //   });
+    //   navigate("/login");
+    //   return;
+    // }
+    // setCartLoading(true);
+    try {
+       await axios.get(
+        `${URL}/manager/notify/${id}`,
+        config
+      );
+      toast.success("Notified ");
+    } catch (error) {
+      const err = error.response.data.error;
+      toast.error(err);
+    }
+    // setCartLoading(false);
+  };
   const addToCart = async () => {
     if (!user) {
       window.scrollTo({
@@ -206,6 +201,8 @@ const SingleProduct = () => {
   const imageArray = product.moreImageURL
     ? [product.imageURL, ...product.moreImageURL]
     : [product.imageURL];
+
+  const isOutOfStock = product.stockQuantity === 0;
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
@@ -339,13 +336,26 @@ const SingleProduct = () => {
                   </div>
                 </div>
                 <div className="flex justify-start space-x-2 w-full pt-10">
-                  <Button
-                    disabled={cartLoading}
-                    onClick={addToCart}
-                    className="bg-[#CC4254] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
-                  >
-                    {cartLoading ? "Loading" : "Add to Bag"}
-                  </Button>
+                 
+
+                  {!isOutOfStock && (
+                    <Button
+                      disabled={cartLoading}
+                      onClick={addToCart}
+                      className="bg-[#CC4254] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+                    >
+                      {cartLoading ? "Loading" : "Add to Bag"}
+                    </Button>
+                  )}
+                  {isOutOfStock && (
+                    <Button
+                      disabled={cartLoading}
+                      onClick={notifyManager}
+                      className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+                    >
+                      {cartLoading ? "Loading" : "Notify Me"}
+                    </Button>
+                  )}
 
                   {isProductInWishlist ? (
                     <Button className="bg-black mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10 border-[1px] border-[#777777] ">

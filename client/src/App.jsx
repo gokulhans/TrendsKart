@@ -41,6 +41,7 @@ import BuyNow from "./page/user/buyNow";
 
 // Admin
 import AdminDash from "./page/admin/Dashboard";
+import ManagerDash from "./page/manager/Dashboard";
 import AdminHome from "./page/admin/pages/AdminHome";
 import Banner from "./page/admin/pages/banner/Banner";
 import Payments from "./page/admin/pages/payments/Payments";
@@ -78,6 +79,7 @@ import SingleProduct from "./page/user/others/SingleProduct";
 import SingleProduct2 from "./page/user/others/SingleProduct2";
 import LoginDemo from "./page/user/others/LoginDemo";
 import Home2 from "./page/user/others/Home2";
+import ManagerSignup from "./page/manager/ManagerSignup";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -108,8 +110,10 @@ function App() {
             path="/"
             element={
               user ? (
-                user.role === "admin" || user.role === "superAdmin" ? (
+                user.role === "superAdmin" ? (
                   <Navigate to="/admin/" />
+                ) : user.role === "manager" ? (
+                  <Navigate to="/manager/" />
                 ) : (
                   // <Home />
                   <Home2 />
@@ -123,6 +127,7 @@ function App() {
             }
           />
 
+          <Route path="/manager-signup" element={<ManagerSignup />} />
           <Route path="/login-demo" element={<LoginDemo />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />
@@ -180,12 +185,25 @@ function App() {
             <Route path="settings" element={<SettingsPage />} />
           </Route>
 
-          {/* Admin Routes */}
+          {/* Admin Routes
           {(user && user.role === "admin") ||
           (user && user.role === "superAdmin") ? (
             <Route path="/admin/*" element={<AdminRoutes />} />
           ) : (
             -(<Route path="/admin" element={<Navigate to="/" />} />)
+          )} */}
+
+          {/* Admin Routes */}
+          {user ? (
+            user.role === "admin" || user.role === "superAdmin" ? (
+              <Route path="/admin/*" element={<AdminRoutes />} />
+            ) : user.role === "manager" ? (
+              <Route path="/manager/*" element={<ManagerRoutes />} />
+            ) : (
+              <Route path="/admin" element={<Navigate to="/" />} />
+            )
+          ) : (
+            <Route path="/admin" element={<Navigate to="/" />} />
           )}
 
           {/* <Route path="*" element={<Error404 />} /> */}
@@ -232,6 +250,16 @@ function AdminRoutes() {
         <Route path="settings" element={<Settings />} />
         <Route path="help" element={<Help />} />
         {/* <Route path="*" element={<Error404 />} /> */}
+      </Route>
+    </Routes>
+  );
+}
+
+function ManagerRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<ManagerDash />}>
+        <Route index element={<AdminHome />} />
       </Route>
     </Routes>
   );

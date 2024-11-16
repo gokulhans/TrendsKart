@@ -9,11 +9,12 @@ const {
   resentOTP,
 } = require("../controllers/otpController");
 const { loginUsingGoogle } = require("../controllers/auth/google");
-const { signUpUser, loginUser } = require("../controllers/userController");
+const { signupManager,signUpUser, loginUser } = require("../controllers/userController");
 
 const router = express.Router();
 
 // Auth
+router.post("/manager-signup", upload.single("profileImgURL"), signupManager);
 router.post("/signup", upload.single("profileImgURL"), signUpUser);
 router.post("/login", loginUser);
 router.post("/google", loginUsingGoogle);

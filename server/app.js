@@ -44,9 +44,9 @@ app.use(logger("dev"));
 // };
 
 const corsOptions = {
-  origin: ["https://trends-kart.vercel.app", "https://trends-kart.vercel.app"],
+  // origin: ["https://trends-kart.vercel.app", "https://trends-kart.vercel.app"],
   // origin: process.env.CLIENT_URL,
-  // origin: "http://localhost:5173",
+  origin: "http://localhost:5173",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -71,6 +71,7 @@ app.use((req, res, next) => {
 
 // Loading Routes
 const userRoutes = require("./routes/user");
+const managerRoutes = require("./routes/manager");
 const adminRoutes = require("./routes/admin");
 const superAdminRoutes = require("./routes/superAdmin");
 const publicRoutes = require("./routes/public");
@@ -83,6 +84,7 @@ const { requireAuth, requireAdminAuth } = require("./middleware/requireAuth");
 // Mounting the routes
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/manager", managerRoutes);
 // app.use("/api/admin", requireAdminAuth, adminRoutes);
 // app.use("/api/super-admin", requireAdminAuth, superAdminRoutes);
 app.use("/api/admin", adminRoutes);
