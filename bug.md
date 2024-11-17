@@ -23,6 +23,18 @@ size color
 manager enquiriers listed
 edit option add ? 
 
+// manager side done.
+the problem is manager id is stored in product
+a order contain different products
+so need to track that specific products to each manager , and admin
+
+got it
+product inte quantity kurakkunna place il pova, ee feture implemet akka 
+
+// DO
+other design 
+category
+signup
 
 
 There are bugs

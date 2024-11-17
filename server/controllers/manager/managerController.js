@@ -32,6 +32,51 @@ const getProduct = async (req, res) => {
   }
 };
 
+// Get single Product
+const getEnquiry = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw Error("Invalid ID!!!");
+    }
+
+    const product = await Enquiry.findOne({ _id: id });
+
+    if (!product) {
+      throw Error("No Such Product");
+    }
+
+    res.status(200).json({ product });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+// Deleting a Product
+const deleteEnquiry = async (req, res) => {
+  try {
+    console.log("deleting");
+    
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw Error("Invalid ID!!!");
+    }
+
+    const product = await Enquiry.findOneAndDelete({ _id: id });
+
+    if (!product) {
+      throw Error("No Such Product");
+    }
+
+    res.status(200).json({ product });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 // Update a Product
 const updateProduct = async (req, res) => {
@@ -44,45 +89,11 @@ const updateProduct = async (req, res) => {
       throw Error("Invalid ID!!!");
     }
 
-    const files = req?.files;
 
     // Retrieve the existing product from the database
     const existingProduct = await Product.findById(id);
     if (!existingProduct) {
       throw Error("No Such Product");
-    }
-
-    if (files && files.length > 0) {
-      // Initialize arrays for new images
-      let newMoreImageURL = [...existingProduct.moreImageURL]; // Start with existing images
-      let newImageURL = existingProduct.imageURL; // Keep existing thumbnail
-
-      files.map((file) => {
-        if (file.fieldname === "imageURL") {
-          // Update the thumbnail image only if a new one is provided
-          newImageURL = file.filename;
-        } else {
-          // Append new images to the existing array
-          newMoreImageURL.push(file.filename);
-        }
-      });
-
-      // Set the new values in formData
-      formData.imageURL = newImageURL;
-      formData.moreImageURL = newMoreImageURL;
-    }
-
-    // Handle deletion of images
-    if (formData.imagesToDelete) {
-      const imagesToDelete = JSON.parse(formData.imagesToDelete); // Expect this to be a JSON string from the frontend
-      formData.moreImageURL = formData.moreImageURL.filter(
-        (img) => !imagesToDelete.includes(img)
-      );
-    }
-
-    if (formData.attributes) {
-      const attributes = JSON.parse(formData.attributes);
-      formData.attributes = attributes;
     }
 
     // Update the product in the database
@@ -220,6 +231,10 @@ const addEnquiry = async (req, res) => {
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
+    const existingEnquiry = await Enquiry.findOne({ productId: product._id });
+    if (existingEnquiry) {
+      return res.status(200).json({ message: "Enquiry added successfully", enquiry:true });
+    }
 
     // Prepare data for the Enquiry collection
     const enquiryData = {
@@ -254,5 +269,5 @@ const addEnquiry = async (req, res) => {
 
 
 module.exports = {
-  notify,getProduct,updateProduct,getNotifiers,addEnquiry,getProducts
+  notify,getProduct,updateProduct,getNotifiers,addEnquiry,getProducts,getEnquiry,deleteEnquiry
 };
