@@ -20,7 +20,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/" className="hover:text-gray-400 transition-colors">
+                <a href="/collections" className="hover:text-gray-400 transition-colors">
                   Shop
                 </a>
               </li>
@@ -30,7 +30,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/" className="hover:text-gray-400 transition-colors">
+                <a href="/contact-us" className="hover:text-gray-400 transition-colors">
                   Contact
                 </a>
               </li>

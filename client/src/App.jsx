@@ -15,6 +15,7 @@ import { getUserDataFirst } from "./redux/actions/userActions";
 
 // Components
 import Navbar from "./components/Navbar";
+import CategorySection from "./components/CategoryBar";
 import Footer from "./components/Footer";
 
 // Auth
@@ -102,6 +103,7 @@ function App() {
 
       <BrowserRouter>
         {user ? user.role === "user" && <Navbar /> : <Navbar />}
+        {user ? user.role === "user" && <CategorySection /> : <CategorySection />}
 
         <Routes>
           <Route

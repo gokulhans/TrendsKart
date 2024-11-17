@@ -2,68 +2,102 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { FaInstagram, FaFacebook } from 'react-icons/fa'; // Font Awesome Icons
 
 const Contact = () => {
   return (
-    <div className="flex flex-col items-center justify-between min-h-[90vh] bg-[#FFEFF1] p-8 py-8">
-      <div className="flex flex-col items-center  justify-center">
-        <h1 className="text-[45px]  mb-8">Contact</h1>
-        <form className="w-full max-w-lg">
-          <div className="grid grid-cols-1 gap-6">
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                className="border-[0.8px] font-Inter border-[#C84253] rounded-lg p-2"
-                placeholder="Name"
-              />
-              <Input
-                className="border-[0.8px] font-Inter border-[#C84253] rounded-lg p-2"
-                placeholder="Email*"
-                required
-                type="email"
-              />
-            </div>
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-[70vh]  p-8 gap-12">
+      {/* Contact Form Section */}
+      <div className="flex flex-col w-full lg:w-1/2 space-y-6 flex-grow">
+        <h1 className="text-4xl font-semibold text-gray mb-6 text-center lg:text-left">
+          Get in Touch
+        </h1>
+        <form className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Input
-              className="border-[0.8px] font-Inter border-[#C84253] rounded-lg p-2"
-              placeholder="Phone"
+              className="border-2 border-black rounded-lg p-3 focus:outline-none focus:ring-0"
+              placeholder="Your Name"
             />
-            <Textarea
-              className="border-[0.8px]  font-Inter focus:ring-transparent border-[#C84253] rounded-lg p-2 h-32"
-              placeholder="Comment"
+            <Input
+              className="border-2 border-black rounded-lg p-3 focus:outline-none focus:ring-0"
+              placeholder="Your Email*"
+              required
+              type="email"
             />
-            <Button className="bg-[#CC4254] text-lg hover:bg-[#c24051] text-white font-Inter w-[158px] rounded-sm py-2">
-              Send
-            </Button>
           </div>
+          <Input
+            className="border-2 border-black rounded-lg p-3 focus:outline-none focus:ring-0"
+            placeholder="Phone Number"
+          />
+          <Textarea
+            className="border-2 border-black rounded-lg p-3 focus:outline-none focus:ring-0 h-32"
+            placeholder="Your Message"
+          />
+          <Button className="bg-black text-lg hover:bg-white hover:outline hover:text-black text-white w-full rounded-lg py-3 transition-all">
+            Send Message
+          </Button>
         </form>
       </div>
-      <div className="flex  bg-white flex-col items-center justify-center  w-full px-4 mt-14 py-16">
-        <h1 className="text-5xl text-[#2C2C2C] font-Inter mb-2">
-          Subscribe to our emails
-        </h1>
-        <p className="text-xl text-[#777777] font-Inter my-6">
-          Join our email list for exclusive offers and latest news
-        </p>
-        <div className="flex border-[0.8px] border-[#C84253] rounded-xl">
-          <Input
-            className="border-none rounded-xl font-Inter text-[#777777] focus:ring-0 px-4 py-2"
-            placeholder="Email"
-            type="email"
-          />
-          <Button className="bg-white hover:bg-white font-black text-2xl  text-[#777777] px-4 py-2 rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-arrow-right"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-              />
-            </svg>
-          </Button>
+
+      {/* Contact Details Section */}
+      <div className="flex flex-col w-full lg:w-1/2 outline bg-white p-8 rounded-lg shadow-xl space-y-4 flex-grow h-full">
+        <h2 className="text-3xl font-semibold text-black mb-6 text-center lg:text-left">
+          Contact Details
+        </h2>
+        <div className="space-y-4 text-lg text-[#2C2C2C]">
+          <div>
+            <p className="font-medium">
+              <span className="font-bold">Email: </span>
+              <a
+                href="mailto:trendkartonline@gmail.com"
+                className="text-gray-500 hover:underline"
+                aria-label="Email us"
+              >
+                trendkartonline@gmail.com
+              </a>
+            </p>
+            <p className="font-medium">
+              <span className="font-bold">Phone: </span>
+              <a
+                href="tel:+919037395052"
+                className="text-gray-500 hover:underline"
+                aria-label="Call us"
+              >
+                +91 90373 95052
+              </a>
+            </p>
+          </div>
+          <div>
+            <p className="font-medium">
+              <span className="font-bold">Address: </span> Trend Kart, Karassery junction, Mukkam, Calicut, Kerala, India 673602
+            </p>
+          </div>
+          <div className="flex flex-col space-y-4">
+            <p className="font-medium">
+              <span className="font-bold">Instagram: </span>
+              <a
+                href="https://www.instagram.com/trend_kart_mukkam_?igsh=MWVoZGQzczNvMWRpcA%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:underline flex items-center"
+                aria-label="Instagram profile"
+              >
+                <FaInstagram className="mr-3" /> trend_kart_mukkam_
+              </a>
+            </p>
+            <p className="font-medium">
+              <span className="font-bold">Facebook: </span>
+              <a
+                href="https://www.facebook.com/profile.php?id=100093293153667&mibextid=LQQJ4d"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:underline flex items-center"
+                aria-label="Facebook profile"
+              >
+                <FaFacebook className="mr-3" /> Trend Kart Facebook
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

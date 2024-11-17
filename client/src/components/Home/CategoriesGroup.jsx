@@ -2,9 +2,9 @@ import React from "react";
 
 
 import allcat from "../../assets/trendskart/categories/allcat.png";
-import perfumes from "../../assets/trendskart/categories/perfumes.png";
-import headsets from "../../assets/trendskart/categories/headsets.png";
-import footwears from "../../assets/trendskart/categories/footwears.png";
+// import perfumes from "../../assets/trendskart/categories/perfumes.png";
+// import headsets from "../../assets/trendskart/categories/headsets.png";
+// import footwears from "../../assets/trendskart/categories/footwears.png";
 
 
 
