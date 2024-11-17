@@ -1,14 +1,14 @@
 import React from "react";
 
 // Import all images
-import sneakersImg from "../assets/trendskart/categories/shoe.png";
-import chappalsImg from "../assets/trendskart/categories/sandal.jpg";
+import sneakersImg from "../../assets/trendskart/categories/shoe.png";
+import chappalsImg from "../../assets/trendskart/categories/sandal.jpg";
 // import perfumeImg from "../assets/trendskart/categories/perfume.png";
 // import specsImg from "../assets/trendskart/categories/spec.png";
 // import watchImg from "../assets/trendskart/categories/smartwatch.png";
 // import airpodImg from "../assets/trendskart/categories/airpods.png";
 // import airbudsImg from "../assets/trendskart/categories/connected-to-phone.png";
-import headsetImg from "../assets/trendskart/categories/headphone.png";
+import headsetImg from "../../assets/trendskart/categories/headphone.png";
 // import earphonesImg from "../assets/trendskart/categories/handsfree.png";
 // import gadgetsImg from "../assets/trendskart/categories/gadgets.png";
 
