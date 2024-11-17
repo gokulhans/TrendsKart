@@ -31,51 +31,16 @@ const SideNavbar = () => {
       </div>
       <div className="text-gray-600 font-semibold mt-5">
         <p className="side-nav-sub-title">Menu</p>
-        <NavLink className="side-nav-link-sp" to="/admin/">
+        <NavLink className="side-nav-link-sp" to="/manager/">
           <RiDashboardLine />
           Manager Dashboard
 
         </NavLink>
-        <NavLink className="side-nav-link-sp" to="products">
+        <NavLink className="side-nav-link-sp" to="enquiries">
           <FiBox />
-          Products
+          Enquiries
         </NavLink>
-        <NavLink className="side-nav-link-sp" to="categories">
-          <ImStack />
-          Category
-        </NavLink>
-        <NavLink className="side-nav-link-sp" to="orders">
-          <BsCardChecklist />
-          Orders
-        </NavLink>
-        <NavLink className="side-nav-link-sp" to="coupon">
-          <HiOutlineTicket />
-          Coupon
-        </NavLink>
-        {/* <NavLink className="side-nav-link-sp" to="banner">
-          <AiOutlineTags />
-          Banner
-        </NavLink> */}
-        <NavLink className="side-nav-link-sp" to="payments">
-          <BsCreditCard />
-          Payments
-        </NavLink>
-        <p className="side-nav-sub-title">User Management</p>
-        {user && user.role === "superAdmin" && (
-          <NavLink className="side-nav-link-sp" to="manageAdmins">
-            <FaUsersCog />
-            Manage Admins
-          </NavLink>
-        )}
-        <NavLink className="side-nav-link-sp" to="customers">
-          <FaUsers />
-          Customers
-        </NavLink>
-        <p className="side-nav-sub-title">Other</p>
-        <NavLink className="side-nav-link-sp" to="settings">
-          <FiSettings />
-          Settings
-        </NavLink>
+       
         <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />
           Help

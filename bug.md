@@ -19,6 +19,9 @@ email, frgt pswd
 change products to new
 size color
 
+// Done
+manager enquiriers listed
+edit option add ? 
 
 
 

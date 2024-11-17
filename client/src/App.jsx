@@ -80,6 +80,8 @@ import SingleProduct2 from "./page/user/others/SingleProduct2";
 import LoginDemo from "./page/user/others/LoginDemo";
 import Home2 from "./page/user/others/Home2";
 import ManagerSignup from "./page/manager/ManagerSignup";
+import ManagerHome from "./page/manager/pages/ManagerHome";
+import Enquiries from "./page/admin/pages/products/Enquiries";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -259,7 +261,9 @@ function ManagerRoutes() {
   return (
     <Routes>
       <Route path="/" element={<ManagerDash />}>
-        <Route index element={<AdminHome />} />
+        <Route index element={<ManagerHome />} />
+        <Route path="enquiries" element={<Enquiries />} />
+        <Route path="help" element={<Help />} />
       </Route>
     </Routes>
   );
