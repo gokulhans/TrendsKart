@@ -66,6 +66,22 @@ export const googleLoginOrSignUp = createAsyncThunk(
   }
 );
 
+export const signUpManager = createAsyncThunk(
+  "user/signUpUser",
+  async (userCredentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        `${URL}/auth/manager-signup`,
+        userCredentials,
+        configMultiPart
+      );
+
+      return data;
+    } catch (error) {
+      return handleError(error, rejectWithValue);
+    }
+  }
+);
 export const signUpUser = createAsyncThunk(
   "user/signUpUser",
   async (userCredentials, { rejectWithValue }) => {

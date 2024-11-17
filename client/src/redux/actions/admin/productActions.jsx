@@ -30,6 +30,20 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+// Function to get the product details
+export const getNotifiers = createAsyncThunk(
+  "products/getProducts",
+  async (queries, { rejectWithValue }) => {
+    return commonReduxRequest(
+      "get",
+      `/manager/notifiers${queries && `?${queries}`}`,
+      null,
+      appJson,
+      rejectWithValue
+    );
+  }
+);
+
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, formData }, { rejectWithValue }) => {

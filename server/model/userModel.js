@@ -30,7 +30,7 @@ const UserSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["user", "admin", "superAdmin"],
+      enum: ["user", "admin", "superAdmin","manager"],
     },
     isActive: {
       type: Boolean,
@@ -90,6 +90,35 @@ UserSchema.statics.signup = async function (
   if (exists) {
     throw Error("Email already in use");
   }
+
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
+  userCredentials["password"] = hash;
+
+  delete userCredentials["passwordAgain"];
+
+  const user = await this.create({
+    ...userCredentials,
+    isActive: true,
+    role,
+    isEmailVerified,
+  });
+
+  user.password = "";
+
+  return user;
+};
+
+UserSchema.statics.managersignup = async function (
+  userCredentials,
+  role,
+  isEmailVerified
+) {
+  const { email, password, passwordAgain, firstName, lastName } =
+    userCredentials;
+
+  
 
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);

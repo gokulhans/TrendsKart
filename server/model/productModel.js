@@ -7,6 +7,9 @@ const productsSchema = new Schema(
     name: {
       type: String,
     },
+    managerId: {
+      type: String,
+    },
     description: {
       type: String,
     },

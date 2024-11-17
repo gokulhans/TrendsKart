@@ -157,6 +157,7 @@ const updateProduct = async (req, res) => {
       { $set: { ...formData } },
       { new: true }
     );
+    console.log(product);
 
     if (!product) {
       throw Error("No Such Product");
@@ -164,6 +165,8 @@ const updateProduct = async (req, res) => {
 
     res.status(200).json({ product });
   } catch (error) {
+    console.log(error);
+    
     res.status(400).json({ error: error.message });
   }
 };

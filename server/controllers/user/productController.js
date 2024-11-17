@@ -50,7 +50,7 @@ const getProducts = async (req, res) => {
     const skip = (page - 1) * limit;
     const products = await Product.find(
       {
-        status: { $in: ["published", "low quantity"] },
+        status: { $in: ["published", "low quantity","out of stock"] }, // edited here added out of stock , manageradding
         ...filter,
       },
       {
@@ -91,7 +91,7 @@ const getProduct = async (req, res) => {
       name: 1,
     });
 
-    console.log();
+    console.log(product);
     
 
     res.status(200).json({ product });
