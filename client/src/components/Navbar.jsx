@@ -227,7 +227,7 @@ import { TiTicket } from "react-icons/ti";
 import OutsideTouchCloseComponent from "./OutsideTouchCloseComponent";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import logo from "../assets/TrendKart.png";
+import logo from "../assets/TrendKartL.jpeg";
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "./ui/input";
 
@@ -361,13 +361,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           <a href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1>
+            {/* <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1> */}
+            <img src={logo} alt="logo" className="h-12 w-32" />
           </a>
           <div className="relative hidden flex-1 max-w-xl lg:block">
             <SearchBar
               handleClick={handleClick}
               search={search}
               setSearch={setSearch}
+          
             />
             {/* <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
 
@@ -389,7 +391,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <nav className="mt-4 hidden lg:block">
+        {/* <nav className="mt-4 hidden lg:block">
           <ul className="flex gap-8">
             {categories.map((category) => (
               <li key={category}>
@@ -402,7 +404,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );

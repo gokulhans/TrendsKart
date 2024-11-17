@@ -106,6 +106,37 @@ const SingleProduct = () => {
 
   const { user } = useSelector((state) => state.user);
 
+  // const addToCart = async () => {
+  //   if (!user) {
+  //     window.scrollTo({
+  //       top: 0,
+  //       behavior: "smooth",
+  //     });
+  //     navigate("/login");
+  //     return;
+  //   }
+  //   setCartLoading(true);
+  //   await axios
+  //     .post(
+  //       `${URL}/user/cart`,
+  //       { product: id, quantity: count },
+  //       { ...config, withCredentials: true }
+  //     )
+  //     .then((data) => {
+  //       toast.success("Added to cart");
+  //       setCartLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       const err = error.response.data.error;
+  //       toast.error(err);
+  //       setCartLoading(false);
+  //     });
+  // };
+
+
+  const onHomeClick = async() =>{
+    navigate('/')
+  }
   const notifyManager = async () => {
     // if (!user) {
     //   window.scrollTo({
@@ -128,6 +159,7 @@ const SingleProduct = () => {
     }
     // setCartLoading(false);
   };
+  
   const addToCart = async () => {
     if (!user) {
       window.scrollTo({
@@ -209,7 +241,7 @@ const SingleProduct = () => {
       <div className="w-full flex my-6">
         <h1 className="flex justify-center items-center font-Inter px-5 lg:px-32">
           <span>
-            <HomeIcon color="#2C2C2C" />
+            <HomeIcon color="#2C2C2C" onClick={onHomeClick} />
           </span>
           <span className="hover:text-[#CC4254] ml-2">
             {product.category && product.category.name + " -"}

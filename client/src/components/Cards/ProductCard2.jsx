@@ -1,9 +1,6 @@
 import { URL } from "@/Common/api";
 import React from "react";
-import { IoMdStar } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import pant from "../../assets/trendskart/products/pant.png";
-
 
 const StarRating = ({ rating }) => {
   return (
@@ -12,11 +9,7 @@ const StarRating = ({ rating }) => {
         <svg
           key={index}
           className={`h-4 w-4 ${
-            index < Math.floor(rating)
-              ? "text-yellow-400"
-              : index < rating
-              ? "text-yellow-400"
-              : "text-gray-300"
+            index < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -29,49 +22,42 @@ const StarRating = ({ rating }) => {
   );
 };
 
-
-const ProductCard2 = ({  product }) => {
+const ProductCard2 = ({ product }) => {
   const navigate = useNavigate();
   const originalPrice = product.offer
     ? Math.round(product.price / (1 - product.offer / 100))
     : product.price;
 
   return (
-  
-     
-     <div  className="bg-gray-100 rounded-lg p-4" 
-     onClick={() => {
-      navigate(`/product/${product._id}`);
-    }}
+    <div
+      className="rounded-lg bg-gray-100 overflow-hidden p-4 cursor-pointer"
+      onClick={() => navigate(`/product/${product._id}`)}
     >
-                <div className="aspect-w-1 aspect-h-1 w-full mb-4">
-                  <img
-                    src={`${URL}/img/${product && product.imageURL}`}
-                    // src={pant}
-                    alt={product.name}
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-                <h3 className="font-semibold mb-2">{product.name}</h3>
-                <StarRating rating="5" />
-                <div className="mt-2 flex items-center">
-                  <span className="text-lg font-bold">${product.price}</span>
-
-                  {product.offer && (
-                    <>
-                      <span className="ml-2 text-gray-500 line-through">
-                      ₹{originalPrice.toLocaleString()}
-                      </span>
-                      <span className="ml-2 text-red-500">
-                        -{product.offer}%
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
-
-
-          
+      <div className="relative w-full h-64 overflow-hidden">
+        <img
+          src={`${URL}/img/${product?.imageURL}`}
+          alt={product.name}
+          className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <div className="pt-4">
+        <h3 className="font-semibold text-lg text-gray-800">{product.name}</h3>
+        <StarRating rating={5} />
+        <div className="mt-2 flex items-center">
+          <span className="text-lg font-bold text-gray-800">
+            ₹{product.price}
+          </span>
+          {product.offer && (
+            <>
+              <span className="ml-2 text-gray-500 line-through">
+                ₹{originalPrice.toLocaleString()}
+              </span>
+              <span className="ml-2 text-red-500">-{product.offer}%</span>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
