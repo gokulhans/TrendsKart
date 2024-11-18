@@ -8,11 +8,13 @@ import BestSellers from "@/components/Others/BestSellers";
 import CategorySection from "../../../components/Home/CategoryBar";
 import BannerSection from "../../../components/Home/InstaBanner"
 import ShopCatogories from "@/components/Others/ShopCatogories";
+import Marquee from "@/components/Home/Marquee";
 
 
 export default function Home2() {
   return (
     <>
+    <Marquee/>
     {/* <CategorySection/> */}
     <ShopCatogories />
       <ImageSlider />

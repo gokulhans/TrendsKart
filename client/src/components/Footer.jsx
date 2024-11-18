@@ -7,7 +7,7 @@ function Footer() {
         <div className="ml-12 mb-6 md:mb-0">
           <h4 className="text-lg font-medium mb-4">TrendsKart</h4>
           <p className="text-sm">
-            400 University Drive Suite 200 Coral Gables, FL 33134 USA
+           Karassery Junction, Mukkam, Calicut, India 673602
           </p>
         </div>
         <div className="ml-6 grid grid-cols-2 md:grid-cols-4 gap-6">
