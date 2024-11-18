@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Payment = require("../../model/paymentModel");
 const uuid = require("uuid");
 const { generateInvoicePDF } = require("../Common/invoicePDFGenFunctions");
+const managerOrderModel = require("../../model/managerOrderModel");
 
 // Function checking if the passed status is valid or not. Ensuring redundant searches are avoided
 function isValidStatus(status) {
@@ -39,6 +40,35 @@ const getOrder = async (req, res) => {
     });
 
     // console.log(order);
+
+    if (!order) {
+      throw Error("No Such Order");
+    }
+
+    res.status(200).json({ order });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Get a single order details
+const getManagerOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let find = {};
+
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      find._id = id;
+    } else {
+      find.orderId = id;
+    }
+
+    // console.log(find);
+
+    const order = await managerOrderModel.findOne(find);
+
+    console.log(order);
 
     if (!order) {
       throw Error("No Such Order");
@@ -119,6 +149,22 @@ const getOrders = async (req, res) => {
       .sort({ createdAt: -1 });
 
     const totalAvailableOrders = await Order.countDocuments(filter);
+
+    res.status(200).json({ orders, totalAvailableOrders });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+// Get Orders List
+const getManagerOrders = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    
+    const orders = await managerOrderModel.find({ managerId: req.params.id });
+    console.log("orders");
+    console.log(orders);
+    
+    const totalAvailableOrders = orders.length;
 
     res.status(200).json({ orders, totalAvailableOrders });
   } catch (error) {
@@ -304,6 +350,8 @@ const clearOrder = async (req, res) => {
 
 module.exports = {
   getOrders,
+  getManagerOrders,
+  getManagerOrder,
   clearOrder,
   updateOrderStatus,
   getOrder,

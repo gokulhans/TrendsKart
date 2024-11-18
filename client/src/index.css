@@ -1,6 +1,10 @@
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* 
 check indexcss tst file 🤣😢🎶😎
 
@@ -30,8 +34,7 @@ scrollbar-width: none; /* or 'thin' or 'auto' */
 }
 
 
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
+
 
 
 @keyframes scroll {

@@ -84,6 +84,9 @@ import ManagerSignup from "./page/manager/ManagerSignup";
 import ManagerHome from "./page/manager/pages/ManagerHome";
 import Enquiries from "./page/admin/pages/products/Enquiries";
 import EditStock from "./page/admin/pages/products/EditStock";
+import ManagerOrders from "./page/admin/pages/Order/ManagerOrders";
+import Managers from "./page/admin/pages/managers/Managers";
+import AllManagerOrders from "./page/admin/pages/Order/AllManagerOrders";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -252,6 +255,10 @@ function AdminRoutes() {
         <Route path="banner" element={<Banner />} />
         <Route path="payments" element={<Payments />} />
         <Route path="customers" element={<Customers />} />
+
+        <Route path="managers" element={<Managers />} />
+        <Route path="managers/:id" element={<AllManagerOrders />} />
+
         <Route path="settings" element={<Settings />} />
         <Route path="help" element={<Help />} />
         {/* <Route path="*" element={<Error404 />} /> */}
@@ -268,6 +275,8 @@ function ManagerRoutes() {
         <Route path="enquiries" element={<Enquiries />} />
         <Route path="enquiries/edit/:id" element={<EditStock />} />
         <Route path="help" element={<Help />} />
+        <Route path="orders" element={<ManagerOrders />} />
+        <Route path="orders/detail/:id" element={<OrderDetails />} />
       </Route>
     </Routes>
   );

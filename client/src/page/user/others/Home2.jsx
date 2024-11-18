@@ -7,11 +7,14 @@ import ReviewSlider from "@/components/Home/ReviewSlider";
 import BestSellers from "@/components/Others/BestSellers";
 import CategorySection from "../../../components/Home/CategoryBar";
 import BannerSection from "../../../components/Home/InstaBanner"
+import ShopCatogories from "@/components/Others/ShopCatogories";
+
 
 export default function Home2() {
   return (
     <>
-    <CategorySection/>
+    {/* <CategorySection/> */}
+    <ShopCatogories />
       <ImageSlider />
       <LogoSlider />
       <NewArrivals />

@@ -17,6 +17,7 @@ const {
   deleteCustomer,
   updateCustomer,
   blockOrUnBlockCustomer,
+  getManagers,
 } = require("../controllers/admin/customerController");
 const {
   getCategories,
@@ -79,6 +80,7 @@ router.post("/product", upload.any(), addProduct);
 
 // Customer controller functions mounting them to corresponding route
 router.get("/customers", getCustomers);
+router.get("/managers", getManagers);
 router.get("/customer/:id", getCustomer);
 router.delete("/customer/:id", deleteCustomer);
 router.patch("/customer/:id", updateCustomer);

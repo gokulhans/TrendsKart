@@ -40,6 +40,10 @@ const SideNavbar = () => {
           <FiBox />
           Enquiries
         </NavLink>
+        <NavLink className="side-nav-link-sp" to="orders">
+          <BsCardChecklist />
+          Orders
+        </NavLink>
        
         <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />

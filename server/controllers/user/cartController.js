@@ -136,6 +136,7 @@ const addToCart = async (req, res) => {
         user: _id,
         items: [{ product, quantity, attributes }],
       });
+      
     }
 
     res.status(200).json({ cart });

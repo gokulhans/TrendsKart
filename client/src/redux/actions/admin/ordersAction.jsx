@@ -15,6 +15,19 @@ export const getOrders = createAsyncThunk(
     );
   }
 );
+// Get all manager orders
+export const getManagerOrders = createAsyncThunk(
+  "orders/getOrders",
+  async ({queries,userId}, { rejectWithValue }) => {
+    return commonReduxRequest(
+      "get",
+      `/manager/orders/a/${userId}/${queries && `?${queries}`}`,
+      null,
+      appJson,
+      rejectWithValue
+    );
+  }
+);
 
 // Update the status of order
 export const updateOrderStatus = createAsyncThunk(

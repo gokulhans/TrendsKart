@@ -29,6 +29,19 @@ export const getCustomers = createAsyncThunk(
   }
 );
 
+export const getManagers = createAsyncThunk(
+  "customers/getCustomers",
+  async (queries, { rejectWithValue }) => {
+    return commonReduxRequest(
+      "get",
+      `/admin/managers${queries && `?${queries}`}`,
+      null,
+      appJson,
+      rejectWithValue
+    );
+  }
+);
+
 export const blockOrUnBlock = createAsyncThunk(
   "customers/blockOrUnBlock",
   async ({ id, isActive }, { rejectWithValue }) => {

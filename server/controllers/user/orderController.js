@@ -10,6 +10,7 @@ const Wallet = require("../../model/walletModel");
 const Coupon = require("../../model/couponModel");
 const { generateInvoicePDF } = require("../Common/invoicePDFGenFunctions");
 const Counter = require("../../model/counterModel");
+const managerOrderModel = require("../../model/managerOrderModel");
 
 // Just the function increment or decrement product count
 const updateProductList = async (id, count) => {
@@ -71,11 +72,37 @@ const createOrder = async (req, res) => {
       price: 1,
       markup: 1,
     });
-
+    console.log("cart");
+    console.log(cart);
     let sum = 0;
     let totalQuantity = 0;
 
-    cart.items.map((item) => {
+    cart.items.map(async (item) => {
+      console.log("item");
+      console.log(item);
+      const product = await Products.findOne({ _id: item.product._id.toString() });
+      console.log(product);
+      
+      if (product && product.managerId) {
+        // Create an order for the product
+
+        const newOrder = {
+          managerId: product.managerId,
+          productId: product._id,
+          productName: product.name,
+          quantity: item.quantity,
+          price: item.product.price,
+          totalPrice: item.product.price * item.quantity,
+          orderDate: new Date(),
+          status: 'pending', // Initial status for the order
+        };
+  
+        // Save the order to the database
+        const order = await managerOrderModel.create(newOrder);
+        console.log("manager order");
+        console.log(order);
+      }
+
       sum = sum + (item.product.price + item.product.markup) * item.quantity;
       totalQuantity = totalQuantity + item.quantity;
     });

@@ -59,12 +59,16 @@ const SideNavbar = () => {
           Payments
         </NavLink>
         <p className="side-nav-sub-title">User Management</p>
-        {user && user.role === "superAdmin" && (
+        {/* {user && user.role === "superAdmin" && (
           <NavLink className="side-nav-link-sp" to="manageAdmins">
             <FaUsersCog />
             Manage Admins
           </NavLink>
-        )}
+        )} */}
+        <NavLink className="side-nav-link-sp" to="managers">
+          <FaUsers />
+          Managers
+        </NavLink>
         <NavLink className="side-nav-link-sp" to="customers">
           <FaUsers />
           Customers
