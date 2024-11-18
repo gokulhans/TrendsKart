@@ -1,7 +1,6 @@
 New Bugs Trends Kart
 
-OurProducts 118 lines
-categories now static looping
+
 
 manageradding
 use this text to find edited libes of this feature
@@ -13,7 +12,7 @@ new feature
 email, frgt pswd
 signup
 signup page, manager signup page
-
+filter , price , sort collection page
 
 There are bugs [old]
 
