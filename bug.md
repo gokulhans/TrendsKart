@@ -1,3 +1,8 @@
+TODOS
+
+Try Host it free
+vercel error hosting
+
 New Bugs Trends Kart
 
 122 line in mailsender, change this link to hosted link
