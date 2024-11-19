@@ -87,6 +87,7 @@ import EditStock from "./page/admin/pages/products/EditStock";
 import ManagerOrders from "./page/admin/pages/Order/ManagerOrders";
 import Managers from "./page/admin/pages/managers/Managers";
 import AllManagerOrders from "./page/admin/pages/Order/AllManagerOrders";
+import OldRegister from "./page/auth/OldRegister";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -149,6 +150,7 @@ function App() {
 
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="old-register" element={<OldRegister />} />
           <Route path="otp" element={<ValidateOTP />} />
           <Route path="forgot-password" element={<ForgetPassword />} />
 

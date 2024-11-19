@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import SignUpBG from "../../assets/SignUpBG.png";
+import Logo from "../../assets/logoGrey.png";
 import {
   AiOutlineLock,
   AiOutlineUser,
@@ -9,18 +10,24 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  googleLoginOrSignUp,
-  signUpManager
+  signUpManager,
+  // googleLoginOrSignUp,
+  signUpUser,
 } from "../../redux/actions/userActions";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputWithIcon from "../../components/InputWithIcon";
 import PasswordInputWithIcon from "../../components/PasswordInputWithIcon";
-
+import CustomSingleFileInput from "../../components/CustomSingleFileInput";
+// import OTPEnterSection from "./Register/OTPEnterSection";
+// import OTPExpired from "./components/OTPExpired";
 import toast from "react-hot-toast";
 import { appJson } from "../../Common/configurations";
+// import { GoogleLogin } from "@react-oauth/google";
 import { commonRequest } from "../../Common/api";
 import { updateError } from "../../redux/reducers/userSlice";
+import OTPEnterSection from "../auth/Register/OTPEnterSection";
+import OTPExpired from "../auth/components/OTPExpired";
 
 const ManagerSignup = () => {
   const { user, loading, error } = useSelector((state) => state.user);
@@ -84,12 +91,14 @@ const ManagerSignup = () => {
       formData.append("profileImgURL", data.profileImgURL);
     }
 
+    // dispatch(signUpUser(formData));
     dispatch(signUpManager(formData));
+
   };
 
   const handleRegister = async (value) => {
     // Display loading state
-    // setOTPLoading(true);
+    setOTPLoading(true);
     setData(value);
     if (value.email.trim() === "") {
       toast.error("Enter an email to continue");
@@ -105,17 +114,10 @@ const ManagerSignup = () => {
 
     if (res.success) {
       // Update state to show OTP section
-      // setEmailSec(false);
-      // setOTPSec(true);
-      // setOTPLoading(false);
-      // toast.success("OTP Sent successfully");
-      const res = await commonRequest(
-        "POST",
-        +"/auth/validate-otp",
-        { email: value.email, otp: "000000" },
-        appJson
-      );
-      dispatchSignUp();
+      setEmailSec(false);
+      setOTPSec(true);
+      setOTPLoading(false);
+      toast.success("OTP Sent successfully");
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -128,22 +130,22 @@ const ManagerSignup = () => {
   };
 
   // Google Login
-  const loginWithGoogle = async (data) => {
-    dispatch(googleLoginOrSignUp(data));
-  };
+  // const loginWithGoogle = async (data) => {
+  //   dispatch(googleLoginOrSignUp(data));
+  // };
 
   return (
-    <div className="py-10 sm:py-20  bg-white rounded-lg p-5 mt-5 lg:flex  text-gray-500 flex flex-col items-center justify-center">
-      {/* <div classNam e="lg:w-1/2">
+    <div className="py-20 bg-gray-100 lg:flex  text-gray-500">
+      <div className="lg:w-1/2">
         <img src={SignUpBG} alt="SignUpBG" />
-      </div> */}
+      </div>
 
-      <div className="w-full  max-w-xl p-5 mx-10 lg:mx-20 lg:p-10 border border-gray-300 rounded-3xl">
-        {/* <div className="flex items-center justify-center">
-          <img src={Logo} alt="Helah. logo" className="lg:w-1/12 w-1/12" />
-          <p className="text-3xl font-bold ">Helah.</p>
-        </div> */}
-        <center className="text-2xl my-5 font-bold">Sign Up</center>
+      <div className="lg:w-1/2 p-5 mx-10 lg:mx-20 lg:p-10 border border-gray-300 rounded-3xl">
+        <div className="flex items-center justify-center">
+          <img src={Logo} alt="ex.iphones. logo" className="lg:w-1/12 w-1/12" />
+          <p className="text-3xl font-bold ">ex.iphones.</p>
+        </div>
+        <h1 className="text-2xl my-5 font-bold">Sign Up</h1>
         {emailSec && (
           <Formik
             initialValues={initialValues}
@@ -151,8 +153,8 @@ const ManagerSignup = () => {
             validationSchema={validationSchema}
           >
             {({ values, setFieldValue }) => (
-              <Form className="w-full flex flex-col space-y-4">
-                {/* <div className="flex justify-center">
+              <Form className="w-full">
+                <div className="flex justify-center">
                   <CustomSingleFileInput
                     onChange={(file) => setFieldValue("profileImgURL", file)}
                   />
@@ -161,7 +163,7 @@ const ManagerSignup = () => {
                     name="profileImgURL"
                     component="span"
                   />
-                </div> */}
+                </div>
                 <InputWithIcon
                   icon={<AiOutlineUser />}
                   title="First Name"
@@ -210,7 +212,7 @@ const ManagerSignup = () => {
             )}
           </Formik>
         )}
-        {/* {otpSec && (
+        {otpSec && (
           <OTPEnterSection
             email={data.email}
             setOTPExpired={setOTPExpired}
@@ -218,11 +220,11 @@ const ManagerSignup = () => {
             dispatchSignUp={dispatchSignUp}
           />
         )}
-        {otpExpired && <OTPExpired />} */}
+        {otpExpired && <OTPExpired />}
         <div className="text-center">
-          {/* <p className="my-4">OR</p>
+          <p className="my-4">OR</p>
           <div className="flex justify-center">
-            <GoogleLogin
+            {/* <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
                 loginWithGoogle(credentialResponse);
@@ -231,8 +233,8 @@ const ManagerSignup = () => {
                 console.log("Login Failed");
                 toast.error("Something is wrong! Please try later");
               }}
-            />
-          </div> */}
+            /> */}
+          </div>
           <p className="my-5">
             Already have an account?{" "}
             <Link
