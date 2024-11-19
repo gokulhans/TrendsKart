@@ -74,10 +74,10 @@ const SideNavbar = () => {
           Customers
         </NavLink>
         <p className="side-nav-sub-title">Other</p>
-        <NavLink className="side-nav-link-sp" to="settings">
+        {/* <NavLink className="side-nav-link-sp" to="settings">
           <FiSettings />
           Settings
-        </NavLink>
+        </NavLink> */}
         <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />
           Help

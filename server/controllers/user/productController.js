@@ -8,26 +8,28 @@ const getProducts = async (req, res) => {
     let filter = {};
     if (category) filter.category = { $in: category.split(",") };
     if (search) {
-      filter.name = { $regex: new RegExp(search, "i") };
+      // filter.name = { $regex: new RegExp(search, "i") };
+      filter.name = { $regex: new RegExp(search.split('').join('.*'), 'i') };
+
     }
     if (price) {
-      if (price === "Under 25000") {
-        filter.price = { $lte: 25000 };
+      if (price === "Under 2500") {
+        filter.price = { $lte: 2500 };
       }
-      if (price === "25000-50000") {
-        filter.price = { $gte: 25000, $lte: 50000 };
+      if (price === "2500-5000") {
+        filter.price = { $gte: 2500, $lte: 5000 };
       }
-      if (price === "50000-100000") {
-        filter.price = { $gte: 50000, $lte: 100000 };
+      if (price === "5000-10000") {
+        filter.price = { $gte: 5000, $lte: 10000 };
       }
-      if (price === "100000-150000") {
-        filter.price = { $gte: 100000, $lte: 150000 };
+      if (price === "10000-15000") {
+        filter.price = { $gte: 10000, $lte: 15000 };
       }
-      if (price === "200000-300000") {
-        filter.price = { $gte: 200000, $lte: 300000 };
+      if (price === "20000-30000") {
+        filter.price = { $gte: 20000, $lte: 30000 };
       }
-      if (price === "Above 300000") {
-        filter.price = { $gte: 300000 };
+      if (price === "Above 10000") {
+        filter.price = { $gte: 10000 };
       }
     }
 

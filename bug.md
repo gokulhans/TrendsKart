@@ -7,8 +7,6 @@ use this text to find edited libes of this feature
 
 // TODOS
 
-shamil chat features
-new feature
 email, frgt pswd
 signup
 signup page, manager signup page

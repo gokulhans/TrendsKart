@@ -25,6 +25,8 @@ const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let [currentImage, setCurrentImage] = useState("");
+
   const {
     userProducts,
     loadingproducts,
@@ -43,7 +45,7 @@ const SingleProduct = () => {
     div2: false,
     div3: false,
   });
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(1);
 
   const dispatchAddWishlist = () => {
     if (!user) {
@@ -253,10 +255,73 @@ const SingleProduct = () => {
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 lg:h-[650px] h-[400px] flex flex-col">
+          
             <ProductSlider
               images={imageArray}
               selectedImageIndex={selectedImageIndex}
+              imgUrl={`${URL}/img/${selectedImageIndex}`}
             />
+            <br />
+            
+
+
+
+
+ {/* Product Images */}
+ <div className="lg:w-1/2 bg-white p-5 rounded flex flex-col items-center h-fit">
+              {/* <div className="w-80 h-80 lg:w-96 lg:h-96 hidden lg:block">
+                {currentImage && (
+                  <ImageZoom
+                    imageUrl={`${URL}/img/${currentImage}`}
+                    width={400}
+                    zoomedValue={820}
+                    zoomedWidth={500}
+                  />
+                )}
+              </div> */}
+              {/* <div className="w-80 lg:w-96 lg:h-96 lg:hidden mx-auto">
+                {currentImage && (
+                  <img
+                    src={`${URL}/img/${currentImage}`}
+                    alt="Product"
+                    className="w-60 h-60 object-cover"
+                  />
+                )}
+              </div> */}
+
+              <div className="flex gap-1 lg:gap-5 mt-5">
+                {product.moreImageURL &&
+                  product.moreImageURL.map((image, i) => (
+                    <div
+                      key={i}
+                      className={`flex justify-center items-center w-12 h-12 lg:w-20 lg:h-20 overflow-clip border ${
+                        currentImage === image
+                          ? "border-gray-500"
+                          : "border-gray-300"
+                      } hover:border-gray-500 p-2 cursor-pointer `}
+                      onClick={() => setSelectedImageIndex(i+1)}
+                    >
+                      <img
+                        className="w-full h-full object-contain"
+                        key={i}
+                        src={`${URL}/img/${image}`}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+            {/* Product Details */}
+
+
+
+
+
+
+
+
+
+
+
           </div>
           <div className="mt-8 lg:mt-0 lg:w-1/2 px-8">
             <h1 className="text-[16px] lg:text-[30px] xl:text-[40px] font-light font-sans">
@@ -496,7 +561,7 @@ const SingleProduct = () => {
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
             {userProducts && userProducts.length > 0 ? (
-              userProducts.map((pro, index) => (
+              userProducts.slice(0, 4).map((pro, index) => (
                 <ProductCard2
                   star={true}
                   className="{w-[15%]}"

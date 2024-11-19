@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 
-const ProductSlider = ({ images, selectedImageIndex }) => {
+const ProductSlider = ({ images, selectedImageIndex,imgUrl }) => {
   const [currentIndex, setCurrentIndex] = useState(selectedImageIndex); // Initialize with the selected index
 
   const prevSlide = () => {
@@ -31,6 +31,7 @@ const ProductSlider = ({ images, selectedImageIndex }) => {
     <div className="w-full h-full m-auto relative group">
       <div
         style={{
+          
           backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
         }}
         className="w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
