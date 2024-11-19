@@ -44,7 +44,7 @@ app.use(logger("dev"));
 // };
 
 const corsOptions = {
-  origin: ["https://trends-kart.vercel.app", "https://trends-kart.vercel.app"],
+  origin: ["https://trends-kart.vercel.app","https://trends-kart-production.vercel.app", "https://trends-kart.vercel.app"],
   // origin: process.env.CLIENT_URL,
   // origin: "http://localhost:5173",
   credentials: true, //access-control-allow-credentials:true

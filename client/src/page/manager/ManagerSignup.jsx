@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SignUpBG from "../../assets/SignUpBG.png";
-import Logo from "../../assets/logoGrey.png";
-import {
-  AiOutlineLock,
-  AiOutlineUser,
-  AiOutlineMail,
-  AiOutlinePhone,
-} from "react-icons/ai";
+import SignUpBG from "../../assets/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  signUpManager,
-  // googleLoginOrSignUp,
-  signUpUser,
-} from "../../redux/actions/userActions";
+import { signUpUser } from "../../redux/actions/userActions";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputWithIcon from "../../components/InputWithIcon";
@@ -21,22 +10,29 @@ import PasswordInputWithIcon from "../../components/PasswordInputWithIcon";
 import CustomSingleFileInput from "../../components/CustomSingleFileInput";
 // import OTPEnterSection from "./Register/OTPEnterSection";
 // import OTPExpired from "./components/OTPExpired";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { appJson } from "../../Common/configurations";
-// import { GoogleLogin } from "@react-oauth/google";
 import { commonRequest } from "../../Common/api";
 import { updateError } from "../../redux/reducers/userSlice";
+import {
+  AiOutlineLock,
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineUser,
+} from "react-icons/ai";
 import OTPEnterSection from "../auth/Register/OTPEnterSection";
 import OTPExpired from "../auth/components/OTPExpired";
 
-const ManagerSignup = () => {
+const Register = () => {
   const { user, loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [emailSec, setEmailSec] = useState(true);
   const [otpSec, setOTPSec] = useState(false);
   const [otpExpired, setOTPExpired] = useState(false);
   const [otpLoading, setOTPLoading] = useState(false);
-
-  const navigate = useNavigate();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -45,7 +41,7 @@ const ManagerSignup = () => {
     return () => {
       dispatch(updateError(""));
     };
-  }, [user]);
+  }, [user, navigate, dispatch]);
 
   const initialValues = {
     firstName: "",
@@ -75,10 +71,6 @@ const ManagerSignup = () => {
       .moreThan(999999999, "Not valid phone number"),
   });
 
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState({});
-
   const dispatchSignUp = () => {
     let formData = new FormData();
     formData.append("firstName", data.firstName);
@@ -91,155 +83,136 @@ const ManagerSignup = () => {
       formData.append("profileImgURL", data.profileImgURL);
     }
 
-    // dispatch(signUpUser(formData));
     dispatch(signUpManager(formData));
-
   };
 
   const handleRegister = async (value) => {
-    // Display loading state
     setOTPLoading(true);
     setData(value);
-    if (value.email.trim() === "") {
-      toast.error("Enter an email to continue");
-      return;
-    }
 
-    const res = await commonRequest(
-      "POST",
-      "/auth/send-otp",
-      { email: value.email },
-      appJson
-    );
+    try {
+      const res = await commonRequest(
+        "POST",
+        "/auth/send-otp",
+        { email: value.email },
+        appJson
+      );
 
-    if (res.success) {
-      // Update state to show OTP section
-      setEmailSec(false);
-      setOTPSec(true);
-      setOTPLoading(false);
-      toast.success("OTP Sent successfully");
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else {
-      // Handle OTP request failure
-      toast.error(res.response.data.error);
+      if (res.success) {
+        setEmailSec(false);
+        setOTPSec(true);
+        toast.success("OTP sent successfully!");
+      } else {
+        throw new Error(res.response.data.error || "OTP request failed");
+      }
+    } catch (err) {
+      toast.error(err.message || "An error occurred while sending OTP");
+    } finally {
       setOTPLoading(false);
     }
   };
 
-  // Google Login
-  // const loginWithGoogle = async (data) => {
-  //   dispatch(googleLoginOrSignUp(data));
-  // };
-
   return (
-    <div className="py-20 bg-gray-100 lg:flex  text-gray-500">
-      <div className="lg:w-1/2">
-        <img src={SignUpBG} alt="SignUpBG" />
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-gray-100">
+      {/* Left Side - Image */}
+      <div className="hidden lg:block lg:w-1/2">
+        <img
+          src={SignUpBG}
+          alt="Sign Up Background"
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      <div className="lg:w-1/2 p-5 mx-10 lg:mx-20 lg:p-10 border border-gray-300 rounded-3xl">
-        <div className="flex items-center justify-center">
-          <img src={Logo} alt="ex.iphones. logo" className="lg:w-1/12 w-1/12" />
-          <p className="text-3xl font-bold ">ex.iphones.</p>
-        </div>
-        <h1 className="text-2xl my-5 font-bold">Sign Up</h1>
-        {emailSec && (
-          <Formik
-            initialValues={initialValues}
-            onSubmit={handleRegister}
-            validationSchema={validationSchema}
-          >
-            {({ values, setFieldValue }) => (
-              <Form className="w-full">
-                <div className="flex justify-center">
-                  <CustomSingleFileInput
-                    onChange={(file) => setFieldValue("profileImgURL", file)}
-                  />
-                  <ErrorMessage
-                    className="text-sm text-red-500"
-                    name="profileImgURL"
-                    component="span"
-                  />
-                </div>
-                <InputWithIcon
-                  icon={<AiOutlineUser />}
-                  title="First Name"
-                  name="firstName"
-                  placeholder="Enter your first name"
-                />
-                <InputWithIcon
-                  icon={<AiOutlineUser />}
-                  title="Last Name"
-                  name="lastName"
-                  placeholder="Enter your last name"
-                />
-                <InputWithIcon
-                  icon={<AiOutlineMail />}
-                  title="Email"
-                  name="email"
-                  placeholder="Enter your email"
-                />
-                <PasswordInputWithIcon
-                  icon={<AiOutlineLock />}
-                  title="Password"
-                  name="password"
-                  placeholder="Enter your password"
-                />
-                <PasswordInputWithIcon
-                  icon={<AiOutlineLock />}
-                  title="Confirm Password"
-                  name="passwordAgain"
-                  placeholder="Confirm your password"
-                />
-                <InputWithIcon
-                  icon={<AiOutlinePhone />}
-                  title="Phone Number"
-                  name="phoneNumber"
-                  placeholder="Enter your phone number"
-                />
-                <button
-                  type="submit"
-                  className="btn-blue text-white w-full my-3"
-                  disabled={otpLoading}
-                >
-                  {otpLoading ? "Loading..." : "Sign Up"}
-                </button>
-                {error && <p className="my-2 text-red-400">{error}</p>}
-              </Form>
-            )}
-          </Formik>
-        )}
-        {otpSec && (
-          <OTPEnterSection
-            email={data.email}
-            setOTPExpired={setOTPExpired}
-            setOTPSec={setOTPSec}
-            dispatchSignUp={dispatchSignUp}
-          />
-        )}
-        {otpExpired && <OTPExpired />}
-        <div className="text-center">
-          <p className="my-4">OR</p>
-          <div className="flex justify-center">
-            {/* <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-                loginWithGoogle(credentialResponse);
-              }}
-              onError={() => {
-                console.log("Login Failed");
-                toast.error("Something is wrong! Please try later");
-              }}
-            /> */}
+      {/* Right Side - Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 lg:px-16">
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
+          <div className="flex items-center justify-center mb-6">
+            {/* <img src={Logo} alt="Logo" className="w-12" /> */}
+            {/* <p className="text-3xl font-bold ml-3">ex.iphones.</p> */}
           </div>
-          <p className="my-5">
+          <h1 className="text-4xl font-bold mb-6 text-center">Sign Up</h1>
+
+          {emailSec && (
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleRegister}
+              validationSchema={validationSchema}
+            >
+              {({ values, setFieldValue }) => (
+                <Form className="space-y-6">
+                  {/* <div className="flex justify-center">
+                    <CustomSingleFileInput
+                      onChange={(file) => setFieldValue("profileImgURL", file)}
+                    />
+                    <ErrorMessage
+                      className="text-sm text-red-500"
+                      name="profileImgURL"
+                      component="span"
+                    />
+                  </div> */}
+                  <InputWithIcon
+                    icon={<AiOutlineUser />}
+                    title="First Name"
+                    name="firstName"
+                    placeholder="Enter your first name"
+                  />
+                  <InputWithIcon
+                    icon={<AiOutlineUser />}
+                    title="Last Name"
+                    name="lastName"
+                    placeholder="Enter your last name"
+                  />
+                  <InputWithIcon
+                    icon={<AiOutlineMail />}
+                    title="Email"
+                    name="email"
+                    placeholder="Enter your email"
+                  />
+                  <PasswordInputWithIcon
+                    icon={<AiOutlineLock />}
+                    title="Password"
+                    name="password"
+                    placeholder="Enter your password"
+                  />
+                  <PasswordInputWithIcon
+                    icon={<AiOutlineLock />}
+                    title="Confirm Password"
+                    name="passwordAgain"
+                    placeholder="Confirm your password"
+                  />
+                  <InputWithIcon
+                    icon={<AiOutlinePhone />}
+                    title="Phone Number"
+                    name="phoneNumber"
+                    placeholder="Enter your phone number"
+                  />
+                  <button
+                    type="submit"
+                    className="h-12 w-full bg-black text-white hover:bg-black/90 rounded-md"
+                    disabled={otpLoading}
+                  >
+                    {otpLoading ? "Loading..." : "Sign Up"}
+                  </button>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                </Form>
+              )}
+            </Formik>
+          )}
+
+          {otpSec && (
+            <OTPEnterSection
+              email={data.email}
+              setOTPExpired={setOTPExpired}
+              setOTPSec={setOTPSec}
+              dispatchSignUp={dispatchSignUp}
+            />
+          )}
+          {otpExpired && <OTPExpired />}
+          <p className="mt-6 text-center text-sm">
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-blue-600 font-semibold cursor-pointer hover:text-blue-500"
+              className="font-medium text-primary hover:underline"
             >
               Login now
             </Link>
@@ -250,4 +223,4 @@ const ManagerSignup = () => {
   );
 };
 
-export default ManagerSignup;
+export default Register;
