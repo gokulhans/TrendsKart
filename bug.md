@@ -1,16 +1,13 @@
 New Bugs Trends Kart
 
+122 line in mailsender, change this link to hosted link
+                      <a href="http://localhost:5173/manager/enquiries" target="_blank" class="view-button">View</a>
 
 
 manageradding
 use this text to find edited libes of this feature
 
 // TODOS
-
-email, frgt pswd
-signup
-signup page, manager signup page
-filter , price , sort collection page
 
 There are bugs [old]
 

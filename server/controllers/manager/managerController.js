@@ -1,6 +1,8 @@
 const Product = require("../../model/productModel");
 const Enquiry = require("../../model/enquiryModel");
 const mongoose = require("mongoose");
+const { sendManagerNoti, sendEnquiryMail } = require("../../util/mailFunction");
+const User = require("../../model/userModel");
 
 const notify = (req, res) => {
   console.log("manager notified");
@@ -260,9 +262,40 @@ const addEnquiry = async (req, res) => {
 
     // Insert into the Enquiries collection
     const enquiry = await Enquiry.create(enquiryData);
+    console.log("email sending process 1");
 
+
+    const customers = await User.find(
+      { role: "manager" },
+      {
+        password: 0,
+        dateOfBirth: 0,
+        role: 0,
+        walletBalance: 0,
+        isEmailVerified: 0,
+      }
+    )
+      .sort({ createdAt: -1 });
+
+     // Extracting emails
+     const emails = customers.map(customer => customer.email);
+
+     console.log("email sending process");
+     // Sending notifications
+     if (emails.length > 0) {
+       for (const email of emails) {
+        console.log("email");
+        console.log(email);
+        
+         await sendEnquiryMail(email, enquiry);
+       }
+     }
     res.status(200).json({ message: "Enquiry added successfully", enquiry });
+
+
   } catch (error) {
+    console.log(error);
+    
     res.status(400).json({ error: error.message });
   }
 };

@@ -63,7 +63,7 @@ const OurProducts = () => {
 
   useEffect(() => {
     // dispatch(getWishlist());
-    dispatch(getUserProducts(searchParams));
+    dispatch(getUserProducts(""));
 
     // const params = new URLSearchParams(window.location.search);
     // const pageNumber = params.get("page");

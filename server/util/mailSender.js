@@ -21,14 +21,7 @@ const mailSender = async (email, title, body) => {
       subject: "Hello from Nodemailer",
       text: "This is a test email sent using Nodemailer.",
     };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email: ", error);
-      } else {
-        console.log("Email sent: ", info.response);
-      }
-    });
-    
+
     // let transporter = nodemailer.createTransport({
     //   host: process.env.MAIL_HOST,
     //   auth: {
@@ -37,12 +30,21 @@ const mailSender = async (email, title, body) => {
     //   },
     // });
     // Send emails to users
-    let info = await transporter.sendMail({
-      from: "TrendsKart - Email Verification",
-      to: email,
-      subject: title,
-      html: body,
-    });
+    let info = transporter.sendMail(
+      {
+        from: "TrendsKart - Email Verification",
+        to: email,
+        subject: title,
+        html: body,
+      },
+      (error, info) => {
+        if (error) {
+          console.error("Error sending email: ", error);
+        } else {
+          console.log("Email sent: ", info.response);
+        }
+      }
+    );
 
     return info;
   } catch (error) {

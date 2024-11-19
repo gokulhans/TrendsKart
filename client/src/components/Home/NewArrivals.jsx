@@ -20,7 +20,8 @@ const NewArrivals = () => {
       once: true,    // Animation occurs only once
     });
 
-    dispatch(getUserProducts(searchParams));
+    dispatch(getUserProducts(""));
+    // dispatch(getUserProducts(searchParams));
   }, [searchParams, dispatch]);
 
   return (
