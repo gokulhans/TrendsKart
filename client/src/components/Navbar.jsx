@@ -362,7 +362,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between gap-4">
           <a href="/" className="flex-shrink-0">
             {/* <h1 className="text-2xl font-bold text-red-600">Trend Kart</h1> */}
-            <img src={Logo} alt="logo" className="h-12 w-32" />
+            <img src={Logo} alt="logo" className="h-12 w-42" />
           </a>
           <div className="relative hidden flex-1 max-w-xl lg:block">
             <SearchBar
