@@ -153,6 +153,7 @@ function App() {
           <Route path="old-register" element={<OldRegister />} />
           <Route path="otp" element={<ValidateOTP />} />
           <Route path="forgot-password" element={<ForgetPassword />} />
+          {/* <Route path="/admin/managers/:id" element={<AllManagerOrders />} /> */}
 
           {/* General Pages */}
           {/* <Route path="contact" element={<Contact />} /> */}
