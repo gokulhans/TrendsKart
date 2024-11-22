@@ -191,8 +191,8 @@ function App() {
             <Route path="addresses" element={<Addresses />} />
             <Route path="track-order" element={<TrackOrder />} />
             <Route path="wishlist" element={<WishList />} />
-            <Route path="find-coupons" element={<FindCoupons />} />
-            <Route path="settings" element={<SettingsPage />} />
+            {/* <Route path="find-coupons" element={<FindCoupons />} /> */}
+            {/* <Route path="settings" element={<SettingsPage />} /> */}
           </Route>
 
           {/* Admin Routes

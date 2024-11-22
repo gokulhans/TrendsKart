@@ -46,10 +46,10 @@ const SideNavbar = () => {
           <BsCardChecklist />
           Orders
         </NavLink>
-        <NavLink className="side-nav-link-sp" to="coupon">
+        {/* <NavLink className="side-nav-link-sp" to="coupon">
           <HiOutlineTicket />
           Coupon
-        </NavLink>
+        </NavLink> */}
         {/* <NavLink className="side-nav-link-sp" to="banner">
           <AiOutlineTags />
           Banner
@@ -73,15 +73,15 @@ const SideNavbar = () => {
           <FaUsers />
           Customers
         </NavLink>
-        <p className="side-nav-sub-title">Other</p>
+        {/* <p className="side-nav-sub-title">Other</p> */}
         {/* <NavLink className="side-nav-link-sp" to="settings">
           <FiSettings />
           Settings
         </NavLink> */}
-        <NavLink className="side-nav-link-sp" to="help">
+        {/* <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />
           Help
-        </NavLink>
+        </NavLink> */}
         <button
           className="side-nav-link-sp cursor-pointer w-full"
           onClick={handleLogout}

@@ -45,10 +45,10 @@ const SideNavbar = () => {
           Orders
         </NavLink>
        
-        <NavLink className="side-nav-link-sp" to="help">
+        {/* <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />
           Help
-        </NavLink>
+        </NavLink> */}
         <button
           className="side-nav-link-sp cursor-pointer w-full"
           onClick={handleLogout}

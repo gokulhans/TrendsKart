@@ -163,7 +163,7 @@ const Cart = () => {
                 </button>
               </div>
               {/* Coupon session */}
-              <div className="bg-white border border-gray-200">
+              {/* <div className="bg-white border border-gray-200">
                 <h3 className="p-5 border-b border-gray-200">Coupon Code</h3>
                 <div className="p-5">
                   <input
@@ -188,7 +188,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </>

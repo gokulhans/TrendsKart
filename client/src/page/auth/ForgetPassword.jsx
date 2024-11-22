@@ -32,7 +32,7 @@ const ForgetPassword = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 lg:px-16">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
           <div className="flex items-center justify-center mb-6">
-            <img src={Logo} alt="TrendsKart Logo" className="w-48" />
+            <img src={Logo} alt="TrendKart Logo" className="w-48" />
             {/* <p className="text-3xl font-bold ml-2">TrendsKart</p> */}
           </div>
           <h1 className="text-2xl font-bold mb-4 text-center">Reset your Password</h1>

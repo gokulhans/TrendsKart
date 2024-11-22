@@ -5,7 +5,7 @@ const ExIphoneLogo = () => {
   return (
     <>
       {/* <img src={Logo} alt="Helah. logo" /> */}
-      <p>TrendsKart</p>
+      <p>TrendKart</p>
     </>
   );
 };

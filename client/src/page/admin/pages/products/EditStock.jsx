@@ -145,9 +145,10 @@ console.log("user",user);
     // }
 
     dispatch(updateProduct({ id: fetchedData.productId, formData: formData }));
-    await axios.delete(`${URL}/manager/enquiry/${id}`, {
+     axios.delete(`${URL}/manager/enquiry/${id}`, {
         withCredentials: true,
       });
+    navigate(-1);
     navigate(-1);
   };
 

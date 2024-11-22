@@ -7,6 +7,7 @@ import { URL } from "@common/api";
 
 const OrderTableRow = ({ item, index, toggleUpdateModal, classes }) => {
   const navigate = useNavigate();
+console.log(item);
 
   return (
     <tr

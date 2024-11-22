@@ -4,7 +4,7 @@ const HelahPromis = () => {
   return (
     <div className="m-8">
       <h1 className="text-[#2C2C2C] text-[30px] text-center my-6">
-        The TrendsKart Promise
+        The TrendKart Promise
       </h1>
       <div className="w-full rounded-[20px] bg-[#F6F6F6]">
         <div className="flex flex-wrap justify-around items-center my-3 min-h-[150px]">

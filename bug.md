@@ -7,6 +7,17 @@ New Bugs Trends Kart
 
 122 line in mailsender, change this link to hosted link
                       <a href="http://localhost:5173/manager/enquiries" target="_blank" class="view-button">View</a>
+if same product with different size added, we can't increase quantity from cart page. both are increase 
+user view order page, total price is 0 
+Order Summery
+Sub Total
+0₹
+
+in admin side too 
+Confirm Save? model not closing manager side, enquiry side
+when again click on dashboard , it adichu pokum in admon panel
+
+need login two times to store , use cache
 
 
 manageradding

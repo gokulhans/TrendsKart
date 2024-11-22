@@ -123,8 +123,8 @@ const sendEnquiryMail = async (email, enquiryData) => {
               </div>
               <div class="footer">
                   <p>Best regards,</p>
-                  <p>TrendsKart</p>
-                  <p>&copy; 2024 TrendsKart. All rights reserved.</p>
+                  <p>TrendKart</p>
+                  <p>&copy; 2024 TrendKart. All rights reserved.</p>
               </div>
           </div>
       </body>
@@ -224,7 +224,7 @@ const sendOTPMail = async (email, otp) => {
     
     <body>
         <div className="container">
-            <h2>TrendsKart.</h2>
+            <h2>TrendKart.</h2>
             <div className="header">
                 <h1>Email Verification</h1>
             </div>
@@ -236,8 +236,8 @@ const sendOTPMail = async (email, otp) => {
             </div>
             <div className="footer">
                 <p>Best regards,</p>
-                <p>TrendsKart</p>
-                <p>&copy; 2023 TrendsKart. All rights reserved.</p>
+                <p>TrendKart</p>
+                <p>&copy; 2023 TrendKart. All rights reserved.</p>
             </div>
         </div>
     </body>
@@ -328,7 +328,7 @@ const sendManagerNoti = async (email) => {
     
     <body>
         <div className="container">
-            <h2>TrendsKart.</h2>
+            <h2>TrendKart.</h2>
             <div className="header">
                 <h1>Email Verification</h1>
             </div>
@@ -340,8 +340,8 @@ const sendManagerNoti = async (email) => {
             </div>
             <div className="footer">
                 <p>Best regards,</p>
-                <p>TrendsKart</p>
-                <p>&copy; 2023 TrendsKart. All rights reserved.</p>
+                <p>TrendKart</p>
+                <p>&copy; 2023 TrendKart. All rights reserved.</p>
             </div>
         </div>
     </body>
@@ -418,7 +418,7 @@ const passwordChangedMail = async (email) => {
     
     <body>
         <div className="container">
-            <h2>TrendsKart.</h2>
+            <h2>TrendKart.</h2>
             <div className="header">
               <h1>Email Authentication Notification</h1>
             </div>
@@ -429,8 +429,8 @@ const passwordChangedMail = async (email) => {
             </div>
             <div className="footer">
               <p>Best regards,</p>
-              <p>TrendsKart</p>
-              <p>&copy; 2023 TrendsKart. All rights reserved.</p>
+              <p>TrendKart</p>
+              <p>&copy; 2023 TrendKart. All rights reserved.</p>
             </div>
         </div>
     </body>
