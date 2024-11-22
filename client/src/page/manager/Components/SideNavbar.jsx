@@ -11,6 +11,7 @@ import { AiOutlineTags } from "react-icons/ai";
 import { FaUsersCog, FaUsers } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/actions/userActions";
+import { clearUserState } from "@/redux/reducers/userSlice";
 
 const SideNavbar = () => {
   const { user } = useSelector((state) => state.user);
@@ -19,6 +20,12 @@ const SideNavbar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    function clearCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+    dispatch(clearUserState()); // Clear all items from cart
+    // Usage
+    clearCookie("user_token");
     dispatch(logout());
     navigate("/");
   };

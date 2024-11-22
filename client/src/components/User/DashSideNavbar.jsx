@@ -13,11 +13,18 @@ import { BiUser, BiHistory } from "react-icons/bi";
 import { GiMailbox } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { FiSettings } from "react-icons/fi";
+import { clearUserState } from "@/redux/reducers/userSlice";
 
 const DashSideNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
+    function clearCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+    dispatch(clearUserState()); // Clear all items from cart
+    // Usage
+    clearCookie("user_token");
     dispatch(logout());
     navigate("/");
   };
@@ -62,7 +69,7 @@ const DashSideNavbar = () => {
       </NavLink> */}
       <button className="side-nav-link-sp w-full" onClick={handleLogout}>
         <AiOutlineLogout />
-        Logout
+        Logout 
       </button>
     </div>
   );

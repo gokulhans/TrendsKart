@@ -23,6 +23,11 @@ const userSlice = createSlice({
     updateError: (state, { payload }) => {
       state.error = payload;
     },
+    clearUserState: (state) => {
+      state.user = null; // Reset the user state
+      state.error = null; // Clear any errors
+      state.loading = false; // Set loading to false
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -117,5 +122,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateUserOnOTPValidation, updateError } = userSlice.actions;
+export const { updateUserOnOTPValidation, updateError, clearUserState } =
+  userSlice.actions;
 export default userSlice.reducer;
