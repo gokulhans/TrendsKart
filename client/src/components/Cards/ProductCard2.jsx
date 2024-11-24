@@ -33,7 +33,7 @@ const ProductCard2 = ({ product }) => {
       className="rounded-lg bg-gray-100 overflow-hidden p-4 cursor-pointer"
       onClick={() => navigate(`/product/${product._id}`)}
     >
-      <div className="relative w-full h-64 overflow-hidden">
+      <div className="relative w-full h-44 sm:h-44 md:h-44 lg:h-64 overflow-hidden">
         <img
           src={`${URL}/img/${product?.imageURL}`}
           alt={product.name}
