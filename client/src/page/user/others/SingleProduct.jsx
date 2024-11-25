@@ -577,7 +577,7 @@ const SingleProduct = () => {
     </div>
   )}
 </div>
-
+<div>
         <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
           You may also like
         </h1>
@@ -612,6 +612,7 @@ export default SingleProduct;
 
 function FastDelivery(props) {
   return (
+    <>
     <svg
       width="36"
       height="30"
@@ -624,6 +625,7 @@ function FastDelivery(props) {
         fill="#CC4254"
       />
     </svg>
+      </>
   );
 }
 

@@ -50,8 +50,8 @@ const generateInvoicePDF = async (order) => {
         .fontSize(20)
         .text("TrendKart Inc.", 110, 65)
         .fontSize(10)
-        .text("7th Avenue, Sector 801", 200, 65, { align: "right" })
-        .text("Calicut, Kerala, IN", 200, 80, { align: "right" })
+        .text("Trend Kart, Karassery junction, Mukkam", 200, 65, { align: "right" })
+        .text("Calicut, Kerala, India 673602", 200, 80, { align: "right" })
         .moveDown();
 
       // Invoice details section

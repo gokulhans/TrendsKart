@@ -227,7 +227,7 @@ import { TiTicket } from "react-icons/ti";
 import OutsideTouchCloseComponent from "./OutsideTouchCloseComponent";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import Logo from "../assets/TrendkartL.jpeg";
+import logo from "../assets/TrendkartL.jpeg";
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "./ui/input";
 

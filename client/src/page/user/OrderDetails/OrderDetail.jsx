@@ -181,12 +181,15 @@ const OrderDetail = () => {
                         </p>
                       ) : (
                         <>
-                          <p
+                          <a
                             className="font-semibold flex items-center gap-1 text-orange-400 cursor-pointer hover:bg-orange-100 px-2 rounded-lg"
-                            onClick={toggleReturnModal}
+                            href="https://wa.me/+919037395052?text=I'm%20interested%20in%20returning%20this%20product"
+                            // onClick={toggleReturnModal}
                           >
-                            Return <HiOutlineReceiptRefund />
-                          </p>
+                           
+                            Replacement <HiOutlineReceiptRefund />
+                          </a>
+                          
                           <p className="px-2 text-xs">
                             Last Date for Return{" "}
                             {calcReturnDate(
