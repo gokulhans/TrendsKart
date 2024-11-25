@@ -551,6 +551,33 @@ const SingleProduct = () => {
         <div></div>
       </div>
       <div className="flex flex-col w-full mt-2 px-5 lg:mt-20 lg:px-20">
+  <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
+    You may also like
+  </h1>
+  {loadingproducts ? (
+    <div className="flex justify-center items-center h-96">
+      <JustLoading size={10} />
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
+      {userProducts && userProducts.length > 0 ? (
+        userProducts.slice(0, 8).map((pro, index) => ( // Limit to 8 products
+          <ProductCard2
+            star={true}
+            className="{w-[15%]}"
+            product={pro}
+            key={index}
+          />
+        ))
+      ) : (
+        <div className="h-96">
+          <p>Nothing to show</p>
+        </div>
+      )}
+    </div>
+  )}
+</div>
+
         <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
           You may also like
         </h1>

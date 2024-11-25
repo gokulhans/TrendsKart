@@ -98,13 +98,13 @@ const ManageAdmins = () => {
         />
         <div className="flex justify-between items-center font-semibold">
           <div>
-            <h1 className="font-bold text-2xl">Manage Admins</h1>
+            <h1 className="font-bold text-2xl">Manage Dealers</h1>
             <div className="flex items-center gap-2 mt-2 mb-4 text-gray-500">
               <p className="text-blue-500 font-semibold">Dashboard</p>
               <span>
                 <BsCaretRightFill />
               </span>
-              <p className="font-semibold">Admins List</p>
+              <p className="font-semibold">Managers List</p>
             </div>
           </div>
           <div className="flex gap-3">
@@ -117,7 +117,7 @@ const ManageAdmins = () => {
               onClick={() => navigate("create")}
             >
               <AiOutlinePlus />
-              Create New Admin
+              Create New Manager
             </button>
           </div>
         </div>
@@ -142,7 +142,7 @@ const ManageAdmins = () => {
             <table className="w-full min-w-max table-auto">
               <thead className="font-normal">
                 <tr className="border-b border-gray-200">
-                  <th className="admin-table-head">Admin Name</th>
+                  <th className="admin-table-head">Manager Name</th>
                   <th className="admin-table-head">Email</th>
                   <th className="admin-table-head">Phone No</th>
                   <th className="admin-table-head">Status</th>

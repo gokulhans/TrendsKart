@@ -5,6 +5,8 @@ vercel error hosting
 
 New Bugs Trends Kart
 
+orders , logout , manager , design under product , push error image fetch 
+
 122 line in mailsender, change this link to hosted link
                       <a href="http://localhost:5173/manager/enquiries" target="_blank" class="view-button">View</a>
 if same product with different size added, we can't increase quantity from cart page. both are increase 

@@ -47,7 +47,7 @@ const getAdmins = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const admins = await User.find(
-      { role: "admin", ...filter },
+      { role: "manager", ...filter },
       {
         password: 0,
         dateOfBirth: 0,
@@ -83,7 +83,7 @@ const addAdmin = async (req, res) => {
   try {
     const userCredentials = req.body;
 
-    const user = await User.signup(userCredentials, "admin", true);
+    const user = await User.signup(userCredentials, "manager", true);
 
     res.status(200).json(user);
   } catch (error) {

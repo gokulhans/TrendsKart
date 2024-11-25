@@ -66,6 +66,9 @@ const Payments = () => {
 
   useEffect(() => {
     dispatch(getPayments(searchParams));
+    console.log("payments");
+    console.log(payments);
+
     const params = new URLSearchParams(window.location.search);
     const pageNumber = params.get("page");
     setPage(parseInt(pageNumber || 1));
@@ -147,7 +150,10 @@ const Payments = () => {
                       <td className="admin-table-row">{adjustedIndex}</td>
                       <td className="admin-table-row flex items-center gap-2">
                         <p className="line-clamp-1 mb-1 font-semibold">
-                          {item.user.firstName} {item.user.lastName}
+                        {item.user
+              ? `${item.user.firstName} ${item.user.lastName}`
+              : "Unknown User"}
+               {/* {item.user.firstName} {item.user.lastName} */}
                         </p>
                       </td>
                       <td className="admin-table-row">
@@ -175,15 +181,24 @@ const Payments = () => {
         ) : (
           <div className="absolute top-1/2 left-1/3 lg:left-1/2 lg:right-1/2">
             <p className="w-44">{error ? error : "No payments yet"}</p>
+            {/* {payments && payments.length} */}
           </div>
         )}
         <div className="py-5">
-          <Pagination
+          {payments.length > 0 && totalAvailablePayments > 0 && (
+            <Pagination
+              handleClick={handleFilter}
+              page={page}
+              number={10}
+              totalNumber={totalAvailablePayments}
+            />
+          )}
+          {/* <Pagination
             handleClick={handleFilter}
             page={page}
             number={10}
             totalNumber={totalAvailablePayments}
-          />
+          /> */}
         </div>
       </div>
     </>

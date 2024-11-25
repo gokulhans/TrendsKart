@@ -27,7 +27,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     dispatch(getOrders({}));
-  }, [orders]);
+  }, []);
 
   // Update Orders
   const [selectedOrderToUpdate, setSelectedOrderToUpdate] = useState({});

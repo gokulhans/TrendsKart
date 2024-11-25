@@ -23,7 +23,7 @@ const CheckoutPaymentOption = ({
   return (
     <>
       <div className="flex items-center justify-center py-5">
-        <label className="cursor-pointer" htmlFor="cashOnDelivery">
+        {/* <label className="cursor-pointer" htmlFor="cashOnDelivery">
           <div className="border shadow-md p-5 flex flex-col items-center rounded-lg">
             <div className="w-10 h-10 flex items-center justify-center">
               <GiPayMoney className="text-2xl" />
@@ -38,7 +38,7 @@ const CheckoutPaymentOption = ({
               checked={selectedPayment === "cashOnDelivery"}
             />
           </div>
-        </label>
+        </label> */}
         <label className="cursor-pointer" htmlFor="razorPay">
           <div className="border-r px-5 flex flex-col items-center">
             <div className="w-10 h-10">

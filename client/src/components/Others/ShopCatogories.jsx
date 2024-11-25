@@ -26,7 +26,7 @@ const ShopCategories = () => {
 
       {/* Scrollable Category List */}
       <div
-        className="flex gap-4 overflow-x-auto"
+        className="flex gap-2 justify-center items-center overflow-x-auto"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE & Edge
