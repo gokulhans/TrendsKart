@@ -10,22 +10,22 @@ function CategoriesGroup() {
 
       {/* Invisible Clickable Divs */}
       <a
-        href="/wearables"
+        href="http://localhost:5173/collections?search=watch"
         className="absolute top-0 left-0 w-[33.33%] h-[50%] cursor-pointer"
         title="Wearables"
       ></a>
       <a
-        href="/footwears"
+        href="http://localhost:5173/collections?search=runner"
         className="absolute top-0 left-[33.33%] w-[66.66%] h-[50%] cursor-pointer"
         title="Footwears"
       ></a>
       <a
-        href="/headsets"
+        href="http://localhost:5173/collections?search=earphones"
         className="absolute top-[50%] left-0 w-[66.66%] h-[50%] cursor-pointer"
         title="Headsets"
       ></a>
       <a
-        href="/perfumes"
+        href="http://localhost:5173/collections?search=perfumes"
         className="absolute top-[50%] left-[66.66%] w-[33.33%] h-[50%] cursor-pointer"
         title="Perfumes"
       ></a>
