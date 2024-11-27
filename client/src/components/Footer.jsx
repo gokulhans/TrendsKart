@@ -45,13 +45,18 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/" className="hover:text-gray-400 transition-colors">
+                <a href="https://merchant.razorpay.com/policy/PQGLwBVaRsVDHy/refund" className="hover:text-gray-400 transition-colors">
                   Returns
                 </a>
               </li>
               <li>
-                <a href="/" className="hover:text-gray-400 transition-colors">
+                <a href="https://merchant.razorpay.com/policy/PQGLwBVaRsVDHy/terms" className="hover:text-gray-400 transition-colors">
                   Privacy Policies
+                </a>
+              </li>
+              <li>
+                <a href="https://merchant.razorpay.com/policy/PQGLwBVaRsVDHy/shipping" className="hover:text-gray-400 transition-colors">
+                Shipping & Delivery Policy
                 </a>
               </li>
             </ul>
