@@ -45,6 +45,10 @@ const SingleProduct = () => {
   });
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  const filteredProducts = userProducts?.filter(
+    (product) => product._id !== id
+  );
+
   const dispatchAddWishlist = () => {
     if (!user) {
       window.scrollTo({
@@ -355,7 +359,7 @@ const SingleProduct = () => {
                       <ReplacementPolicy className="h-full w-full" />
                     </div>
                     <h1 className="text-[#2C2C2C] text-[16px] font-semibold w-32">
-                      15 Days Easy Return
+                      7 Days Easy Replacement
                     </h1>
                   </div>
                   <div className="flex items-center flex-col text-center">
@@ -485,32 +489,34 @@ const SingleProduct = () => {
 
         <div></div>
       </div>
-      <div className="flex flex-col w-full mt-2 px-5 lg:mt-20 lg:px-20">
-  <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
-    You may also like
-  </h1>
-  {loadingproducts ? (
-    <div className="flex justify-center items-center h-96">
-      <JustLoading size={10} />
-    </div>
-  ) : (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
-      {userProducts && userProducts.length > 0 ? (
-        userProducts.slice(0, 8).map((pro, index) => ( // Limit to 8 products
-          <ProductCard2
-            star={true}
-            className="{w-[15%]}"
-            product={pro}
-            key={index}
-          />
-        ))
-      ) : (
-        <div className="h-96">
-          <p>Nothing to show</p>
-        </div>
-      )}
-    </div>
-  )}
+      {/* Recommended Products */}
+      <div className="w-full px-4 lg:px-20 mt-8 mb-8">
+        <h2 className="text-xl lg:text-2xl text-center mb-4">
+          You may also like
+        </h2>
+        {loadingproducts ? (
+          <div className="flex justify-center items-center h-96">
+            <JustLoading size={10} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+            {filteredProducts && filteredProducts.length > 0 ? (
+              filteredProducts
+              .slice(0, 4) // Limit to 8 products
+              .map((pro, index) => (
+                <ProductCard2
+                  star={true}
+                  product={pro}
+                  key={pro._id || index}
+                />
+              ))
+            ) : (
+              <div className="col-span-full text-center">
+                Nothing to show
+              </div>
+            )}
+          </div>
+        )}
 </div>
 
     </div>
