@@ -77,35 +77,12 @@ const createOrder = async (req, res) => {
     let sum = 0;
     let totalQuantity = 0;
 
-    cart.items.map(async (item) => {
-      console.log("item");
-      console.log(item);
-      const product = await Products.findOne({ _id: item.product._id.toString() });
-      console.log(product);
-      
-      if (product && product.managerId) {
-        // Create an order for the product
-
-        const newOrder = {
-          managerId: product.managerId,
-          productId: product._id,
-          productName: product.name,
-          quantity: item.quantity,
-          price: item.product.price,
-          totalPrice: item.product.price * item.quantity,
-          orderDate: new Date(),
-          status: 'pending', // Initial status for the order
-        };
-  
-        // Save the order to the database
-        const order = await managerOrderModel.create(newOrder);
-        console.log("manager order");
-        console.log(order);
-      }
-
+    cart.items.map(async (item) => {   
       sum = sum + (item.product.price + item.product.markup) * item.quantity;
       totalQuantity = totalQuantity + item.quantity;
     });
+
+   
 
     // let sumWithTax = parseInt(sum + sum * 0.08);
     let sumWithTax = sum; // No tax
@@ -147,12 +124,47 @@ const createOrder = async (req, res) => {
       ...(cart.type ? { couponType: cart.type } : {}),
     };
 
+
+
+    cart.items.map(async (item) => {
+      console.log("item");
+      console.log(item);
+      const product = await Products.findOne({ _id: item.product._id.toString() });
+      console.log(product);
+      
+      if (product && product.managerId) {
+        // Create an order for the product
+
+        const newOrder = {
+          managerId: product.managerId,
+          productId: product._id,
+          productName: product.name,
+          quantity: item.quantity,
+          price: item.product.price,
+          totalPrice: item.product.price * item.quantity,
+          orderDate: new Date(),
+          status: 'pending', // Initial status for the order
+        };
+  
+        // Save the order to the database
+        const order = await managerOrderModel.create(newOrder);
+        console.log("manager order");
+        console.log(order);
+      }
+      
+      sum = sum + (item.product.price + item.product.markup) * item.quantity;
+      totalQuantity = totalQuantity + item.quantity;
+    });
+
+
     const updateProductPromises = products.map((item) => {
       return updateProductList(item.productId, -item.quantity);
     });
 
     await Promise.all(updateProductPromises);
-
+    console.log("orderData");
+    console.log(orderData);
+    
     const order = await Order.create(orderData);
 
     if (order) {

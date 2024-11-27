@@ -251,7 +251,7 @@ const BuyNow = () => {
             />
             <div className="bg-white my-5 p-5 rounded">
               <h1 className="text-xl font-semibold border-b pb-2 mb-3">
-                Payment Option
+                Payment Option 
               </h1>
               <CheckoutPaymentOption
                 handleSelectedPayment={handleSelectedPayment}

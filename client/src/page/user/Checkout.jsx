@@ -73,7 +73,8 @@ const Checkout = () => {
         },
         config
       );
-
+      console.log("entireTotal");
+      console.log(order);
       // Updating user side
       setOrderData(true);
       toast.success("Order Placed");
@@ -212,6 +213,8 @@ const Checkout = () => {
     if (selectedPayment === "myWallet") {
       let entireTotal =
         Number(totalPrice) + Number(discount) + Number(tax) - Number(offer);
+    
+        
       if (walletBalance < entireTotal) {
         toast.error("Not balance in your wallet");
         return;
