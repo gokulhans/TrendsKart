@@ -135,10 +135,9 @@ const SingleProduct = () => {
   //     });
   // };
 
-
-  const onHomeClick = async() =>{
-    navigate('/')
-  }
+  const onHomeClick = async () => {
+    navigate("/");
+  };
   const notifyManager = async () => {
     // if (!user) {
     //   window.scrollTo({
@@ -150,10 +149,7 @@ const SingleProduct = () => {
     // }
     // setCartLoading(true);
     try {
-       await axios.get(
-        `${URL}/manager/notify/${id}`,
-        config
-      );
+      await axios.get(`${URL}/manager/notify/${id}`, config);
       toast.success("Notified ");
     } catch (error) {
       const err = error.response.data.error;
@@ -161,7 +157,7 @@ const SingleProduct = () => {
     }
     // setCartLoading(false);
   };
-  
+
   const addToCart = async () => {
     if (!user) {
       window.scrollTo({
@@ -255,20 +251,15 @@ const SingleProduct = () => {
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 lg:h-[650px] h-[400px] flex flex-col">
-          
             <ProductSlider
               images={imageArray}
               selectedImageIndex={selectedImageIndex}
               imgUrl={`${URL}/img/${selectedImageIndex}`}
             />
             <br />
-            
 
-
-
-
- {/* Product Images */}
- <div className="lg:w-1/2 bg-white p-5 rounded flex flex-col items-center h-fit">
+            {/* Product Images */}
+            <div className="lg:w-1/2 bg-white p-5 rounded flex flex-col items-center h-fit">
               {/* <div className="w-80 h-80 lg:w-96 lg:h-96 hidden lg:block">
                 {currentImage && (
                   <ImageZoom
@@ -299,7 +290,7 @@ const SingleProduct = () => {
                           ? "border-gray-500"
                           : "border-gray-300"
                       } hover:border-gray-500 p-2 cursor-pointer `}
-                      onClick={() => setSelectedImageIndex(i+1)}
+                      onClick={() => setSelectedImageIndex(i + 1)}
                     >
                       <img
                         className="w-full h-full object-contain"
@@ -311,17 +302,6 @@ const SingleProduct = () => {
               </div>
             </div>
             {/* Product Details */}
-
-
-
-
-
-
-
-
-
-
-
           </div>
           <div className="mt-8 lg:mt-0 lg:w-1/2 px-8">
             <h1 className="text-[16px] lg:text-[30px] xl:text-[40px] font-light font-sans">
@@ -420,7 +400,7 @@ const SingleProduct = () => {
                       <ReplacementPolicy className="h-full w-full" />
                     </div>
                     <h1 className="text-[#2C2C2C] text-[16px] font-semibold w-32">
-                      15 Days Easy Return
+                      7 Days Replacement 
                     </h1>
                   </div>
                   <div className="flex items-center flex-col text-center">
@@ -433,8 +413,6 @@ const SingleProduct = () => {
                   </div>
                 </div>
                 <div className="flex justify-start space-x-2 w-full pt-10">
-                 
-
                   {!isOutOfStock && (
                     <Button
                       disabled={cartLoading}
@@ -550,34 +528,7 @@ const SingleProduct = () => {
 
         <div></div>
       </div>
-      <div className="flex flex-col w-full mt-2 px-5 lg:mt-20 lg:px-20">
-  <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
-    You may also like
-  </h1>
-  {loadingproducts ? (
-    <div className="flex justify-center items-center h-96">
-      <JustLoading size={10} />
-    </div>
-  ) : (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
-      {userProducts && userProducts.length > 0 ? (
-        userProducts.slice(0, 8).map((pro, index) => ( // Limit to 8 products
-          <ProductCard2
-            star={true}
-            className="{w-[15%]}"
-            product={pro}
-            key={index}
-          />
-        ))
-      ) : (
-        <div className="h-96">
-          <p>Nothing to show</p>
-        </div>
-      )}
-    </div>
-  )}
-</div>
-<div>
+      {/* <div className="flex flex-col w-full mt-2 px-5 lg:mt-20 lg:px-20">
         <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
           You may also like
         </h1>
@@ -588,14 +539,49 @@ const SingleProduct = () => {
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
             {userProducts && userProducts.length > 0 ? (
-              userProducts.slice(0, 4).map((pro, index) => (
-                <ProductCard2
-                  star={true}
-                  className="{w-[15%]}"
-                  product={pro}
-                  key={index}
-                />
-              ))
+              userProducts.slice(0, 8).map(
+                (
+                  pro,
+                  index // Limit to 8 products
+                ) => (
+                  <ProductCard2
+                    star={true}
+                    className="{w-[15%]}"
+                    product={pro}
+                    key={index}
+                  />
+                )
+              )
+            ) : (
+              <div className="h-96">
+                <p>Nothing to show</p>
+              </div>
+            )}
+          </div>
+        )}
+      </div> */}
+
+      <div>
+        <h1 className="text-[16px] lg:text-[25px] lg:text-center xl:text-[30px] text-[#2C2C2C]">
+          You may also like
+        </h1>
+        {loadingproducts ? (
+          <div className="flex justify-center items-center h-96">
+            <JustLoading size={10} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-5">
+            {userProducts && userProducts.length > 0 ? (
+              userProducts
+                .slice(0, 4)
+                .map((pro, index) => (
+                  <ProductCard2
+                    star={true}
+                    className="{w-[15%]}"
+                    product={pro}
+                    key={index}
+                  />
+                ))
             ) : (
               <div className="h-96">
                 <p>Nothing to show</p>
@@ -613,19 +599,19 @@ export default SingleProduct;
 function FastDelivery(props) {
   return (
     <>
-    <svg
-      width="36"
-      height="30"
-      viewBox="0 0 36 30"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0 29.2V27.8H8.3V22.5H2V21.1H8.3V15.8H4.1V14.4H8.3V8.6L4.9 1.1L6.2 0.5L9.8 8.4H33.6L29.9 0.6L31.2 0L35.1 8.4V29.2H0ZM17.7 16.5H25.7C25.8983 16.5 26.0645 16.4327 26.1985 16.298C26.3328 16.1637 26.4 15.997 26.4 15.798C26.4 15.5993 26.3328 15.4333 26.1985 15.3C26.0645 15.1667 25.8983 15.1 25.7 15.1H17.7C17.5017 15.1 17.3353 15.1673 17.201 15.302C17.067 15.4363 17 15.603 17 15.802C17 16.0007 17.067 16.1667 17.201 16.3C17.3353 16.4333 17.5017 16.5 17.7 16.5Z"
-        fill="#CC4254"
-      />
-    </svg>
-      </>
+      <svg
+        width="36"
+        height="30"
+        viewBox="0 0 36 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 29.2V27.8H8.3V22.5H2V21.1H8.3V15.8H4.1V14.4H8.3V8.6L4.9 1.1L6.2 0.5L9.8 8.4H33.6L29.9 0.6L31.2 0L35.1 8.4V29.2H0ZM17.7 16.5H25.7C25.8983 16.5 26.0645 16.4327 26.1985 16.298C26.3328 16.1637 26.4 15.997 26.4 15.798C26.4 15.5993 26.3328 15.4333 26.1985 15.3C26.0645 15.1667 25.8983 15.1 25.7 15.1H17.7C17.5017 15.1 17.3353 15.1673 17.201 15.302C17.067 15.4363 17 15.603 17 15.802C17 16.0007 17.067 16.1667 17.201 16.3C17.3353 16.4333 17.5017 16.5 17.7 16.5Z"
+          fill="#CC4254"
+        />
+      </svg>
+    </>
   );
 }
 

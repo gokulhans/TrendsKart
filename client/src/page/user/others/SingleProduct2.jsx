@@ -97,7 +97,7 @@ const SingleProduct2 = () => {
                   <div className="flex items-center  flex-col  ">
                     <ReplacementPolicy />
                     <h1 className="text-[#2C2C2C] text-[14px]">
-                      15 Days Easy Return
+                    7 Days Replacement 
                     </h1>
                   </div>
                   <div className="flex items-center  flex-col w-auto mb-0   ">
