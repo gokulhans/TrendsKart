@@ -20,12 +20,6 @@ const SideNavbar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    function clearCookie(name) {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    }
-    dispatch(clearUserState()); // Clear all items from cart
-    // Usage
-    clearCookie("user_token");
     dispatch(logout());
     navigate("/");
   };
@@ -33,7 +27,6 @@ const SideNavbar = () => {
   return (
     <>
       <div className="w-7 flex items-center cursor-pointer opacity-70 hover:opacity-100">
-        
         <ExIphoneLogo />
       </div>
       <div className="text-gray-600 font-semibold mt-5">
@@ -41,7 +34,6 @@ const SideNavbar = () => {
         <NavLink className="side-nav-link-sp" to="/manager/">
           <RiDashboardLine />
           Manager Dashboard
-
         </NavLink>
         <NavLink className="side-nav-link-sp" to="enquiries">
           <FiBox />
@@ -51,7 +43,7 @@ const SideNavbar = () => {
           <BsCardChecklist />
           Orders
         </NavLink>
-       
+
         {/* <NavLink className="side-nav-link-sp" to="help">
           <FiHelpCircle />
           Help

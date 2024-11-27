@@ -19,12 +19,6 @@ const DashSideNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
-    function clearCookie(name) {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    }
-    dispatch(clearUserState()); // Clear all items from cart
-    // Usage
-    clearCookie("user_token");
     dispatch(logout());
     navigate("/");
   };
