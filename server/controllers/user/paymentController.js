@@ -15,8 +15,8 @@ const createRazerPayOrder = async (req, res) => {
     // });
 
     const instance = new RazorPay({
-      key_id: "rzp_test_Vn4YjatEc48Bxy",
-      key_secret: "eUV0XFEP76LLQCrxcgizjAr2",
+      key_id: "rzp_live_osZ7QN7ltUqSbI",
+      key_secret: "1sLIcL6xSMrVyo4cufaFjoaf",
     });
 
     const options = {
@@ -53,7 +53,7 @@ const verifyPayment = async (req, res) => {
     const sign = razorpay_order_id + "|" + razorpay_payment_id;
     const expectedSign = crypto
       // .createHmac("sha256", process.env.KEY_SECRET)
-      .createHmac("sha256", "eUV0XFEP76LLQCrxcgizjAr2")
+      .createHmac("sha256", "1sLIcL6xSMrVyo4cufaFjoaf")
       .update(sign.toString())
       .digest("hex");
 
@@ -78,7 +78,7 @@ const verifyPayment = async (req, res) => {
 };
 
 const getKey = (req, res) => {
-  return res.status(200).json({ key: "rzp_test_Vn4YjatEc48Bxy" });
+  return res.status(200).json({ key: "rzp_live_osZ7QN7ltUqSbI" });
   // return res.status(200).json({ key: process.env.KEY_ID });
 };
 
