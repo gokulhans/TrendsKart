@@ -30,34 +30,35 @@ const ProductCard2 = ({ product }) => {
 
   return (
     <div
-      className="rounded-lg bg-gray-100 overflow-hidden p-4 cursor-pointer"
-      onClick={() => navigate(`/product/${product._id}`)}
-    >
-      <div className="relative w-full h-44 sm:h-44 md:h-44 lg:h-64 overflow-hidden">
-        <img
-          src={`${URL}/img/${product?.imageURL}`}
-          alt={product.name}
-          className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
-        />
-      </div>
-      <div className="pt-4">
-        <h3 className="font-semibold text-lg text-gray-800">{product.name}</h3>
-        <StarRating rating={5} />
-        <div className="mt-2 flex items-center">
-          <span className="text-lg font-bold text-gray-800">
-            ₹{product.price}
-          </span>
-          {product.offer && (
-            <>
-              <span className="ml-2 text-gray-500 line-through">
-                ₹{originalPrice.toLocaleString()}
-              </span>
-              <span className="ml-2 text-red-500">-{product.offer}%</span>
-            </>
-          )}
-        </div>
+    className="rounded-lg bg-gray-100 overflow-hidden p-4 cursor-pointer h-auto max-h-[300px] flex flex-col"
+    onClick={() => navigate(`/product/${product._id}`)}
+  >
+    <div className="relative w-full h-44 sm:h-48 overflow-hidden">
+      <img
+        src={`${URL}/img/${product?.imageURL}`}
+        alt={product.name}
+        className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+      />
+    </div>
+    <div className="pt-4 flex-grow">
+      <h3 className="font-semibold text-lg text-gray-800">{product.name}</h3>
+      <StarRating rating={5} />
+      <div className="mt-2 flex items-center">
+        <span className="text-lg font-bold text-gray-800">
+          ₹{product.price}
+        </span>
+        {product.offer && (
+          <>
+            <span className="ml-2 text-gray-500 line-through">
+              ₹{originalPrice.toLocaleString()}
+            </span>
+            <span className="ml-2 text-red-500">-{product.offer}%</span>
+          </>
+        )}
       </div>
     </div>
+  </div>
+  
   );
 };
 

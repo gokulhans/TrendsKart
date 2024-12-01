@@ -26,7 +26,7 @@ const ShopCategories = () => {
 
       {/* Scrollable Category List */}
       <div
-        className="flex gap-2 justify-center items-center overflow-x-auto"
+        className="flex gap-2 justify-left items-center overflow-x-auto"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE & Edge
@@ -42,7 +42,7 @@ const ShopCategories = () => {
 
         {categories.map((category, index) => (
           <Link key={index} to={`/collections?category=${category._id}`}>
-            <div className="flex flex-col items-center justify-center bg-white rounded-lg min-w-[100px] h-24 p-2 hover:shadow-lg transition duration-200">
+            <div className="flex flex-col items-center text-center justify-center bg-white rounded-lg min-w-[100px] h-24 p-2 hover:shadow-lg transition duration-200">
               <img
                 src={`${URL}/img/${category.imgURL}`}
                 alt={category.name}

@@ -63,6 +63,8 @@ scrollbar-width: none; /* or 'thin' or 'auto' */
 }
 
 
+
+
 *,body,:root{
   padding: 0;
   margin: 0;
@@ -87,10 +89,10 @@ scrollbar-width: none; /* or 'thin' or 'auto' */
   }
   
   .btn-blue {
-    @apply bg-blue-600 px-3 lg:px-12 py-3 rounded-lg hover:bg-blue-700;
+    @apply bg-red-500 px-3 lg:px-12 py-3 rounded-lg hover:bg-red-700;
   }
   .btn-blue-no-pad {
-    @apply bg-blue-600 rounded-lg hover:bg-blue-700;
+    @apply bg-red-500 rounded-lg hover:bg-red-700;
   }
   
   .btn-red {

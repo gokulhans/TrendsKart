@@ -25,7 +25,7 @@ const NewArrivals = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="container mx-auto px-4 py-8" id="newArrival" data-aos="fade-up">
+   <div className="container mx-auto px-4 py-8" id="newArrival" data-aos="fade-up">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">New Arrivals</h1>
         <div
@@ -38,11 +38,12 @@ const NewArrivals = () => {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-96">
+        <div className="flex ju stify-center items-center h-96">
           <JustLoading size={10} />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
           {userProducts && userProducts.length > 0 ? (
             userProducts.slice(0, 4).map((product, index) => (
               <ProductCard2 product={product} key={index} />

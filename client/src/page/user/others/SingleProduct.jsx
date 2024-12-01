@@ -240,16 +240,16 @@ const SingleProduct = () => {
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
-      <div className="w-full flex my-6">
-        <h1 className="flex justify-center items-center font-Inter px-5 lg:px-32">
+      <div className=" container w-full flex my-6">
+        <h1 className="flex justify-center items-center font-Inter px-5 lg:pr-32 pl-0">
           <span>
             <HomeIcon color="#2C2C2C" onClick={onHomeClick} />
           </span>
-          <span className="hover:text-[#CC4254] ml-2">
+          <span className="hover:text-[#CC4254] ml-2 text-sm">
             {product.category && product.category.name + " -"}
           </span>
           {" >"}
-          <span className="hover:text-[#CC4254] ml-2">{product.name}</span>
+          <span className="hover:text-[#CC4254] ml-2 text-sm">{product.name}</span>
         </h1>
       </div>
       <div className="w-full lg:px-20 justify-center">
@@ -443,7 +443,7 @@ const SingleProduct = () => {
                   ) : (
                     <Button
                       onClick={dispatchAddWishlist}
-                      className="bg-white mt-3 w-1/2 hover:text-white md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-black px-10 border-[1px] border-[#777777] "
+                      className="bg-white mt-3 w-1/2 hover:text-white md:w-auto hover:border-[#777777] h-12 rounded-[10px] font-Inter text-[16px] text-red-500 px-10 border-[1px] border-red-500 "
                     >
                       Wishlist
                     </Button>

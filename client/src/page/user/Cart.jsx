@@ -150,7 +150,7 @@ const Cart = () => {
                 <h3 className="text-lg font-semibold">Cart Total</h3>
                 <TotalAndSubTotal />
                 <button
-                  className="btn-blue w-full text-white uppercase font-semibold text-sm"
+                  className="btn-blue bg-red-500 w-full text-white uppercase font-semibold text-sm"
                   onClick={() => {
                     if (cart.length > 0) {
                       navigate("/checkout");
