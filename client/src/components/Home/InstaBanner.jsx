@@ -4,7 +4,7 @@ import instabanner from "../../assets/trendskart/home/instabannerbg.jpg";
 
 const BannerSection = () => {
   return (
-    <section className="flex flex-col md:flex-row w-full h-auto md:h-[300px] overflow-hidden">
+    <section className="flex flex-col md:flex-row w-full h-auto md:h-[300px] overflow-hidden ">
       {/* Left Side - Image */}
       <div className="w-full md:w-1/2 h-[200px] md:h-full">
         <img
