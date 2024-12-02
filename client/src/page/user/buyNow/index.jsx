@@ -275,7 +275,7 @@ const BuyNow = () => {
           {/* Order Summery Session */}
 
           <div className="lg:w-1/4 bg-white px-5 py-3 border border-gray-200 rounded shrink-0">
-            <h1 className="font-semibold py-2">Order Summery</h1>
+            <h1 className="font-semibold py-2">Order Summery </h1>
             <div className="py-1">
               {product && <CheckoutCartRow item={{ product, quantity }} />}
             </div>

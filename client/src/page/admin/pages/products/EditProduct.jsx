@@ -142,6 +142,7 @@ const EditProduct = () => {
   const [attributeName, setAttributeName] = useState("");
   const [attributeValue, setAttributeValue] = useState("");
   const [attributeImageIndex, setAttributeImageIndex] = useState("");
+  const [attributeQuantity, setAttributeQuantity] = useState("");
   const [attributeHighlight, setAttributeHighlight] = useState(false);
 
   const attributeHandler = (e) => {
@@ -153,6 +154,7 @@ const EditProduct = () => {
       name: attributeName,
       value: attributeValue,
       imageIndex: attributeImageIndex,
+      quantity: attributeQuantity,
       isHighlight: attributeHighlight,
     };
     setFetchedData((prevData) => ({
@@ -162,6 +164,7 @@ const EditProduct = () => {
     setAttributeHighlight(false);
     setAttributeName("");
     setAttributeValue("");
+    setAttributeQuantity("");
     setAttributeImageIndex(""); // Reset the index
   };
 
@@ -370,6 +373,13 @@ const EditProduct = () => {
                   value={attributeImageIndex}
                   onChange={(e) => setAttributeImageIndex(e.target.value)}
                 />
+                <input
+                  type="text"
+                  className="admin-input-no-m w-full"
+                  placeholder="Quantity"
+                  value={attributeQuantity}
+                  onChange={(e) => setAttributeQuantity(e.target.value)}
+                />
                 <div className="admin-input-no-m w-full lg:w-auto shrink-0">
                   <input
                     type="checkbox"
@@ -390,6 +400,7 @@ const EditProduct = () => {
                     <th className="px-2 py-1 w-2/6">Name</th>
                     <th className="px-2 py-1 w-2/6">Value</th>
                     <th className="px-2 py-1 w-1/6">Image Index</th>
+                    <th className="px-2 py-1 w-1/6">Quantity</th>
                     <th className="px-2 py-1 w-1/6">Highlighted</th>
                     <th className="px-2 py-1 w-1/6">Action</th>
                   </tr>
@@ -430,6 +441,20 @@ const EditProduct = () => {
                             handleAttributeChange(
                               index,
                               "imageIndex",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td className="px-2 py-1">
+                        <input
+                          className="admin-input-no-m w-full"
+                          type="text"
+                          value={at.quantity || ""}
+                          onChange={(e) =>
+                            handleAttributeChange(
+                              index,
+                              "quantity",
                               e.target.value
                             )
                           }

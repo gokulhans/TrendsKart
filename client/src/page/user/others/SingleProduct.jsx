@@ -74,6 +74,14 @@ const SingleProduct = () => {
         console.log("data.product", data.product);
         setLoading(false);
         setCurrentImage(data.product.imageURL);
+        // Set default selected attributes to the first value of each attribute
+        const defaultAttributes = {};
+        data.product.attributes.forEach((attribute) => {
+          if (attribute.value) {
+            defaultAttributes[attribute.name] = attribute.value; // Set first value as default
+          }
+        });
+        setSelectedAttributes(defaultAttributes); // Update state with default attributes
       }
     } catch (error) {
       setLoading(false);
@@ -162,6 +170,15 @@ const SingleProduct = () => {
     // setCartLoading(false);
   };
 
+  const validateAttributesSelection = () => {
+    for (const attribute in selectedAttributes) {
+      if (!selectedAttributes[attribute]) {
+        return false; // If any attribute is not selected, return false
+      }
+    }
+    return true; // All attributes are selected
+  };
+
   const addToCart = async () => {
     if (!user) {
       window.scrollTo({
@@ -170,6 +187,11 @@ const SingleProduct = () => {
       });
       navigate("/login");
       return;
+    }
+    // Validate attribute selections
+    if (!validateAttributesSelection()) {
+      toast.error("Please select a value for each attribute.");
+      return; // Prevent adding to cart if validation fails
     }
     setCartLoading(true);
     try {
@@ -249,7 +271,9 @@ const SingleProduct = () => {
             {product.category && product.category.name + " -"}
           </span>
           {" >"}
-          <span className="hover:text-[#CC4254] ml-2 text-sm">{product.name}</span>
+          <span className="hover:text-[#CC4254] ml-2 text-sm">
+            {product.name}
+          </span>
         </h1>
       </div>
       <div className="w-full lg:px-20 justify-center">
@@ -545,23 +569,20 @@ const SingleProduct = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
             {filteredProducts && filteredProducts.length > 0 ? (
               filteredProducts
-              .slice(0, 4) // Limit to 8 products
-              .map((pro, index) => (
-                <ProductCard2
-                  star={true}
-                  product={pro}
-                  key={pro._id || index}
-                />
-              ))
+                .slice(0, 4) // Limit to 8 products
+                .map((pro, index) => (
+                  <ProductCard2
+                    star={true}
+                    product={pro}
+                    key={pro._id || index}
+                  />
+                ))
             ) : (
-              <div className="col-span-full text-center">
-                Nothing to show
-              </div>
+              <div className="col-span-full text-center">Nothing to show</div>
             )}
           </div>
         )}
-</div>
-
+      </div>
     </div>
   );
 };
