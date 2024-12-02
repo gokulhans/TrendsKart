@@ -30,34 +30,34 @@ const ProductCard2 = ({ product }) => {
 
   return (
     <div
-    className="rounded-lg bg-gray-100 overflow-hidden p-4 cursor-pointer h-auto max-h-[300px] flex flex-col"
-    onClick={() => navigate(`/product/${product._id}`)}
-  >
-    <div className="relative w-full h-44 sm:h-48 overflow-hidden">
-      <img
-        src={`${URL}/img/${product?.imageURL}`}
-        alt={product.name}
-        className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
-      />
-    </div>
-    <div className="pt-4 flex-grow">
-      <h3 className="font-semibold text-lg text-gray-800">{product.name}</h3>
-      <StarRating rating={5} />
-      <div className="mt-2 flex items-center">
-        <span className="text-lg font-bold text-gray-800">
-          ₹{product.price}
-        </span>
-        {product.offer && (
-          <>
-            <span className="ml-2 text-gray-500 line-through">
-              ₹{originalPrice.toLocaleString()}
-            </span>
-            <span className="ml-2 text-red-500">-{product.offer}%</span>
-          </>
-        )}
+      onClick={() => navigate(`/product/${product._id}`)}
+      className="cursor-pointer space-y-3    "
+    >
+      <div className="aspect-[3/4] w-full overflow-hidden">
+        <img
+          src={`${URL}/img/${product?.imageURL}`}
+          alt={product.name}
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105 "
+        />
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium uppercase tracking-wide">
+          {product.name}
+        </h3>
+        <p className="text-sm text-gray-600 line-clamp-2">
+          {product.description || "Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text."}
+        </p>
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-semibold line-through">
+            ₹{originalPrice.toLocaleString()}
+          </span>
+          <span className="text-sm text-gray-500">From</span>
+          <span className="text-lg font-semibold text-red-500">
+            ₹{product.price.toLocaleString()}
+          </span>
+        </div>
       </div>
     </div>
-  </div>
   
   );
 };

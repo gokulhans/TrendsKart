@@ -9,6 +9,7 @@ import CategorySection from "../../../components/Home/CategoryBar";
 import BannerSection from "../../../components/Home/InstaBanner"
 import ShopCatogories from "@/components/Others/ShopCatogories";
 import Marquee from "@/components/Home/Marquee";
+import RedBanner from "@/components/Home/redBanner";
 
 
 export default function Home2() {
@@ -20,9 +21,10 @@ export default function Home2() {
       <ImageSlider />
       <LogoSlider />
       <NewArrivals />
-      <OurProducts />
-      {/* <BestSellers /> */}
       <CategoriesGroup />
+      <OurProducts />
+      <RedBanner/>
+      {/* <BestSellers /> */}
       <BannerSection/>
       <ReviewSlider />
     </>
