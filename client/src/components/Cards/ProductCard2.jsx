@@ -56,7 +56,10 @@ const ProductCard2 = ({ product }) => {
               </>
             )}
           </span>
+          {product.offer && (
+
           <span className="text-sm text-gray-500">From</span>
+          )}
           <span className="text-lg font-semibold text-red-500">
             ₹{product.price.toLocaleString()}
           </span>
