@@ -45,20 +45,34 @@ const ProductCard2 = ({ product }) => {
           {product.name}
         </h3>
         <p className="text-sm text-gray-600 line-clamp-2">
-          {product.description || "Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text."}
+          {product.description ||
+            "Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text."}
         </p>
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold line-through">
-            ₹{originalPrice.toLocaleString()}
+            {product.offer && (
+              <>
+                {product.offer} ₹{/* ₹{originalPrice.toLocaleString()} */}
+              </>
+            )}
           </span>
           <span className="text-sm text-gray-500">From</span>
           <span className="text-lg font-semibold text-red-500">
             ₹{product.price.toLocaleString()}
           </span>
+          <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
+            {product.offer && (
+              <>
+                {parseInt(
+                  ((product.offer - product.price) * 100) / product.offer
+                )}{" "}
+                % Off
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
-  
   );
 };
 

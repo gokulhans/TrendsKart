@@ -339,15 +339,15 @@ const SingleProduct = () => {
             </h1>
             <div className="flex w-full mt-1 lg:border-t-[1px] border-t-[#9F9F9F] lg:mt-6 pt-3">
               <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-semibold font-Inter text-[#2C2C2C] ">
-                {product.price} ₹
+                {product.price}₹
               </h1>
               {product.offer && (
                 <>
                   <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-light font-Inter text-[#949494] ml-3 line-through">
-                    {parseInt(product.price / (1 - product.offer / 100))}₹
-                  </h1>
+                  {product.offer} ₹
+                  </h1> 
                   <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
-                    {product.offer}% Off
+                  {parseInt(( (product.offer - product.price) * 100 ) / product.offer )} % Off
                   </div>
                 </>
               )}
