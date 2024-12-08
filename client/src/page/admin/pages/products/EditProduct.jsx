@@ -503,6 +503,7 @@ const EditProduct = () => {
               />
               <p className="admin-label">Markup</p>
               <input
+              hidden={true}
                 type="number"
                 name="markup"
                 placeholder="Type product markup here"
@@ -510,7 +511,7 @@ const EditProduct = () => {
                 value={fetchedData.markup || ""}
                 onChange={handleInputChange}
               />
-              <p className="admin-label">Offer</p>
+              {/* <p className="admin-label">Offer</p> */}
               <input
                 type="number"
                 name="offer"

@@ -287,16 +287,17 @@ const AddProducts = () => {
               />
               <p className="admin-label">Markup</p>
               <input
+              hidden={true}
                 type="number"
                 placeholder="Type product markup here"
                 className="admin-input"
                 value={markup}
                 onChange={(e) => setMarkup(e.target.value)}
               />
-              <p className="admin-label">Offer</p>
+              {/* <p className="admin-label">Offer</p> */}
               <input
                 type="number"
-                placeholder="Type product offer here"
+                placeholder="Type product markup here"
                 className="admin-input"
                 value={offer}
                 min={1}
