@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // Getting all Categories to list on admin dashboard
 const getCategories = async (req, res) => {
   try {
-    const { status, search, page = 1, limit = 10 } = req.query;
+    const { status, search, page = 1, limit = 20 } = req.query;
 
     let filter = {};
 

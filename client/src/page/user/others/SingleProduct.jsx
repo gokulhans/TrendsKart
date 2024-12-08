@@ -228,6 +228,7 @@ const SingleProduct = () => {
       acc[attribute.name].push({
         value: attribute.value,
         imageIndex: attribute.imageIndex, // Include imageIndex
+        quantity: attribute.quantity, // Include imageIndex
       });
       return acc;
     }, {});
@@ -259,6 +260,7 @@ const SingleProduct = () => {
     : [product.imageURL];
 
   const isOutOfStock = product.stockQuantity === 0;
+  console.log(product);
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
@@ -389,11 +391,44 @@ const SingleProduct = () => {
                     ([name, values], index) => (
                       <div key={index} className="mt-4">
                         <p className="font-semibold text-gray-500 text-sm mb-1">
+                          {console.log("testing")}
+                         { console.log(values)
+                          }
                           {name.toUpperCase()}{" "}
                         </p>
                         <div className="flex space-x-2">
-                          {values.map(({ value, imageIndex }, valueIndex) => (
-                            <p
+                          {
+                          
+                          
+                          
+                          values.map(({ value, imageIndex,quantity }, valueIndex) => (
+
+<>
+                            {quantity > 0 ? (
+                               <p
+                               key={valueIndex}
+                               className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+               transition-colors duration-300 
+               ${
+                 selectedAttributes[name] === value
+                   ? "bg-blue-600 text-white" // Selected state
+                   : "bg-gray-200 text-black hover:bg-blue-100"
+               } // Default and hover states
+             `}
+                               onClick={() => handleSelectAttribute(name, value)}
+                               style={{
+                                 // background: quantity <= 0 ? "gray" : "white",
+                                 cursor: quantity <= 0 ? "not-allowed" : "pointer",
+                               }}
+                               disabled={quantity <= 0} // Disable the button if out of stock
+                             >
+                               {value}{" "}
+                               {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
+                               {/* Display imageIndex next to value */}
+                             </p>
+
+                            ) : (
+                               <p
                               key={valueIndex}
                               className={`py-2 my-2 px-4 rounded-full cursor-pointer 
               transition-colors duration-300 
@@ -403,12 +438,25 @@ const SingleProduct = () => {
                   : "bg-gray-200 text-black hover:bg-blue-100"
               } // Default and hover states
             `}
-                              onClick={() => handleSelectAttribute(name, value)}
+                              onClick={() => console.log(name, value)}
+                              // onClick={() => notifyManager(name, value)}
+                              style={{
+                                background: quantity <= 0 ? "gray" : "white",
+                                cursor: quantity <= 0 ? "not-allowed" : "pointer",
+                              }}
+                              disabled={quantity <= 0} // Disable the button if out of stock
                             >
-                              {value}{" "}
+                              {value}{" Out of stock"}{" "}
                               {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
                               {/* Display imageIndex next to value */}
                             </p>
+                            )}
+
+
+                           
+
+</>
+
                           ))}
                         </div>
                       </div>
