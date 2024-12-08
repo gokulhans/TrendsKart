@@ -171,14 +171,14 @@ const EditProduct = () => {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const toggleConfirm = () => {
-    if (fetchedData.offer && fetchedData.offer < 1) {
-      toast.error("Offer can't go below 1");
-      return;
-    }
-    if (fetchedData.offer && fetchedData.offer > 100) {
-      toast.error("Offer can't exceed 100");
-      return;
-    }
+    // if (fetchedData.offer && fetchedData.offer < 1) {
+    //   toast.error("Offer can't go below 1");
+    //   return;
+    // }
+    // if (fetchedData.offer && fetchedData.offer > 100) {
+    //   toast.error("Offer can't exceed 100");
+    //   return;
+    // }
     setShowConfirm(!showConfirm);
   };
 
