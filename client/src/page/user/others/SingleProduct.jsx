@@ -264,20 +264,25 @@ const SingleProduct = () => {
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
-      <div className=" container w-full flex my-6 px-4">
-        <h1 className="flex justify-center items-center font-Inter px-5 lg:pr-32 pl-0">
-          <span>
-            <HomeIcon color="#2C2C2C" onClick={onHomeClick} />
-          </span>
-          <span className="hover:text-[#CC4254] ml-2 text-sm">
-            {product.category && product.category.name + " -"}
-          </span>
-          {" >"}
-          <span className="hover:text-[#CC4254] ml-2 text-sm">
-            {product.name}
-          </span>
-        </h1>
-      </div>
+      <div className="container w-full flex my-6 px-4">
+  <h1 className="flex justify-center items-center font-Inter px-5 lg:pr-32 pl-0">
+    <span className="text-[10px] sm:text-sm">
+      <HomeIcon
+        color="#2C2C2C"
+        onClick={onHomeClick}
+        style={{ fontSize: "1em" }} // Adjusts icon size based on text size
+      />
+    </span>
+    <span className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm">
+      {product.category && product.category.name + " -"}
+    </span>
+    {" >"}
+    <span className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm">
+      {product.name}
+    </span>
+  </h1>
+</div>
+
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 lg:h-[650px] h-[400px] flex flex-col">
@@ -310,7 +315,7 @@ const SingleProduct = () => {
                 )}
               </div> */}
 
-              <div className="flex gap-1 lg:gap-5 mt-5 justify-center sm:ml-28">
+              <div className="flex gap-1 lg:gap-5 mt-5 justify-center sm:ml-20">
                 {product.moreImageURL &&
                   product.moreImageURL.map((image, i) => (
                     <div
@@ -411,8 +416,8 @@ const SingleProduct = () => {
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
-                   ? "bg-[white] border border-[#C84253] text-[#C84253]" // Selected state
-                   : "bg-[#C84253] text-white hover:bg-blue-100"
+                   ? "bg-[#C84253]   text-white" // Selected state
+                   : "bg-[white] text-[#C84253] border border-[#C84253] hover:bg-blue-100"
                } // Default and hover states
              `}
                                onClick={() => handleSelectAttribute(name, value)}
