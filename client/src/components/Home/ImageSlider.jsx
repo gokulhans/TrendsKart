@@ -41,7 +41,7 @@ function ImageSlider() {
   return (
     <div className="flex flex-col">
       <main>
-      <section className="relative bg-[#C84332] lg:h-[65vh] sm:h-[50vh] w-full overflow-hidden">
+      <section className="relative bg-[#C84332] lg:h-[70vh] sm:h-[50vh] w-full overflow-hidden">
 
           <div className="relative h-full w-full">
             {/* Navigation Buttons */}
