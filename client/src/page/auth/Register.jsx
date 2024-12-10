@@ -186,7 +186,7 @@ const Register = () => {
                   />
                   <button
                     type="submit"
-                    className="h-12 w-full bg-black text-white hover:bg-black/90 rounded-md"
+                    className="h-12 w-full bg-[#C84332] text-white hover:bg-red-500 rounded-md"
                     disabled={otpLoading}
                   >
                     {otpLoading ? "Loading..." : "Sign Up"}

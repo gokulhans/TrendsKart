@@ -264,7 +264,7 @@ const SingleProduct = () => {
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
-      <div className=" container w-full flex my-6">
+      <div className=" container w-full flex my-6 px-4">
         <h1 className="flex justify-center items-center font-Inter px-5 lg:pr-32 pl-0">
           <span>
             <HomeIcon color="#2C2C2C" onClick={onHomeClick} />
@@ -310,12 +310,12 @@ const SingleProduct = () => {
                 )}
               </div> */}
 
-              <div className="flex gap-1 lg:gap-5 mt-5">
+              <div className="flex gap-1 lg:gap-5 mt-5 justify-center sm:ml-28">
                 {product.moreImageURL &&
                   product.moreImageURL.map((image, i) => (
                     <div
                       key={i}
-                      className={`flex justify-center items-center w-12 h-12 lg:w-20 lg:h-20 overflow-clip border ${
+                      className={`flex justify-center items-center w-12 h-12 lg:w-20 lg:h-20 overflow-clip border p ${
                         currentImage === image
                           ? "border-gray-500"
                           : "border-gray-300"
@@ -339,12 +339,12 @@ const SingleProduct = () => {
             </h1>
             <div className="flex w-full mt-1 lg:border-t-[1px] border-t-[#9F9F9F] lg:mt-6 pt-3">
               <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-semibold font-Inter text-[#2C2C2C] ">
-                {product.price}₹
+              ₹ {product.price}
               </h1>
               {product.offer && (
                 <>
                   <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-light font-Inter text-[#949494] ml-3 line-through">
-                  {product.offer} ₹
+                  ₹ {product.offer} 
                   </h1> 
                   <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
                   {parseInt(( (product.offer - product.price) * 100 ) / product.offer )} % Off
@@ -407,12 +407,12 @@ const SingleProduct = () => {
                             {quantity > 0 ? (
                                <p
                                key={valueIndex}
-                               className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+                               className={`py-2 my-2 px-4 rounded-lg cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
-                   ? "bg-blue-600 text-white" // Selected state
-                   : "bg-gray-200 text-black hover:bg-blue-100"
+                   ? "bg-[white] border border-[#C84253] text-[#C84253]" // Selected state
+                   : "bg-[#C84253] text-white hover:bg-blue-100"
                } // Default and hover states
              `}
                                onClick={() => handleSelectAttribute(name, value)}

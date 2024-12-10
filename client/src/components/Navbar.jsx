@@ -379,7 +379,7 @@ const Navbar = () => {
               type="search"
             /> */}
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 lg:gap-8">
             <Link to="/dashboard/wishlist" variant="ghost" size="icon">
               <Heart className="h-5 w-5" />
             </Link>

@@ -19,14 +19,14 @@ const ShopCategories = () => {
   }, []);
 
   return (
-    <div className="relative bg-white p-2">
+    <div className="relative bg-white p-2 ">
       {/* Gradient Overlay to indicate more items */}
       <div className="absolute top-0 left-0 h-full w-4 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
       <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 
       {/* Scrollable Category List */}
       <div
-        className="flex gap-2 justify-left items-center overflow-x-auto"
+        className="flex gap-2 sm:gap-5 justify-left items-center overflow-x-auto"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE & Edge
