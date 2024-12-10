@@ -412,7 +412,7 @@ const SingleProduct = () => {
                             {quantity > 0 ? (
                                <p
                                key={valueIndex}
-                               className={`py-2 my-2 px-4 rounded-lg cursor-pointer 
+                               className={`py-2 my-2 px-4 rounded-full cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
