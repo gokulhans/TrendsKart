@@ -451,7 +451,7 @@ const SingleProduct = () => {
                               }}
                               disabled={quantity <= 0} // Disable the button if out of stock
                             >
-                              {value}{" Out of stock"}{" "}
+                              {value}{" "}
                               {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
                               {/* Display imageIndex next to value */}
                             </p>
