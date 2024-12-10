@@ -10,17 +10,17 @@ const CategoriesGroup = () => {
 
   const categories = [
     {
-      title: "Wearables",
+      title: "Watches",
       image: wearables,
       bgColor: "bg-gray-100",
     },
     {
-      title: "Footwears",
+      title: "Sneakers",
       image: footwears,
       bgColor: "bg-white",
     },
     {
-      title: "Headsets",
+      title: "Airpods",
       image: headsets,
       bgColor: "bg-purple-50",
     },
@@ -36,7 +36,7 @@ const CategoriesGroup = () => {
   };
 
   return (
-    <div className="p-8 bg-black">
+    <div className="py-8 px-4 sm:px-20 bg-black">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {/* First row: 1/4 and 3/4 width */}
         {categories.slice(0, 2).map((category, index) => (

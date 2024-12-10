@@ -8,9 +8,8 @@ const StarRating = ({ rating }) => {
       {[...Array(5)].map((_, index) => (
         <svg
           key={index}
-          className={`h-4 w-4 ${
-            index < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"
-          }`}
+          className={`h-4 w-4 ${index < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"
+            }`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -44,35 +43,33 @@ const ProductCard2 = ({ product }) => {
         <h3 className="text-sm font-medium uppercase tracking-wide">
           {product.name}
         </h3>
-        <p className="text-sm text-gray-600 line-clamp-2">
+        {/* <p className="text-sm text-gray-600 line-clamp-2">
           {product.description ||
             "Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text."}
-        </p>
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-semibold line-through">
+        </p> */}
+        <div className="flex items-center gap-[6px]">
+          <span className="text-[11px] sm:text-[12px] lg:text-[18px] font-semibold line-through">
             {product.offer && (
               <>
-                {product.offer} ₹{/* ₹{originalPrice.toLocaleString()} */}
+               {product.offer} {/* ₹{originalPrice.toLocaleString()} */}
               </>
             )}
           </span>
           {product.offer && (
 
-          <span className="text-sm text-gray-500">From</span>
+            <span className="text-[11px] sm:text-[12px] lg:text-[18px] text-gray-500">From</span>
           )}
-          <span className="text-lg font-semibold text-red-500">
+          <span className="text-[11px] sm:text-[12px] lg:text-[18px] font-semibold text-red-500">
             ₹{product.price.toLocaleString()}
           </span>
-          <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
+          <div className="ml-2 px-1 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[11px] sm:text-[12px] lg:text-[13px] flex  justify-center items-center text-center">
             {product.offer && (
               <>
-                {parseInt(
-                  ((product.offer - product.price) * 100) / product.offer
-                )}{" "}
-                % Off
+                {parseInt(((product.offer - product.price) * 100) / product.offer)} % Off
               </>
             )}
           </div>
+
         </div>
       </div>
     </div>

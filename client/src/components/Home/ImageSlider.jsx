@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import HomeImg from "../../assets/home.png";
-import Image2 from "../../assets/home2.jpg";
-import Image3 from "../../assets/home.png";
+import HomeImg from "../../assets/trendskart/home/Artboard 4.jpg";
+import Image2 from "../../assets/trendskart/home/Artboard 7.jpg";
+import Image3 from "../../assets/trendskart/home/Artboard 8.jpg";
 
 const images = [HomeImg, Image2, Image3];
 
@@ -41,7 +41,8 @@ function ImageSlider() {
   return (
     <div className="flex flex-col">
       <main>
-        <section className="relative bg-[#C84332] h-[70vh] w-full overflow-hidden">
+      <section className="relative bg-[#C84332] lg:h-[65vh] sm:h-[50vh] w-full overflow-hidden">
+
           <div className="relative h-full w-full">
             {/* Navigation Buttons */}
             <Button
@@ -72,7 +73,7 @@ function ImageSlider() {
                 <img
                   key={index}
                   alt={`Slide ${index}`}
-                  className="h-full w-full object-cover flex-shrink-0"
+                  className="h-full w-full object-fill flex-shrink-0"
                   src={image}
                 />
               ))}
@@ -80,17 +81,17 @@ function ImageSlider() {
 
             {/* Overlay Content */}
             <div className="absolute bottom-12 w-full flex flex-col items-center">
-              <Button
+              {/* <Button
                 className="rounded-full bg-white px-12 py-3 text-lg font-medium text-black hover:bg-gray-100 shadow-lg"
                 onClick={scrollToNewArrivals}
               >
                 Shop Now
-              </Button>
+              </Button> */}
               <div className="mt-6 flex justify-center gap-2">
                 {images.map((_, index) => (
                   <div
                     key={index}
-                    className={`h-3 w-3 rounded-full ${
+                    className={`h-2 w-2 rounded-full ${
                       index === currentIndex
                         ? "bg-white"
                         : "bg-white opacity-50"

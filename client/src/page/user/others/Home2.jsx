@@ -21,9 +21,10 @@ export default function Home2() {
       <ImageSlider />
       <LogoSlider />
       <NewArrivals />
-      <CategoriesGroup />
-      <OurProducts />
+     
       <RedBanner/>
+      <OurProducts />
+      <CategoriesGroup />
       {/* <BestSellers /> */}
       <BannerSection/>
       <ReviewSlider />

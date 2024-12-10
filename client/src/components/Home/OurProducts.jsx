@@ -29,15 +29,7 @@ const OurProducts = () => {
   return (
     <div className="container mx-auto px-4 py-8" data-aos="fade-up">
       <div className="flex items-center justify-between mb-8">
-      <h1 className="text-xl md:text-3xl font-bold">Our Products</h1>
-
-        <div
-          onClick={() => navigate(`/collections`)}
-          className="flex items-center text-gray-600 hover:text-gray-900"
-        >
-          View all
-          <ChevronRight className="h-5 w-5 ml-1" />
-        </div>
+        <h1 className="text-xl md:text-3xl font-bold">Our Products</h1>
       </div>
 
       {loading ? (
@@ -47,7 +39,7 @@ const OurProducts = () => {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {shuffledProducts && shuffledProducts.length > 0 ? (
-            shuffledProducts.slice(0, 4).map((product, index) => (
+            shuffledProducts.slice(0, 20).map((product, index) => (
               <ProductCard2 product={product} key={index} />
             ))
           ) : (
@@ -57,6 +49,16 @@ const OurProducts = () => {
           )}
         </div>
       )}
+
+      <div className="flex justify-center mt-10">
+        <div
+          onClick={() => navigate(`/collections`)}
+          className="flex items-center bg-[#C84332] py-3 px-4 rounded-md text-white hover:text-gray-200 cursor-pointer"
+        >
+          View all
+          <ChevronRight className="h-5 w-5 ml-1" />
+        </div>
+      </div>
     </div>
   );
 };
