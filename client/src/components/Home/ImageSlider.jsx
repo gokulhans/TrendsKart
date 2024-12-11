@@ -41,7 +41,7 @@ function ImageSlider() {
   return (
     <div className="flex flex-col">
       <main>
-      <section className="relative bg-[#C84332] lg:h-[70vh] sm:h-[50vh] w-full overflow-hidden">
+      <section className="relative bg-[#C84332] lg:h-[75vh] sm:h-[50vh] w-full overflow-hidden">
 
           <div className="relative h-full w-full">
             {/* Navigation Buttons */}
@@ -90,13 +90,12 @@ function ImageSlider() {
               <div className="mt-6 flex justify-center gap-2">
                 {images.map((_, index) => (
                   <div
-                    key={index}
-                    className={`h-2 w-2 rounded-full ${
-                      index === currentIndex
-                        ? "bg-white"
-                        : "bg-white opacity-50"
-                    }`}
-                  />
+                  key={index}
+                  className={`h-2 w-2 rounded-full ${
+                    index === currentIndex ? "bg-white" : "bg-white opacity-50"
+                  } hidden sm:block`}
+                />
+                
                 ))}
               </div>
             </div>
