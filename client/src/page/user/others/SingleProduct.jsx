@@ -21,6 +21,8 @@ import ProductDetailsStarAndRating from "../components/ProductDetailsStarAndRati
 import { addToBuyNowStore } from "@/redux/reducers/user/buyNowSlice";
 import { getUserProducts } from "@/redux/actions/user/userProductActions";
 
+import redbanner from "../../../assets/trendskart/home/red-banner.jpg";
+
 const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -150,6 +152,9 @@ const SingleProduct = () => {
   const onHomeClick = async () => {
     navigate("/");
   };
+  const onCategoryClick = async () => {
+    navigate(`/collections?category=${product.category._id}`);
+  };
   const notifyManager = async () => {
     // if (!user) {
     //   window.scrollTo({
@@ -265,23 +270,28 @@ const SingleProduct = () => {
   return (
     <div className="w-full flex flex-col justify-start items-center">
       <div className="container w-full flex my-6 px-4">
-  <h1 className="flex justify-center items-center font-Inter px-5 lg:pr-32 pl-0">
-    <span className="text-[10px] sm:text-sm">
-      <HomeIcon
-        color="#2C2C2C"
-        onClick={onHomeClick}
-        style={{ fontSize: "1em" }} // Adjusts icon size based on text size
-      />
-    </span>
-    <span className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm">
-      {product.category && product.category.name + " -"}
-    </span>
-    {" >"}
-    <span className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm">
-      {product.name}
-    </span>
-  </h1>
-</div>
+        <h1 className="flex justify-center items-center font-Inter px-5 pl-16 lg:pr-32 pl-0">
+          <span className="text-[10px] sm:text-sm">
+            <HomeIcon
+              color="#2C2C2C"
+              onClick={onHomeClick}
+              size={14}
+              // style={{ fontSize: "1em" }} // Adjusts icon size based on text size
+              className="text-xs sm:text-sm" // Adjusts icon size based on screen size
+            />
+          </span>
+          <span
+            className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm"
+            onClick={onCategoryClick}
+          >
+            {product.category && product.category.name + " -"}
+          </span>
+          {" >"}
+          <span className="hover:text-[#CC4254] ml-2 text-[10px] sm:text-sm">
+            {product.name}
+          </span>
+        </h1>
+      </div>
 
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
@@ -344,15 +354,18 @@ const SingleProduct = () => {
             </h1>
             <div className="flex w-full mt-1 lg:border-t-[1px] border-t-[#9F9F9F] lg:mt-6 pt-3">
               <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-semibold font-Inter text-[#2C2C2C] ">
-              ₹ {product.price}
+                ₹ {product.price}
               </h1>
               {product.offer && (
                 <>
                   <h1 className="text-[16px] lg:text-[20px] xl:text-[30px] font-light font-Inter text-[#949494] ml-3 line-through">
-                  ₹ {product.offer} 
-                  </h1> 
+                    ₹ {product.offer}
+                  </h1>
                   <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
-                  {parseInt(( (product.offer - product.price) * 100 ) / product.offer )} % Off
+                    {parseInt(
+                      ((product.offer - product.price) * 100) / product.offer
+                    )}{" "}
+                    % Off
                   </div>
                 </>
               )}
@@ -397,22 +410,17 @@ const SingleProduct = () => {
                       <div key={index} className="mt-4">
                         <p className="font-semibold text-gray-500 text-sm mb-1">
                           {console.log("testing")}
-                         { console.log(values)
-                          }
+                          {console.log(values)}
                           {name.toUpperCase()}{" "}
                         </p>
                         <div className="flex space-x-2">
-                          {
-                          
-                          
-                          
-                          values.map(({ value, imageIndex,quantity }, valueIndex) => (
-
-<>
-                            {quantity > 0 ? (
-                               <p
-                               key={valueIndex}
-                               className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+                          {values.map(
+                            ({ value, imageIndex, quantity }, valueIndex) => (
+                              <>
+                                {quantity > 0 ? (
+                                  <p
+                                    key={valueIndex}
+                                    className={`py-2 my-2 px-4 rounded-full cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
@@ -420,22 +428,26 @@ const SingleProduct = () => {
                    : "bg-[white] text-[#C84253] border border-[#C84253] hover:bg-blue-100"
                } // Default and hover states
              `}
-                               onClick={() => handleSelectAttribute(name, value)}
-                               style={{
-                                 // background: quantity <= 0 ? "gray" : "white",
-                                 cursor: quantity <= 0 ? "not-allowed" : "pointer",
-                               }}
-                               disabled={quantity <= 0} // Disable the button if out of stock
-                             >
-                               {value}{" "}
-                               {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
-                               {/* Display imageIndex next to value */}
-                             </p>
-
-                            ) : (
-                               <p
-                              key={valueIndex}
-                              className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    onClick={() =>
+                                      handleSelectAttribute(name, value)
+                                    }
+                                    style={{
+                                      // background: quantity <= 0 ? "gray" : "white",
+                                      cursor:
+                                        quantity <= 0
+                                          ? "not-allowed"
+                                          : "pointer",
+                                    }}
+                                    disabled={quantity <= 0} // Disable the button if out of stock
+                                  >
+                                    {value}{" "}
+                                    {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
+                                    {/* Display imageIndex next to value */}
+                                  </p>
+                                ) : (
+                                  <p
+                                    key={valueIndex}
+                                    className={`py-2 my-2 px-4 rounded-full cursor-pointer 
               transition-colors duration-300 
               ${
                 selectedAttributes[name] === value
@@ -443,26 +455,26 @@ const SingleProduct = () => {
                   : "bg-gray-200 text-black hover:bg-blue-100"
               } // Default and hover states
             `}
-                              onClick={() => console.log(name, value)}
-                              // onClick={() => notifyManager(name, value)}
-                              style={{
-                                background: quantity <= 0 ? "gray" : "white",
-                                cursor: quantity <= 0 ? "not-allowed" : "pointer",
-                              }}
-                              disabled={quantity <= 0} // Disable the button if out of stock
-                            >
-                              {value}{" "}
-                              {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
-                              {/* Display imageIndex next to value */}
-                            </p>
-                            )}
-
-
-                           
-
-</>
-
-                          ))}
+                                    onClick={() => console.log(name, value)}
+                                    // onClick={() => notifyManager(name, value)}
+                                    style={{
+                                      background:
+                                        quantity <= 0 ? "gray" : "white",
+                                      cursor:
+                                        quantity <= 0
+                                          ? "not-allowed"
+                                          : "pointer",
+                                    }}
+                                    disabled={quantity <= 0} // Disable the button if out of stock
+                                  >
+                                    {value}{" "}
+                                    {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
+                                    {/* Display imageIndex next to value */}
+                                  </p>
+                                )}
+                              </>
+                            )
+                          )}
                         </div>
                       </div>
                     )
@@ -500,7 +512,7 @@ const SingleProduct = () => {
                       onClick={addToCart}
                       className="bg-[#CC4254] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
                     >
-                      {cartLoading ? "Loading" : "Add to Bag"}
+                      {cartLoading ? "Loading" : "Buy Now"}
                     </Button>
                   )}
                   {isOutOfStock && (
@@ -522,7 +534,7 @@ const SingleProduct = () => {
                       onClick={dispatchAddWishlist}
                       className="bg-white mt-3 w-1/2 hover:text-white md:w-auto hover:border-[#777777] h-12 rounded-[10px] font-Inter text-[16px] text-red-500 px-10 border-[1px] border-red-500 "
                     >
-                      Wishlist
+                      Add to Favorites
                     </Button>
                   )}
                 </div>

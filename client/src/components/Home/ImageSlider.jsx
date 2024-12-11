@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import HomeImg from "../../assets/trendskart/home/Artboard 4.jpg";
+import HomeImg from "../../assets/trendskart/home/Artboard 5.jpg";
 import Image2 from "../../assets/trendskart/home/Artboard 7.jpg";
 import Image3 from "../../assets/trendskart/home/Artboard 8.jpg";
 
-const images = [HomeImg, Image2, Image3];
+const images = [ Image3,Image2,HomeImg];
 
 function ImageSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);

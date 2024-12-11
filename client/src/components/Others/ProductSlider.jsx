@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 
-const ProductSlider = ({ images, selectedImageIndex,imgUrl }) => {
+const ProductSlider = ({ images, selectedImageIndex, imgUrl }) => {
   const [currentIndex, setCurrentIndex] = useState(selectedImageIndex); // Initialize with the selected index
 
   const prevSlide = () => {
@@ -29,13 +29,23 @@ const ProductSlider = ({ images, selectedImageIndex,imgUrl }) => {
 
   return (
     <div className="w-full h-full m-auto relative group">
-      <div
+      {/* <div
         style={{
           
           backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
         }}
         className="w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
-      ></div>
+      ></div> */}
+
+      <div className="relative w-full" style={{ paddingBottom: "75%" }}>
+        <div
+          style={{
+            backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
+          }}
+          className="absolute top-0 left-0 w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
+        ></div>
+      </div>
+
       {/* Left Arrow */}
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactLeft onClick={prevSlide} size={30} />

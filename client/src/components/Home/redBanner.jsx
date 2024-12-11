@@ -5,7 +5,7 @@ const RedBanner = () => {
   return (
     <div>
     <div
-  className="relative w-full"
+  className="relative w-full responsive-div" // responsive-div class added by me, in index.css
   style={{ height: 'auto' }}
 >
   <img
