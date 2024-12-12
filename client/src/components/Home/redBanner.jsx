@@ -5,13 +5,13 @@ const RedBanner = () => {
   return (
     <div>
     <div
-  className="relative w-full responsive-div" // responsive-div class added by me, in index.css
+  className="relative w-full" // responsive-div class added by me, in index.css
   style={{ height: 'auto' }}
 >
   <img
     src={redbanner}
     alt="Red Banner"
-    className="w-full object-contain"
+    className="w-full object-contain "
   />
 </div>
 

@@ -270,7 +270,7 @@ const SingleProduct = () => {
   return (
     <div className="w-full flex flex-col justify-start items-center">
       <div className="container w-full flex my-6 px-4">
-        <h1 className="flex justify-center items-center font-Inter px-5 pl-16 lg:pr-32 pl-0">
+        <h1 className="flex justify-center items-center font-Inter px-5 pl-8 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
           <span className="text-[10px] sm:text-sm">
             <HomeIcon
               color="#2C2C2C"
@@ -413,14 +413,14 @@ const SingleProduct = () => {
                           {console.log(values)}
                           {name.toUpperCase()}{" "}
                         </p>
-                        <div className="flex space-x-2">
+                        <div className="grid gap-2 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
                           {values.map(
                             ({ value, imageIndex, quantity }, valueIndex) => (
                               <>
                                 {quantity > 0 ? (
                                   <p
                                     key={valueIndex}
-                                    className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
@@ -447,7 +447,7 @@ const SingleProduct = () => {
                                 ) : (
                                   <p
                                     key={valueIndex}
-                                    className={`py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
               transition-colors duration-300 
               ${
                 selectedAttributes[name] === value
