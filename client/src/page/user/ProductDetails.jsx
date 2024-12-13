@@ -201,7 +201,7 @@ const ProductDetails = () => {
                       ₹
                     </span>
                     <span className="bg-orange-500 px-3 py-1 ml-5 text-base rounded">
-                      {product.offer}% Off
+                      {product.offer}%Off
                     </span>
                   </>
                 )}

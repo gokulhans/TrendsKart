@@ -37,14 +37,24 @@ const ProductSlider = ({ images, selectedImageIndex, imgUrl }) => {
         className="w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
       ></div> */}
 
-      <div className="relative w-full" style={{ paddingBottom: "75%" }}>
+      {/* <div className="relative w-full" style={{ paddingBottom: "75%" }}>
         <div
           style={{
-            backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
+            // backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1vYmlsZSUyMHBob25lfGVufDB8fDB8fHww')`,
           }}
           className="absolute top-0 left-0 w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
         ></div>
+      </div> */}
+      <div className="relative w-full" style={{ paddingBottom: "75%" }}>
+        <img
+          src={`${URL}/img/${images[currentIndex]}`}
+          // src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1vYmlsZSUyMHBob25lfGVufDB8fDB8fHww"
+          alt="Sample Image"
+          className="absolute top-0 left-0 w-full h-full object-cover lg:rounded-xl"
+        />
       </div>
+
 
       {/* Left Arrow */}
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">

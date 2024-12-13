@@ -62,10 +62,10 @@ const ProductCard2 = ({ product }) => {
           <span className="text-[11px] sm:text-[12px] lg:text-[18px] font-semibold text-red-500">
             ₹{product.price.toLocaleString()}
           </span>
-          <div className="ml-2 px-1 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[11px] sm:text-[12px] lg:text-[13px] flex  justify-center items-center text-center">
+          <div className="ml-2 px-1 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[10px] sm:text-[12px] lg:text-[13px] flex  justify-center items-center text-center">
             {product.offer && (
               <>
-                {parseInt(((product.offer - product.price) * 100) / product.offer)} % Off
+                {parseInt(((product.offer - product.price) * 100) / product.offer)}%Off
               </>
             )}
           </div>

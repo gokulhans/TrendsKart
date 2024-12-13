@@ -155,6 +155,7 @@ const SingleProduct = () => {
   const onCategoryClick = async () => {
     navigate(`/collections?category=${product.category._id}`);
   };
+
   const notifyManager = async () => {
     // if (!user) {
     //   window.scrollTo({
@@ -270,7 +271,7 @@ const SingleProduct = () => {
   return (
     <div className="w-full flex flex-col justify-start items-center">
       <div className="container w-full flex my-6 px-4">
-        <h1 className="flex justify-center items-center font-Inter px-5 pl-8 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
+        <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
           <span className="text-[10px] sm:text-sm">
             <HomeIcon
               color="#2C2C2C"
@@ -364,8 +365,7 @@ const SingleProduct = () => {
                   <div className="ml-3 px-2 w-auto h-auto md:ml-4 bg-[#C84253] rounded-[2px] text-white text-[12px] lg:text-[13px] flex justify-center items-center">
                     {parseInt(
                       ((product.offer - product.price) * 100) / product.offer
-                    )}{" "}
-                    % Off
+                    )}{" "}% Off
                   </div>
                 </>
               )}
@@ -455,8 +455,8 @@ const SingleProduct = () => {
                   : "bg-gray-200 text-black hover:bg-blue-100"
               } // Default and hover states
             `}
-                                    onClick={() => console.log(name, value)}
-                                    // onClick={() => notifyManager(name, value)}
+                                    onClick={() => console.log(name, value,"notifying.......")}
+                                    // onClick={() => notifyManager(product._id,name, value)}
                                     style={{
                                       background:
                                         quantity <= 0 ? "gray" : "white",
@@ -465,7 +465,7 @@ const SingleProduct = () => {
                                           ? "not-allowed"
                                           : "pointer",
                                     }}
-                                    disabled={quantity <= 0} // Disable the button if out of stock
+                                    // disabled={quantity <= 0} // Disable the button if out of stock
                                   >
                                     {value}{" "}
                                     {/* {imageIndex !== undefined && `(${imageIndex})`}{" "} */}
