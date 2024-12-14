@@ -98,6 +98,9 @@ scrollbar-width: none; /* or 'thin' or 'auto' */
     );
   }
   
+  .btn-green {
+    @apply bg-green-500 px-3 lg:px-12 py-3 rounded-lg hover:bg-green-700;
+  }
   .btn-blue {
     @apply bg-red-500 px-3 lg:px-12 py-3 rounded-lg hover:bg-red-700;
   }

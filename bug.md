@@ -1,5 +1,45 @@
 TODOS
 
+
+
+Image index blank add (default) 🥙
+
+Product slider nte adeel padding kurakkan
+
+Size attribute 6,7,8,9 
+
+Cart lage refresh  🥙
+
+Buy now button (only mobile ) 🥙
+
+Share button 🌞 🥙 small design issue
+
+Category slidebar in desktop 🥙
+
+Tracking ID in order .  🥙
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Try Host it free
 vercel error hosting
 

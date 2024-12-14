@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductCard3 from "../Cards/ProductCard3";
 import axios from "axios";
 import { URL } from "@/Common/api";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ShopCategories = () => {
   const [categories, setCategories] = useState([]);
-
+  const scrollContainerRef = useRef(null);
   const loadCategories = async () => {
     const { data } = await axios.get(`${URL}/user/categories`, config);
     setCategories(data.categories);
@@ -17,15 +17,39 @@ const ShopCategories = () => {
   useEffect(() => {
     loadCategories();
   }, []);
+  const scrollLeft = () => {
+    scrollContainerRef.current.scrollBy({ left: -100, behavior: 'smooth' });
+  };
+
+  const scrollRight = () => {
+    scrollContainerRef.current.scrollBy({ left: 100, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative bg-white p-2 ">
+
+<button
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full"
+        onClick={scrollLeft}
+        aria-label="Scroll left"
+      >
+        ◀️
+      </button>
+      <button
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full"
+        onClick={scrollRight}
+        aria-label="Scroll right"
+      >
+        ▶️
+      </button>
+
       {/* Gradient Overlay to indicate more items */}
       <div className="absolute top-0 left-0 h-full w-4 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
       <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 
       {/* Scrollable Category List */}
       <div
+      ref={scrollContainerRef}
         className="flex gap-2 sm:gap-5 justify-left items-center overflow-x-auto"
         style={{
           scrollbarWidth: "none", // Firefox

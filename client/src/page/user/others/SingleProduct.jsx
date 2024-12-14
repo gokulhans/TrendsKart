@@ -22,6 +22,9 @@ import { addToBuyNowStore } from "@/redux/reducers/user/buyNowSlice";
 import { getUserProducts } from "@/redux/actions/user/userProductActions";
 
 import redbanner from "../../../assets/trendskart/home/red-banner.jpg";
+import { FaShareAlt } from "react-icons/fa";
+import "./singleproduct.css";
+import { useMediaQuery } from 'react-responsive'; 
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -48,10 +51,44 @@ const SingleProduct = () => {
     div3: false,
   });
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   const filteredProducts = userProducts?.filter(
     (product) => product._id !== id
   );
+
+
+
+
+  const handleShare = async () => {
+    const currentUrl = window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          url: currentUrl,
+        });
+        console.log('Content shared successfully');
+      } catch (error) {
+        console.error('Error sharing content:', error);
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(currentUrl).then(
+        () => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000); // Reset the copied state after 2 seconds
+          console.log('URL copied to clipboard');
+        },
+        (error) => {
+          console.error('Error copying URL to clipboard:', error);
+        }
+      );
+    }
+  };
+
+
 
   const dispatchAddWishlist = () => {
     if (!user) {
@@ -211,6 +248,44 @@ const SingleProduct = () => {
         { ...config, withCredentials: true }
       );
       toast.success("Added to cart");
+      
+    } catch (error) {
+      const err = error.response.data.error;
+      toast.error(err);
+    }
+    setCartLoading(false);
+  };
+  const buyNow = async () => {
+    if (!user) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      navigate("/login");
+      return;
+    }
+    // Validate attribute selections
+    if (!validateAttributesSelection()) {
+      toast.error("Please select a value for each attribute.");
+      return; // Prevent adding to cart if validation fails
+    }
+    setCartLoading(true);
+    try {
+      await axios.post(
+        `${URL}/user/cart`,
+        {
+          product: id,
+          quantity: count,
+          attributes: selectedAttributes, // Pass selected attributes here
+        },
+        { ...config, withCredentials: true }
+      );
+      // toast.success("Added to cart");
+      navigate("/cart");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     } catch (error) {
       const err = error.response.data.error;
       toast.error(err);
@@ -267,9 +342,33 @@ const SingleProduct = () => {
 
   const isOutOfStock = product.stockQuantity === 0;
   console.log(product);
+  const isMobile = useMediaQuery({ maxWidth: 767 }); // Use this to check if the device is mobile
 
   return (
     <div className="w-full flex flex-col justify-start items-center">
+       {/* Fixed bottom panel for mobile devices */}
+       {isMobile && (
+        <div className="fixed-bottom-panel">
+          <button
+            className="buy-now-btn"
+            onClick={buyNow}
+            disabled={cartLoading || isOutOfStock}
+          >
+            {cartLoading ? "Loading" : isOutOfStock ? "Notify Me" : "Buy Now"}
+          </button>
+          <button
+            className="wishlist-btn"
+            onClick={dispatchAddWishlist}
+            disabled={isProductInWishlist}
+          >
+            {isProductInWishlist ? "Wishlisted" : "Add to Wishlist"}
+          </button>
+          <button className="share-btn" onClick={handleShare}>
+            {copied ? "Link Copied!" : "Share"}
+          </button>
+        </div>
+      )}
+      
       <div className="container w-full flex my-6 px-4">
         <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
           <span className="text-[10px] sm:text-sm">
@@ -505,7 +604,12 @@ const SingleProduct = () => {
                     </h1>
                   </div>
                 </div>
+                <button onClick={handleShare} style={buttonStyle}>
+      <FaShareAlt /> {/* Share icon */}
+      {copied ? 'Link Copied!' : 'Share'}
+    </button>
                 <div className="flex justify-start space-x-2 w-full pt-10">
+               
                   {!isOutOfStock && (
                     <Button
                       disabled={cartLoading}
@@ -693,3 +797,13 @@ function ReplacementPolicy(props) {
     </svg>
   );
 }
+
+const buttonStyle = {
+  padding: '10px 20px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  backgroundColor: '#4CAF50',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+};

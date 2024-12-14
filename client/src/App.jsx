@@ -88,6 +88,7 @@ import ManagerOrders from "./page/admin/pages/Order/ManagerOrders";
 import Managers from "./page/admin/pages/managers/Managers";
 import AllManagerOrders from "./page/admin/pages/Order/AllManagerOrders";
 import OldRegister from "./page/auth/OldRegister";
+import ProductPageDesign from "./page/ProductPageDesign";
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -111,7 +112,7 @@ function App() {
       <Toaster position="top-center" />
 
       <BrowserRouter>
-        {user ? user.role === "user" && <Navbar /> : <Navbar />}
+        {user ? user.role === "user" && <Navbar usercheck={true} /> : <Navbar usercheck={false} />}
         {/* {user ? user.role === "user" && <CategorySection /> : <CategorySection />} */}
 
         <Routes>
@@ -137,6 +138,7 @@ function App() {
           />
 
           <Route path="/manager-signup" element={<ManagerSignup />} />
+          <Route path="/design-demo" element={<ProductPageDesign />} />
           <Route path="/login-demo" element={<LoginDemo />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />
@@ -163,7 +165,8 @@ function App() {
           <Route path="/product/:id" element={<SingleProduct />} />
           {/* <Route path="/product/:id" element={<ProductDetails/>} /> */}
 
-          <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} />
+          {/* <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} /> */}
+          <Route path="/cart" element={<Cart />} />
 
           <Route
             path="/checkout"

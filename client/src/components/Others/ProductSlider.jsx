@@ -28,16 +28,18 @@ const ProductSlider = ({ images, selectedImageIndex, imgUrl }) => {
   }, [selectedImageIndex]);
 
   return (
-    <div className="w-full h-full m-auto relative group">
-      {/* <div
+    // <div className="w-full h-full m-auto relative group">
+ <div className="w-full h-full m-auto relative group">
+
+      <div
         style={{
           
           backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
         }}
         className="w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
-      ></div> */}
+      ></div>
 
-      {/* <div className="relative w-full" style={{ paddingBottom: "75%" }}>
+      {/* <div className="relative w-full" style={{ paddingBottom: "133.33%" }}>
         <div
           style={{
             // backgroundImage: `url('${URL}/img/${images[currentIndex]}')`,
@@ -46,14 +48,17 @@ const ProductSlider = ({ images, selectedImageIndex, imgUrl }) => {
           className="absolute top-0 left-0 w-full h-full bg-center bg-cover duration-500 lg:rounded-xl"
         ></div>
       </div> */}
-      <div className="relative w-full" style={{ paddingBottom: "75%" }}>
+      {/* <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
         <img
-          src={`${URL}/img/${images[currentIndex]}`}
+          // Uncomment the line below to use actual image URL
+          // src={`${URL}/img/${images[selectedImageIndex]}`}
+          src="https://via.placeholder.com/1024x768/eee?text=4:3"
           // src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1vYmlsZSUyMHBob25lfGVufDB8fDB8fHww"
           alt="Sample Image"
           className="absolute top-0 left-0 w-full h-full object-cover lg:rounded-xl"
+          style={{ maxHeight: '300px' }}
         />
-      </div>
+      </div> */}
 
 
       {/* Left Arrow */}

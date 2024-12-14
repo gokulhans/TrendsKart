@@ -176,14 +176,15 @@ const getManagerOrders = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(req.body);
+    
     let find = {};
     if (mongoose.Types.ObjectId.isValid(id)) {
       find._id = id;
     } else {
       find.orderId = id;
     }
-    const { status, description, date, paymentStatus } = req.body;
+    const { status, description, date, paymentStatus,trackingId } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw Error("Invalid ID!!!");
@@ -205,6 +206,7 @@ const updateOrderStatus = async (req, res) => {
         statusHistory: {
           status,
           description,
+          trackingId,
           date: new Date(date),
         },
       };

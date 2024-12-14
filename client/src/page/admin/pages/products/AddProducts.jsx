@@ -99,6 +99,10 @@ const AddProducts = () => {
     if (attributeName.trim() === "" || attributeValue.trim() === "") {
       return;
     }
+    if (attributeQuantity.trim() === "" || attributeImageIndex.trim() === "") {
+      setAttributeImageIndex("1");
+      setAttributeQuantity("0");
+    }
     const attribute = {
       name: attributeName,
       value: attributeValue,

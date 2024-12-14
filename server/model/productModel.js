@@ -52,9 +52,11 @@ const productsSchema = new Schema(
         },
         quantity: {
           type: Number,
+          default: '0',
         },
         imageIndex: {
           type: Number,
+          default: '1',
         },
       },
     ],

@@ -10,7 +10,10 @@ import {
 } from "../../../../Common/functions";
 
 const UpdateOrder = ({ toggleModal, data }) => {
-  const { id, status, paymentMode, deliveryDate } = data;
+  const { id, status, paymentMode, deliveryDate,trackingId } = data;
+  console.log("data");
+  console.log(data);
+  
   const dispatch = useDispatch();
   const orderDate = getPassedDateOnwardDateForInput(deliveryDate);
   const todayDate = getTodayOnwardDateForInput();
@@ -117,6 +120,24 @@ const UpdateOrder = ({ toggleModal, data }) => {
                 className="text-red-500"
               />
             </div>
+            {values.status === "shipped" && (
+                <div key={values.status}>
+                  <p>Tracking ID </p>
+                  <Field
+                    // as="select"
+                    type="text"
+                    name="trackingId"
+                    className="capitalize px-5 py-2 w-full bg-gray-300 rounded-lg"
+                  >
+               
+                  </Field>
+                  <ErrorMessage
+                    name="trackingId"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+              )}
             {values.status === "delivered" &&
               paymentMode === "cashOnDelivery" && (
                 <div key={values.status}>

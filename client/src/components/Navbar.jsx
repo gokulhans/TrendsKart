@@ -231,7 +231,9 @@ import logo from "../assets/TrendkartL.jpeg";
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Input } from "./ui/input";
 
-const Navbar = () => {
+const Navbar = ({ usercheck }) => {
+  console.log(usercheck);
+
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -369,7 +371,7 @@ const Navbar = () => {
               handleClick={handleClick}
               search={search}
               setSearch={setSearch}
-          
+
             />
             {/* <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
 
@@ -386,20 +388,24 @@ const Navbar = () => {
             <Link to="/dashboard/profile" variant="ghost" size="icon">
               <User className="h-5 w-5" />
             </Link>
-            <Link to="/cart" variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-            </Link>
+            {usercheck == true ?
+              <Link to="/cart" variant="ghost" size="icon">
+                <ShoppingCart className="h-5 w-5" />
+              </Link>
+            : <></>}
+            
+
           </div>
-          
+
         </div>
         {/* Search Bar: Visible below logo and icons in mobile view */}
-      <div className="relative w-full lg:hidden mt-4">
-        <SearchBar
-          handleClick={handleClick}
-          search={search}
-          setSearch={setSearch}
-        />
-      </div>
+        <div className="relative w-full lg:hidden mt-4">
+          <SearchBar
+            handleClick={handleClick}
+            search={search}
+            setSearch={setSearch}
+          />
+        </div>
         {/* <nav className="mt-4 hidden lg:block">
           <ul className="flex gap-8">
             {categories.map((category) => (

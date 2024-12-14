@@ -98,6 +98,9 @@ const StatusHistorySchema = new Schema({
   description: {
     type: String,
   },
+  trackingId: {
+    type: String,
+  },
   reason: {
     type: String,
   },
