@@ -232,21 +232,21 @@ const OrderDetail = () => {
                     <p>{modifyPaymentModeText(orderData.paymentMode)}</p>
                     {orderData.status && orderData.status === "shipped" && (
                       <>
-                     Tracking ID: {orderData.statusHistory[1].trackingId}
+                     Tracking ID: {orderData.trackingId}
                      <button
                      className="btn-green px-2 text-white flex items-center gap-2 active:bg-blue-800"
                      // onClick={handleGenerateInvoice}
                    >
                      <FiDownload />
 
-                     {orderData.statusHistory[1].trackingId ? (
+                     {orderData.trackingId ? (
                        <a
-                         href={orderData.statusHistory[1].trackingId}
+                         href={orderData.trackingId}
                          target=""
                          rel="noopener noreferrer"
                          className="text-white"
                        >
-                         Visit
+                         Track
                        </a>
                      ) : (
                        'No Tracking ID'

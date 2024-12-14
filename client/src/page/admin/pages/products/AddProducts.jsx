@@ -90,7 +90,7 @@ const AddProducts = () => {
 
   const [attributeName, setAttributeName] = useState("");
   const [attributeValue, setAttributeValue] = useState("");
-  const [attributeImageIndex, setAttributeImageIndex] = useState("");
+  const [attributeImageIndex, setAttributeImageIndex] = useState("1");
   const [attributeQuantity, setAttributeQuantity] = useState("");
   const [attributeHighlight, setAttributeHighlight] = useState(false);
 
@@ -99,10 +99,7 @@ const AddProducts = () => {
     if (attributeName.trim() === "" || attributeValue.trim() === "") {
       return;
     }
-    if (attributeQuantity.trim() === "" || attributeImageIndex.trim() === "") {
-      setAttributeImageIndex("1");
-      setAttributeQuantity("0");
-    }
+  
     const attribute = {
       name: attributeName,
       value: attributeValue,
@@ -112,9 +109,9 @@ const AddProducts = () => {
     };
     setAttributes([...attributes, attribute]);
     setAttributeHighlight(false);
-    setAttributeName("");
+    // setAttributeName("");
     setAttributeValue("");
-    setAttributeImageIndex("");
+    // setAttributeImageIndex("");
     setAttributeQuantity("");
   };
 

@@ -117,6 +117,10 @@ const OrderSchema = new Schema(
       ref: User,
       required: true,
     },
+    trackingId: {
+      type: String,
+      default:""
+    },
     status: {
       type: String,
       required: true,

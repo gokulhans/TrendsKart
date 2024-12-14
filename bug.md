@@ -2,7 +2,7 @@ TODOS
 
 
 
-Image index blank add (default) 🥙
+Image index blank add (default) 
 
 Product slider nte adeel padding kurakkan
 

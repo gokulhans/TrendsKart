@@ -200,6 +200,11 @@ const updateOrderStatus = async (req, res) => {
         status,
       },
     };
+    let updateOptionstrack = {
+      $set: {
+        trackingId,
+      },
+    };
 
     if (!statusExists) {
       updateOptions.$push = {
@@ -211,6 +216,10 @@ const updateOrderStatus = async (req, res) => {
         },
       };
     }
+
+    await Order.findOneAndUpdate(find, updateOptionstrack, {
+      new: true,
+    });
 
     const updated = await Order.findOneAndUpdate(find, updateOptions, {
       new: true,
