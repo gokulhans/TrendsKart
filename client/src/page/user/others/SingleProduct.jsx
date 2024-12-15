@@ -512,19 +512,19 @@ const SingleProduct = () => {
                           {console.log(values)}
                           {name.toUpperCase()}{" "}
                         </p>
-                        <div className="grid gap-2 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+                        <div className="grid gap-2 grid-cols-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-10">
                           {values.map(
                             ({ value, imageIndex, quantity }, valueIndex) => (
                               <>
                                 {quantity > 0 ? (
                                   <p
                                     key={valueIndex}
-                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center py-2 my-2 px-2 rounded-full cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
-                   ? "bg-[#C84253]   text-white" // Selected state
-                   : "bg-[white] text-[#C84253] border border-[#C84253] hover:bg-blue-100"
+                   ? "bg-[#C84253]   text-white text-sm text-center px-4 py-4 " // Selected state
+                   : "bg-[white] text-[#C84253] text-sm text-center  border px-4 py-4 border-[#C84253] hover:bg-blue-100"
                } // Default and hover states
              `}
                                     onClick={() =>
@@ -546,7 +546,7 @@ const SingleProduct = () => {
                                 ) : (
                                   <p
                                     key={valueIndex}
-                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center text-sm text-center py-2 my-2 px-2 rounded-full cursor-pointer 
               transition-colors duration-300 
               ${
                 selectedAttributes[name] === value
@@ -604,11 +604,8 @@ const SingleProduct = () => {
                     </h1>
                   </div>
                 </div>
-                <button onClick={handleShare} style={buttonStyle}>
-      <FaShareAlt /> {/* Share icon */}
-      {copied ? 'Link Copied!' : 'Share'}
-    </button>
-                <div className="flex justify-start space-x-2 w-full pt-10">
+               
+                <div className="hidden md:flex justify-start space-x-2 w-full pt-10">
                
                   {!isOutOfStock && (
                     <Button
@@ -640,7 +637,17 @@ const SingleProduct = () => {
                     >
                       Add to Favorites
                     </Button>
+                    
                   )}
+                 <Button
+  onClick={dispatchAddWishlist}
+  className="bg-green-500 mt-3 w-1/2 hover:text-green-500 md:w-auto hover:bg-white h-12 rounded-[10px] font-Inter text-[16px] text-white px-10 border-[1px] border-green-500"
+>
+<FaShareAlt className="mr-2" /> {/* Share icon */}
+{copied ? 'Link Copied!' : 'Share'}
+</Button>
+
+
                 </div>
               </div>
             </div>
