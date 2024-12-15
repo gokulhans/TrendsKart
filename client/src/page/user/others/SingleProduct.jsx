@@ -370,7 +370,7 @@ const SingleProduct = () => {
       )}
       
       <div className="container w-full flex my-6 px-4">
-        <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
+        <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-0 lg:pr-32 ">
           <span className="text-[10px] sm:text-sm">
             <HomeIcon
               color="#2C2C2C"
@@ -395,7 +395,7 @@ const SingleProduct = () => {
 
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
-          <div className="w-full lg:w-1/2 lg:h-[650px] h-[400px] flex flex-col">
+          <div className="w-full lg:w-1/2 lg:h-[750px] h-[700px] flex flex-col">
             <ProductSlider
               images={imageArray}
               selectedImageIndex={selectedImageIndex}
@@ -434,7 +434,7 @@ const SingleProduct = () => {
                         currentImage === image
                           ? "border-gray-500"
                           : "border-gray-300"
-                      } hover:border-gray-500 p-2 cursor-pointer `}
+                      } hover:border-gray-500 cursor-pointer `}
                       onClick={() => setSelectedImageIndex(i + 1)}
                     >
                       <img
@@ -448,8 +448,8 @@ const SingleProduct = () => {
             </div>
             {/* Product Details */}
           </div>
-          <div className="mt-8 lg:mt-0 lg:w-1/2 px-8">
-            <h1 className="text-[16px] lg:text-[30px] xl:text-[40px] font-light font-sans">
+          <div className="mt-4 lg:mt-0 lg:w-1/2 px-8">
+            <h1 className="text-[24px] font-semibold lg:text-[30px] xl:text-[40px]  font-sans">
               {product.name}
             </h1>
             <div className="flex w-full mt-1 lg:border-t-[1px] border-t-[#9F9F9F] lg:mt-6 pt-3">
