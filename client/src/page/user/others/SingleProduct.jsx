@@ -358,19 +358,19 @@ const SingleProduct = () => {
           </button>
           <button
             className="wishlist-btn"
-            onClick={dispatchAddWishlist}
+            onClick={addToCart}
             disabled={isProductInWishlist}
           >
-            {isProductInWishlist ? "Wishlisted" : "Add to Wishlist"}
+            {isProductInWishlist ? "Added to Cart" : "Add to Cart"}
           </button>
-          <button className="share-btn" onClick={handleShare}>
+          {/* <button className="share-btn" onClick={handleShare}>
             {copied ? "Link Copied!" : "Share"}
-          </button>
+          </button> */}
         </div>
       )}
       
       <div className="container w-full flex my-6 px-4">
-        <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-16 lg:pr-32 pl-0">
+        <h1 className="flex justify-center items-center font-Inter px-5 pl-2 sm:pl-12 md:pl-0 lg:pr-32 ">
           <span className="text-[10px] sm:text-sm">
             <HomeIcon
               color="#2C2C2C"
@@ -395,7 +395,7 @@ const SingleProduct = () => {
 
       <div className="w-full lg:px-20 justify-center">
         <div className="w-full my-2 flex flex-col lg:flex-row">
-          <div className="w-full lg:w-1/2 lg:h-[650px] h-[400px] flex flex-col">
+          <div className="w-full lg:w-1/2 lg:h-[750px] h-[700px] flex flex-col">
             <ProductSlider
               images={imageArray}
               selectedImageIndex={selectedImageIndex}
@@ -434,7 +434,7 @@ const SingleProduct = () => {
                         currentImage === image
                           ? "border-gray-500"
                           : "border-gray-300"
-                      } hover:border-gray-500 p-2 cursor-pointer `}
+                      } hover:border-gray-500 cursor-pointer `}
                       onClick={() => setSelectedImageIndex(i + 1)}
                     >
                       <img
@@ -448,8 +448,8 @@ const SingleProduct = () => {
             </div>
             {/* Product Details */}
           </div>
-          <div className="mt-8 lg:mt-0 lg:w-1/2 px-8">
-            <h1 className="text-[16px] lg:text-[30px] xl:text-[40px] font-light font-sans">
+          <div className="mt-4 lg:mt-0 lg:w-1/2 px-8">
+            <h1 className="text-[24px] font-semibold lg:text-[30px] xl:text-[40px]  font-sans">
               {product.name}
             </h1>
             <div className="flex w-full mt-1 lg:border-t-[1px] border-t-[#9F9F9F] lg:mt-6 pt-3">
@@ -512,19 +512,19 @@ const SingleProduct = () => {
                           {console.log(values)}
                           {name.toUpperCase()}{" "}
                         </p>
-                        <div className="grid gap-2 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+                        <div className="grid gap-2 grid-cols-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-10">
                           {values.map(
                             ({ value, imageIndex, quantity }, valueIndex) => (
                               <>
                                 {quantity > 0 ? (
                                   <p
                                     key={valueIndex}
-                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center py-2 my-2 px-2 rounded-full cursor-pointer 
                transition-colors duration-300 
                ${
                  selectedAttributes[name] === value
-                   ? "bg-[#C84253]   text-white" // Selected state
-                   : "bg-[white] text-[#C84253] border border-[#C84253] hover:bg-blue-100"
+                   ? "bg-[#C84253]   text-white text-sm text-center px-4 py-4 " // Selected state
+                   : "bg-[white] text-[#C84253] text-sm text-center  border px-4 py-4 border-[#C84253] hover:bg-blue-100"
                } // Default and hover states
              `}
                                     onClick={() =>
@@ -546,7 +546,7 @@ const SingleProduct = () => {
                                 ) : (
                                   <p
                                     key={valueIndex}
-                                    className={`flex justify-center items-center py-2 my-2 px-4 rounded-full cursor-pointer 
+                                    className={`flex justify-center items-center text-sm text-center py-2 my-2 px-2 rounded-full cursor-pointer 
               transition-colors duration-300 
               ${
                 selectedAttributes[name] === value
@@ -604,44 +604,58 @@ const SingleProduct = () => {
                     </h1>
                   </div>
                 </div>
-                <button onClick={handleShare} style={buttonStyle}>
-      <FaShareAlt /> {/* Share icon */}
-      {copied ? 'Link Copied!' : 'Share'}
-    </button>
-                <div className="flex justify-start space-x-2 w-full pt-10">
                
-                  {!isOutOfStock && (
-                    <Button
-                      disabled={cartLoading}
-                      onClick={addToCart}
-                      className="bg-[#CC4254] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
-                    >
-                      {cartLoading ? "Loading" : "Buy Now"}
-                    </Button>
-                  )}
-                  {isOutOfStock && (
-                    <Button
-                      disabled={cartLoading}
-                      onClick={notifyManager}
-                      className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
-                    >
-                      {cartLoading ? "Loading" : "Notify Me"}
-                    </Button>
-                  )}
+                <div className="flex justify-start space-x-2 w-full pt-10">
 
-                  {isProductInWishlist ? (
-                    <Button className="bg-black mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10 border-[1px] border-[#777777] ">
-                      Wishlist ♥
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={dispatchAddWishlist}
-                      className="bg-white mt-3 w-1/2 hover:text-white md:w-auto hover:border-[#777777] h-12 rounded-[10px] font-Inter text-[16px] text-red-500 px-10 border-[1px] border-red-500 "
-                    >
-                      Add to Favorites
-                    </Button>
-                  )}
-                </div>
+  {!isOutOfStock && (
+   <button
+  className="bg-[#CC4254] mt-3 w-1/2 md:w-auto hover:bg-white hover:outline hover:text-[#CC4254] hover:outline-[#CC4254] h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+   onClick={buyNow}
+   disabled={cartLoading || isOutOfStock}
+ >
+   {cartLoading ? "Loading" : isOutOfStock ? "Notify Me" : "Buy Now"}
+ </button>
+  )}
+  {!isOutOfStock && (
+    <Button
+      disabled={cartLoading}
+      onClick={addToCart}
+      className="hover:bg-[#CC4254] mt-3 w-1/2 md:w-auto bg-white outline text-[#CC4254] outline-[#CC4254] h-12 rounded-[10px] font-Inter text-[16px] hover:text-white px-10"
+    >
+      {cartLoading ? "Loading" : "Add to Cart"}
+    </Button>
+  )}
+  {isOutOfStock && (
+    <Button
+      disabled={cartLoading}
+      onClick={notifyManager}
+      className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+    >
+      {cartLoading ? "Loading" : "Notify Me"}
+    </Button>
+  )}
+
+  {isProductInWishlist ? (
+    <Button className="bg-white mt-3 h-12 rounded-full font-Inter text-[16px] text-[#CC4254] border-[1px] border-[#CC4254] flex items-center justify-center">
+      <AiFillHeart className="text-2xl" />
+    </Button>
+  ) : (
+    <Button
+      onClick={dispatchAddWishlist}
+      className="bg-white mt-3 hover:bg-[#CC4254] hover:text-white hover:border-[#CC4254] h-12 rounded-full font-Inter text-[16px] text-red-500 border-[1px] border-red-500 flex items-center justify-center"
+    >
+      <AiOutlineHeart className="text-2xl" />
+    </Button>
+  )}
+
+  <Button
+    onClick={handleShare}
+    className="bg-white mt-3 text-center hover:text-white hover:bg-green-500 h-12 rounded-full font-Inter text-[16px] text-green-500 border-[1px] border-green-500 flex items-center justify-center"
+  >
+    <FaShareAlt className="text-xl" />
+  </Button>
+</div>
+
               </div>
             </div>
             <div className="w-full h-4 mt-2 lg:hidden bg-[#F7F7F7]"></div>

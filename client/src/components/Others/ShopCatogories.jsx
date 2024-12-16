@@ -1,56 +1,59 @@
 import React, { useEffect, useRef, useState } from "react";
-import ProductCard3 from "../Cards/ProductCard3";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "@/Common/api";
 import { config } from "@/Common/configurations";
-import { Link } from "react-router-dom";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Import icons
 
 const ShopCategories = () => {
   const [categories, setCategories] = useState([]);
   const scrollContainerRef = useRef(null);
+
   const loadCategories = async () => {
     const { data } = await axios.get(`${URL}/user/categories`, config);
     setCategories(data.categories);
-    console.log(data.categories);
   };
 
   useEffect(() => {
     loadCategories();
   }, []);
+
   const scrollLeft = () => {
-    scrollContainerRef.current.scrollBy({ left: -100, behavior: 'smooth' });
+    scrollContainerRef.current.scrollBy({ left: -150, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    scrollContainerRef.current.scrollBy({ left: 100, behavior: 'smooth' });
+    scrollContainerRef.current.scrollBy({ left: 150, behavior: "smooth" });
   };
 
   return (
-    <div className="relative bg-white p-2 ">
-
-<button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full"
+    <div className="relative bg-white py-4">
+      {/* Left Scroll Button */}
+      <button
+        className="absolute left-0 top-1/2 hidden md:flex transform -translate-y-1/2 z-20 border border-gray-400 text-gray-600 hover:border-blue-500 hover:text-blue-500 p-3 rounded-full shadow-lg"
         onClick={scrollLeft}
         aria-label="Scroll left"
       >
-        ◀️
+        <FiChevronLeft className="w-3 h-3" /> {/* React Icon */}
       </button>
+
+      {/* Right Scroll Button */}
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full"
+        className="absolute right-0 top-1/2 hidden md:flex transform -translate-y-1/2 z-20 border border-gray-400 text-gray-600 hover:border-blue-500 hover:text-blue-500 p-3 rounded-full shadow-lg"
         onClick={scrollRight}
         aria-label="Scroll right"
       >
-        ▶️
+        <FiChevronRight className="w-3 h-3" /> {/* React Icon */}
       </button>
 
-      {/* Gradient Overlay to indicate more items */}
-      <div className="absolute top-0 left-0 h-full w-4 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-      <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+      {/* Gradient Overlay */}
+      <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+      <div className="absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 
-      {/* Scrollable Category List */}
+      {/* Scrollable Categories */}
       <div
-      ref={scrollContainerRef}
-        className="flex gap-2 sm:gap-5 justify-left items-center overflow-x-auto"
+        ref={scrollContainerRef}
+        className="flex gap-4 justify-start items-center overflow-x-auto px-4"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE & Edge
@@ -58,10 +61,10 @@ const ShopCategories = () => {
       >
         <style>
           {`
-    div::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-    }
-  `}
+          div::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
+          `}
         </style>
 
         {categories.map((category, index) => (
@@ -84,6 +87,9 @@ const ShopCategories = () => {
 };
 
 export default ShopCategories;
+
+
+
 
 // {
 /* {categories.map((item, index) => {

@@ -12,7 +12,7 @@ const RedBanner = () => {
     src={redbanner}
     alt="Red Banner"
     className="w-full object-contain "
-    style={{ transform: 'scale(1.1)' }}
+    // style={{ transform: 'scale(1.1)' }}
   />
 </div>
 
