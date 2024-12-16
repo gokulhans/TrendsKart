@@ -358,14 +358,14 @@ const SingleProduct = () => {
           </button>
           <button
             className="wishlist-btn"
-            onClick={dispatchAddWishlist}
+            onClick={addToCart}
             disabled={isProductInWishlist}
           >
-            {isProductInWishlist ? "Wishlisted" : "Add to Wishlist"}
+            {isProductInWishlist ? "Added to Cart" : "Add to Cart"}
           </button>
-          <button className="share-btn" onClick={handleShare}>
+          {/* <button className="share-btn" onClick={handleShare}>
             {copied ? "Link Copied!" : "Share"}
-          </button>
+          </button> */}
         </div>
       )}
       
@@ -605,50 +605,57 @@ const SingleProduct = () => {
                   </div>
                 </div>
                
-                <div className="hidden md:flex justify-start space-x-2 w-full pt-10">
-               
-                  {!isOutOfStock && (
-                    <Button
-                      disabled={cartLoading}
-                      onClick={addToCart}
-                      className="bg-[#CC4254] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
-                    >
-                      {cartLoading ? "Loading" : "Buy Now"}
-                    </Button>
-                  )}
-                  {isOutOfStock && (
-                    <Button
-                      disabled={cartLoading}
-                      onClick={notifyManager}
-                      className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
-                    >
-                      {cartLoading ? "Loading" : "Notify Me"}
-                    </Button>
-                  )}
+                <div className="flex justify-start space-x-2 w-full pt-10">
 
-                  {isProductInWishlist ? (
-                    <Button className="bg-black mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10 border-[1px] border-[#777777] ">
-                      Wishlist ♥
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={dispatchAddWishlist}
-                      className="bg-white mt-3 w-1/2 hover:text-white md:w-auto hover:border-[#777777] h-12 rounded-[10px] font-Inter text-[16px] text-red-500 px-10 border-[1px] border-red-500 "
-                    >
-                      Add to Favorites
-                    </Button>
-                    
-                  )}
-                 <Button
-  onClick={dispatchAddWishlist}
-  className="bg-green-500 mt-3 w-1/2 hover:text-green-500 md:w-auto hover:bg-white h-12 rounded-[10px] font-Inter text-[16px] text-white px-10 border-[1px] border-green-500"
->
-<FaShareAlt className="mr-2" /> {/* Share icon */}
-{copied ? 'Link Copied!' : 'Share'}
-</Button>
+  {!isOutOfStock && (
+   <button
+  className="bg-[#CC4254] mt-3 w-1/2 md:w-auto hover:bg-white hover:outline hover:text-[#CC4254] hover:outline-[#CC4254] h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+   onClick={buyNow}
+   disabled={cartLoading || isOutOfStock}
+ >
+   {cartLoading ? "Loading" : isOutOfStock ? "Notify Me" : "Buy Now"}
+ </button>
+  )}
+  {!isOutOfStock && (
+    <Button
+      disabled={cartLoading}
+      onClick={addToCart}
+      className="hover:bg-[#CC4254] mt-3 w-1/2 md:w-auto bg-white outline text-[#CC4254] outline-[#CC4254] h-12 rounded-[10px] font-Inter text-[16px] hover:text-white px-10"
+    >
+      {cartLoading ? "Loading" : "Add to Cart"}
+    </Button>
+  )}
+  {isOutOfStock && (
+    <Button
+      disabled={cartLoading}
+      onClick={notifyManager}
+      className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
+    >
+      {cartLoading ? "Loading" : "Notify Me"}
+    </Button>
+  )}
 
+  {isProductInWishlist ? (
+    <Button className="bg-white mt-3 h-12 rounded-full font-Inter text-[16px] text-[#CC4254] border-[1px] border-[#CC4254] flex items-center justify-center">
+      <AiFillHeart className="text-2xl" />
+    </Button>
+  ) : (
+    <Button
+      onClick={dispatchAddWishlist}
+      className="bg-white mt-3 hover:bg-[#CC4254] hover:text-white hover:border-[#CC4254] h-12 rounded-full font-Inter text-[16px] text-red-500 border-[1px] border-red-500 flex items-center justify-center"
+    >
+      <AiOutlineHeart className="text-2xl" />
+    </Button>
+  )}
 
-                </div>
+  <Button
+    onClick={handleShare}
+    className="bg-white mt-3 text-center hover:text-white hover:bg-green-500 h-12 rounded-full font-Inter text-[16px] text-green-500 border-[1px] border-green-500 flex items-center justify-center"
+  >
+    <FaShareAlt className="text-xl" />
+  </Button>
+</div>
+
               </div>
             </div>
             <div className="w-full h-4 mt-2 lg:hidden bg-[#F7F7F7]"></div>
