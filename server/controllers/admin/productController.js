@@ -99,6 +99,7 @@ const addProduct = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 // Update a Product
 const updateProduct = async (req, res) => {
   try {
@@ -166,7 +167,60 @@ const updateProduct = async (req, res) => {
     res.status(200).json({ product });
   } catch (error) {
     console.log(error);
-    
+
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Update a Product
+const updateProductManager = async (req, res) => {
+  try {
+
+    console.log("called manmager stoxck updayte");
+    console.log(req.body);
+
+    const { id } = req.params;
+    const formData = req.body;
+    console.log("Updation: ", formData);
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw Error("Invalid ID!!!");
+    }
+
+    const product = await Product.findOneAndUpdate(
+      { 
+        _id: id,
+        // Match the specific attribute
+        "attributes.name": req.body.attrname,
+        "attributes.value": req.body.attrvalue
+      },
+      { 
+        $set: { 
+          ...formData,
+          "attributes.$.quantity": Number(req.body.attrquantity) 
+        }
+      },
+      { 
+        new: true 
+      }
+    );
+
+    // Update the product in the database
+    // const product = await Product.findOneAndUpdate(
+    //   { _id: id },
+    //   { $set: { ...formData } },
+    //   { new: true }
+    // );
+    console.log(product);
+
+    if (!product) {
+      throw Error("No Such Product");
+    }
+
+    res.status(200).json({ product });
+  } catch (error) {
+    console.log(error);
+
     res.status(400).json({ error: error.message });
   }
 };
@@ -198,4 +252,5 @@ module.exports = {
   addProduct,
   deleteProduct,
   updateProduct,
+  updateProductManager
 };

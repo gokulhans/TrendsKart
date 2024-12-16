@@ -9,6 +9,7 @@ const {
   addProduct,
   deleteProduct,
   updateProduct,
+  updateProductManager,
 } = require("../controllers/admin/productController");
 const {
   getCustomers,
@@ -76,6 +77,7 @@ router.get("/products", getProducts);
 router.get("/product/:id", getProduct);
 router.delete("/product/:id", deleteProduct);
 router.patch("/product/:id", upload.any(), updateProduct);
+router.patch("/product/manager/:id", upload.any(), updateProductManager);
 router.post("/product", upload.any(), addProduct);
 
 // Customer controller functions mounting them to corresponding route

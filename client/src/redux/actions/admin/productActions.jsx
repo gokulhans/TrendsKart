@@ -56,3 +56,16 @@ export const updateProduct = createAsyncThunk(
     );
   }
 );
+
+export const updateProductManager = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, formData }, { rejectWithValue }) => {
+    return commonReduxRequest(
+      "patch",
+      `/admin/product/manager/${id}`,
+      formData,
+      multiForm,
+      rejectWithValue
+    );
+  }
+);

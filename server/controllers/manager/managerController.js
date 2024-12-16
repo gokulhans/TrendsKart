@@ -226,7 +226,8 @@ const getProducts = async (req, res) => {
 // Handle enquiries
 const addEnquiry = async (req, res) => {
   try {
-    const { productid } = req.params; // Get product ID from request parameters
+    const { productid,name,value } = req.params; // Get product ID from request parameters
+console.log("params :",productid,name,value);
 
     // Find the product by its ID
     const product = await Product.findById(productid);
@@ -258,6 +259,8 @@ const addEnquiry = async (req, res) => {
       enquiryDate: new Date(), // Add enquiry date
       enquiryStatus: "pending", // Default status for the enquiry
       customerDetails: req.body.customerDetails || {}, // Optional customer details from the request
+      enqattname:name,
+      enqattvalue:value,
     };
 
     // Insert into the Enquiries collection

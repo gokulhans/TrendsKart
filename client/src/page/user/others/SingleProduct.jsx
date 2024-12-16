@@ -193,7 +193,7 @@ const SingleProduct = () => {
     navigate(`/collections?category=${product.category._id}`);
   };
 
-  const notifyManager = async () => {
+  const notifyManager = async (productid,name,value) => {
     // if (!user) {
     //   window.scrollTo({
     //     top: 0,
@@ -204,8 +204,13 @@ const SingleProduct = () => {
     // }
     // setCartLoading(true);
     try {
-      await axios.get(`${URL}/manager/notify/${id}`, config);
-      toast.success("Notified ");
+
+      const userConfirmed = window.confirm(`Request for ${name} : ${value} product ${product.name} `);
+      if (userConfirmed) {
+      await axios.get(`${URL}/manager/notify/${id}/${name}/${value}`, config);
+      toast.success(`Notified `);
+    }
+
     } catch (error) {
       const err = error.response.data.error;
       toast.error(err);
@@ -554,15 +559,15 @@ const SingleProduct = () => {
                   : "bg-gray-200 text-black hover:bg-blue-100"
               } // Default and hover states
             `}
-                                    onClick={() => console.log(name, value,"notifying.......")}
-                                    // onClick={() => notifyManager(product._id,name, value)}
+                                    // onClick={() => console.log(name, value,"notifying.......")}
+                                    onClick={() => notifyManager(product._id,name, value)}
                                     style={{
                                       background:
                                         quantity <= 0 ? "gray" : "white",
-                                      cursor:
-                                        quantity <= 0
-                                          ? "not-allowed"
-                                          : "pointer",
+                                      // cursor:
+                                      //   quantity <= 0
+                                      //     ? "not-allowed"
+                                      //     : "pointer",
                                     }}
                                     // disabled={quantity <= 0} // Disable the button if out of stock
                                   >
@@ -607,7 +612,8 @@ const SingleProduct = () => {
                
                 <div className="flex justify-start space-x-2 w-full pt-10">
 
-  {!isOutOfStock && (
+  {!isOutOfStock && !isMobile && (
+    
    <button
   className="bg-[#CC4254] mt-3 w-1/2 md:w-auto hover:bg-white hover:outline hover:text-[#CC4254] hover:outline-[#CC4254] h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
    onClick={buyNow}

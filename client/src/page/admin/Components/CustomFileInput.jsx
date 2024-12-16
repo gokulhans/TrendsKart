@@ -33,7 +33,7 @@ const CustomFileInput = ({ onChange }) => {
   };
 
   const handleFileChange = (e) => {
-    const files = Array.from(e.target.files).slice(0, 5);
+    const files = Array.from(e.target.files);
     setDroppedFiles(files);
     onChange(files);
   };

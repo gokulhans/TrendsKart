@@ -88,6 +88,12 @@ const enquirySchema = new Schema(
       email: { type: String },
       phone: { type: String },
     },
+    enqattname:{
+      type: String,
+    },
+    enqattvalue:{
+      type: String,
+    }
   },
   { timestamps: true }
 );

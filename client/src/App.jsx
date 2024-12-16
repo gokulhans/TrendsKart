@@ -279,7 +279,7 @@ function ManagerRoutes() {
       <Route path="/" element={<ManagerDash />}>
         <Route index element={<ManagerHome />} />
         <Route path="enquiries" element={<Enquiries />} />
-        <Route path="enquiries/edit/:id" element={<EditStock />} />
+        <Route path="enquiries/edit/:id/:name/:value" element={<EditStock />} />
         <Route path="help" element={<Help />} />
         <Route path="orders" element={<ManagerOrders />} />
         <Route path="orders/detail/:id" element={<OrderDetails />} />

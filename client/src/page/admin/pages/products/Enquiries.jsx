@@ -11,6 +11,7 @@ import Pagination from "../../../../components/Pagination";
 import SearchBar from "../../../../components/SearchBar";
 import RangeDatePicker from "../../../../components/RangeDatePicker";
 import ClearFilterButton from "../../Components/ClearFilterButton";
+import TableRowEnquiries from "../managers/TableRowEnquiries";
 
 const Enquiries = () => {
   const navigate = useNavigate();
@@ -127,11 +128,13 @@ const Enquiries = () => {
                 <thead className="font-normal">
                   <tr className="border-b border-gray-200">
                     <th className="admin-table-head w-3/12">Name</th>
-                    <th className="admin-table-head w-3/12">Description</th>
+                    {/* <th className="admin-table-head w-3/12">Description</th> */}
+                    <th className="admin-table-head w-1/12">Attribute</th>
+                    <th className="admin-table-head w-1/12">Value</th>
                     <th className="admin-table-head w-1/12">Category</th>
                     <th className="admin-table-head w-1/12">Quantity</th>
                     <th className="admin-table-head w-1/12">Price</th>
-                    <th className="admin-table-head w-1/12">Status</th>
+                    {/* <th className="admin-table-head w-1/12">Status</th> */}
                     <th className="admin-table-head w-1/12">Added</th>
                     <th className="admin-table-head w-1/12">Action</th>
                   </tr>
@@ -139,11 +142,13 @@ const Enquiries = () => {
                 <tbody>
                   {products.map((product, index) => {
                     return (
-                      <TableRow
+                      <TableRowEnquiries
                         index={index}
                         length={products.length}
                         product={product}
                         key={index}
+                        attr={products.enqattname}
+                        attrvalue={products.enqattvalue}
                       />
                     );
                   })}

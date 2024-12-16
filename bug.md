@@ -4,6 +4,20 @@ TODOS
 
 Image index blank add (default) 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Product slider nte adeel padding kurakkan
 
 Size attribute 6,7,8,9 

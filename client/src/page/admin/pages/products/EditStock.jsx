@@ -3,7 +3,7 @@ import { AiOutlineSave, AiOutlineClose, AiOutlineDelete } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomFileInput from "../../Components/CustomFileInput";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../../../redux/actions/admin/productActions";
+import { updateProduct, updateProductManager } from "../../../../redux/actions/admin/productActions";
 import CustomSingleFileInput from "../../Components/CustomSingleFileInput";
 import ConfirmModal from "../../../../components/ConfirmModal";
 import axios from "axios";
@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const EditStock = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id,name,value } = useParams();
   const navigate = useNavigate();
   const { categories, loading, error } = useSelector(
     (state) => state.categories
@@ -49,6 +49,9 @@ console.log("user",user);
     markup: "",
     moreImageURL: [],
     offer: "",
+    attrvalue:"",
+    attrname:"",
+    attrquantity:""
   });
 
   const handleInputChange = (e) => {
@@ -114,7 +117,14 @@ console.log("user",user);
     const formData = new FormData();
     // toast.error(fetchedData.stockQuantity);
     // console.log(fetchedData.stockQuantity);
-    formData.append("stockQuantity", fetchedData.stockQuantity);
+    /*
+     attrvalue:"",
+    attrname:"",
+    attrquantity:""
+    */
+    formData.append("attrquantity", fetchedData.attrquantity);
+    formData.append("attrvalue", value);
+    formData.append("attrname", name);
     formData.append("status", "published");
     formData.append("managerId", user?._id);
     
@@ -143,8 +153,10 @@ console.log("user",user);
     // if (newThumb) {
     //   formData.append("imageURL", newThumb);
     // }
+console.log("formData");
+console.log(formData);
 
-    dispatch(updateProduct({ id: fetchedData.productId, formData: formData }));
+    dispatch(updateProductManager({ id: fetchedData.productId, formData: formData }));
      axios.delete(`${URL}/manager/enquiry/${id}`, {
         withCredentials: true,
       });
@@ -297,13 +309,14 @@ console.log("user",user);
                   onChange={handleInputChange}
                   disabled
                 ></textarea>
+                <p className="admin-label">Attribute : {name} </p>
+                <p className="admin-label">Value : {value}</p>
                 <p className="admin-label">Quantity</p>
                 <input
                   type="number"
-                  name="stockQuantity"
+                  name="attrquantity"
                   placeholder="Type product quantity here"
                   className="admin-input"
-                  value={fetchedData.stockQuantity || ""}
                   onChange={handleInputChange}
                 />
               </div>
