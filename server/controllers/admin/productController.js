@@ -227,6 +227,7 @@ const updateProductManager = async (req, res) => {
 
 // Deleting a Product
 const deleteProduct = async (req, res) => {
+  
   try {
     const { id } = req.params;
 

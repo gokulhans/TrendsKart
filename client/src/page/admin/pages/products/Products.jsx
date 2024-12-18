@@ -133,7 +133,8 @@ const Products = () => {
                     <th className="admin-table-head w-1/12">Price</th>
                     <th className="admin-table-head w-1/12">Status</th>
                     <th className="admin-table-head w-1/12">Added</th>
-                    <th className="admin-table-head w-1/12">Action</th>
+                    <th className="admin-table-head w-1/12">Edit</th>
+                    <th className="admin-table-head w-1/12">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
