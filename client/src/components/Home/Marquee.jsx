@@ -4,7 +4,7 @@ const Marquee = () => {
   const texts = [
     "📢 Follow us on Instagram: @trend_kart_mukkam_",
     "🎉 Big Sale: Flat 50% off on selected items! 🛍️",
-    "🚚 Free Shipping on orders above ₹999!",
+    "🚚 Free Shipping on all orders ",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
