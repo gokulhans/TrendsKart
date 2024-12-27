@@ -6,7 +6,7 @@ import HomeImg from "../../assets/trendskart/home/1Artboard 2.jpg";
 import Image2 from "../../assets/trendskart/home/1Artboard 3_1.jpg";
 import Image3 from "../../assets/trendskart/home/1Artboard 3_2.jpg";
 
-const images = [ Image3,Image2,HomeImg];
+const images = [HomeImg, Image2, Image3 ];
 
 function ImageSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,19 +30,10 @@ function ImageSlider() {
     );
   };
 
-  const scrollToNewArrivals = () => {
-    // Using the ID to scroll
-    const newArrivalsSection = document.getElementById("newArrival");
-    if (newArrivalsSection) {
-      newArrivalsSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="flex flex-col">
       <main>
-      <section className="relative bg-[#C84332] lg:h-[75vh] sm:h-[50vh] w-full overflow-hidden">
-
+        <section className="relative bg-[#C84332] lg:h-[75vh] sm:h-[50vh] w-full overflow-hidden">
           <div className="relative h-full w-full">
             {/* Navigation Buttons */}
             <Button
@@ -73,37 +64,28 @@ function ImageSlider() {
                 <img
                   key={index}
                   alt={`Slide ${index}`}
-                  className="h-full w-full object-fill flex-shrink-0"
+                  className="h-full w-full object-cover flex-shrink-0"
                   src={image}
                 />
               ))}
             </div>
 
-            {/* Overlay Content */}
-            <div className="absolute bottom-12 w-full flex flex-col items-center">
-              {/* <Button
-                className="rounded-full bg-white px-12 py-3 text-lg font-medium text-black hover:bg-gray-100 shadow-lg"
-                onClick={scrollToNewArrivals}
-              >
-                Shop Now
-              </Button> */}
-              <div className="mt-6 flex justify-center gap-2">
-                {images.map((_, index) => (
-                  <div
+            {/* Dots Navigation */}
+            <div className="absolute bottom-12 w-full flex justify-center gap-2">
+              {images.map((_, index) => (
+                <div
                   key={index}
                   className={`h-2 w-2 rounded-full ${
-                    index === currentIndex ? "bg-white" : "bg-white opacity-50"
-                  } hidden sm:block`}
+                    index === currentIndex
+                      ? "bg-white"
+                      : "bg-white opacity-50"
+                  }`}
                 />
-                
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
-
-  
     </div>
   );
 }
