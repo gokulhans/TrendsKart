@@ -1,4 +1,5 @@
 const mailSender = require("./mailSender");
+const axios = require("axios");
 
 const sendEnquiryMail = async (email, enquiryData) => {
   const {
@@ -143,6 +144,123 @@ const sendEnquiryMail = async (email, enquiryData) => {
                       }
 */
   console.log("Enquiry email sent successfully: ", mailResponse);
+};
+
+const sendEnquiryWhtspMsg = async (email, enquiryData) => {
+  const {
+    name,
+    description,
+    stockQuantity,
+    category,
+    imageURL,
+    price,
+    markup,
+    status,
+    attributes,
+    moreImageURL,
+  } = enquiryData;
+  console.log(enquiryData);
+
+  const textMessage = `
+Product Enquiry Details
+
+Dear User,
+
+Thank you for your enquiry regarding our product. Below are the details:
+
+Enquiry for: ${name}
+
+Name: ${name}
+Description: ${description}
+Category: ${category}
+Price: Rs. ${price}
+Stock Quantity: ${stockQuantity}
+Status: ${status}
+Markup: ${markup}
+Attributes: ${attributes ? JSON.stringify(attributes) : "N/A"}
+
+To view more details, visit: http://localhost:5173/manager/enquiries
+
+Best regards,
+TrendKart
+© 2024 TrendKart. All rights reserved.
+`;
+
+  const url = "https://graph.facebook.com/v21.0/164359763435616/messages";
+  const token =
+    "EAAKBFCWuzvUBOwezh1JszG2bcTmdhUkBFl8EjyJUSKJpyL3IMrhdSIk4zr233eFOmkCzCGTs7piJfEG9VPjtYPZCObFwZBXZCP9TZCq9AFuj997UocyWkglTztvKyc87XFdO3ZCteC39sqAiryGmy2YchZBgE7wdEgZAM02YyhpZB6XhmbWCIPJbUjyutBlvffGd76EvqMok8ZBxpXytf09CCfZAV3pM2R";
+  const data = {
+    messaging_product: "whatsapp",
+    to: "918921992747",
+    type: "template",
+    template: {
+      name: "product_enquiry",
+      language: { code: "en" },
+      components: [
+        {
+          type: "body",
+          parameters: [
+            { type: "text", parameter_name: "name", text: name },
+            { type: "text", parameter_name: "description", text: description },
+            { type: "text", parameter_name: "category", text: category },
+            { type: "text", parameter_name: "price", text: `Rs. ${price}` },
+            // {
+            //   type: "text",
+            //   parameter_name: "product_description",
+            //   text: description,
+            // },
+            // {
+            //   type: "text",
+            //   parameter_name: "product_category",
+            //   text: category,
+            // },
+            // {
+            //   type: "text",
+            //   parameter_name: "product_price",
+            //   text: `Rs. ${price}`,
+            // },
+            // {
+            //   type: "text",
+            //   parameter_name: "product_stock",
+            //   text: stockQuantity.toString(),
+            // },
+            // { type: "text", parameter_name: "product_status", text: status },
+            // { type: "text", parameter_name: "product_markup", text: markup },
+            // {
+            //   type: "text",
+            //   parameter_name: "product_attributes",
+            //   text: attributes ? JSON.stringify(attributes) : "N/A",
+            // },
+          ],
+        },
+      ],
+    },
+  };
+
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("Message sent:", response.data);
+  } catch (error) {
+    console.error(
+      "Error sending message:",
+      error.response ? error.response.data : error.message
+    );
+  }
+
+  // EAAKBFCWuzvUBOwezh1JszG2bcTmdhUkBFl8EjyJUSKJpyL3IMrhdSIk4zr233eFOmkCzCGTs7piJfEG9VPjtYPZCObFwZBXZCP9TZCq9AFuj997UocyWkglTztvKyc87XFdO3ZCteC39sqAiryGmy2YchZBgE7wdEgZAM02YyhpZB6XhmbWCIPJbUjyutBlvffGd76EvqMok8ZBxpXytf09CCfZAV3pM2R
+  /*
+curl -i -X POST `
+  https://graph.facebook.com/v21.0/164359763435616/messages `
+  -H 'Authorization: Bearer EAAKBFCWuzvUBOwezh1JszG2bcTmdhUkBFl8EjyJUSKJpyL3IMrhdSIk4zr233eFOmkCzCGTs7piJfEG9VPjtYPZCObFwZBXZCP9TZCq9AFuj997UocyWkglTztvKyc87XFdO3ZCteC39sqAiryGmy2YchZBgE7wdEgZAM02YyhpZB6XhmbWCIPJbUjyutBlvffGd76EvqMok8ZBxpXytf09CCfZAV3pM2R' `
+  -H 'Content-Type: application/json' `
+  -d '{ \"messaging_product\": \"whatsapp\", \"to\": \"918921992747\", \"type\": \"template\", \"template\": { \"name\": \"hello_world\", \"language\": { \"code\": \"en_US\" } } }'
+*/
+  //   console.log("Enquiry email sent successfully: ", mailResponse);
 };
 
 const sendOTPMail = async (email, otp) => {
@@ -445,4 +563,5 @@ module.exports = {
   passwordChangedMail,
   sendManagerNoti,
   sendEnquiryMail,
+  sendEnquiryWhtspMsg,
 };
