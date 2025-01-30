@@ -12,6 +12,15 @@ import SearchBar from "../../../../components/SearchBar";
 import { URL } from "@common/api";
 import Pagination from "../../../../components/Pagination";
 
+const TotalProductsCard = ({ total }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-5 mb-5">
+      <h2 className="text-lg font-semibold">Total Categories</h2>
+      <p className="text-2xl font-bold">{total}</p>
+    </div>
+  );
+};
+
 const Categories = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,7 +86,7 @@ const Categories = () => {
             Create New Category
           </button>
         </div>
-
+        <TotalProductsCard total={totalAvailableCategories} />
         <div className="overflow-x-scroll lg:overflow-hidden bg-white rounded-lg">
           {loading ? (
             <div className="flex items-center justify-center h-96">
