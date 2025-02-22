@@ -3,7 +3,10 @@ import { AiOutlineSave, AiOutlineClose, AiOutlineDelete } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomFileInput from "../../Components/CustomFileInput";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct, updateProductManager } from "../../../../redux/actions/admin/productActions";
+import {
+  updateProduct,
+  updateProductManager,
+} from "../../../../redux/actions/admin/productActions";
 import CustomSingleFileInput from "../../Components/CustomSingleFileInput";
 import ConfirmModal from "../../../../components/ConfirmModal";
 import axios from "axios";
@@ -14,15 +17,14 @@ import toast from "react-hot-toast";
 
 const EditStock = () => {
   const dispatch = useDispatch();
-  const { id,name,value } = useParams();
+  const { id, name, value } = useParams();
   const navigate = useNavigate();
   const { categories, loading, error } = useSelector(
     (state) => state.categories
   );
 
   const { user } = useSelector((state) => state.user);
-console.log("user",user);
-
+  console.log("user", user);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -49,9 +51,9 @@ console.log("user",user);
     markup: "",
     moreImageURL: [],
     offer: "",
-    attrvalue:"",
-    attrname:"",
-    attrquantity:""
+    attrvalue: "",
+    attrname: "",
+    attrquantity: "",
   });
 
   const handleInputChange = (e) => {
@@ -122,12 +124,24 @@ console.log("user",user);
     attrname:"",
     attrquantity:""
     */
-    formData.append("attrquantity", fetchedData.attrquantity);
-    formData.append("attrvalue", value);
-    formData.append("attrname", name);
+console.log(" test new noweeeeeeeeeeeownenwo");
+console.log(value,name);
+console.log(fetchedData);
+console.log(fetchedData.attrquantity);
+
     formData.append("status", "published");
     formData.append("managerId", user?._id);
-    
+
+    if (value == "NA" && name == "NA") {
+      formData.append("quantity",  fetchedData.attrquantity);
+      formData.append("attrvalue", value);
+      formData.append("attrname", name);
+    }else{
+      formData.append("attrquantity", fetchedData.attrquantity);
+      formData.append("attrvalue", value);
+      formData.append("attrname", name);
+    }
+
     // for (const key in fetchedData) {
     //   if (duplicateFetchData[key] !== fetchedData[key]) {
     //     if (key === "attributes") {
@@ -153,13 +167,15 @@ console.log("user",user);
     // if (newThumb) {
     //   formData.append("imageURL", newThumb);
     // }
-console.log("formData");
-console.log(formData);
+    console.log("formData");
+    console.log(formData);
 
-    dispatch(updateProductManager({ id: fetchedData.productId, formData: formData }));
-     axios.delete(`${URL}/manager/enquiry/${id}`, {
-        withCredentials: true,
-      });
+    dispatch(
+      updateProductManager({ id: fetchedData.productId, formData: formData })
+    );
+    axios.delete(`${URL}/manager/enquiry/${id}`, {
+      withCredentials: true,
+    });
     navigate(-1);
     navigate(-1);
   };
@@ -193,9 +209,12 @@ console.log(formData);
   const [showConfirm, setShowConfirm] = useState(false);
 
   const toggleConfirm = () => {
-    if (fetchedData.stockQuantity && fetchedData.stockQuantity < 1 || fetchedData.stockQuantity == "") {
-      toast.error("Stock Quantity can't go below 1");
-      return;
+    if (
+      (fetchedData.stockQuantity && fetchedData.stockQuantity < 1) ||
+      fetchedData.stockQuantity == ""
+    ) {
+      // toast.error("Stock Quantity can't go below 1");
+      // return;
     }
     // if (fetchedData.offer && fetchedData.offer < 1) {
     //   toast.error("Offer can't go below 1");
@@ -234,9 +253,7 @@ console.log(formData);
           <div>
             <h1 className="font-bold text-2xl">Edit Stocks</h1>
             {/* Bread Crumbs */}
-            <BreadCrumbs
-              list={["Dashboard", "Enquiry", "Edit Stocks"]}
-            />
+            <BreadCrumbs list={["Dashboard", "Enquiry", "Edit Stocks"]} />
           </div>
           <div className="flex gap-3">
             <button
@@ -551,7 +568,7 @@ console.log(formData);
               <h1 className="font-bold">Product Status</h1>
               <p className="admin-label">Status</p>
               <select
-              disabled
+                disabled
                 name="status"
                 id="status"
                 className="admin-input capitalize"

@@ -193,7 +193,7 @@ const SingleProduct = () => {
     navigate(`/collections?category=${product.category._id}`);
   };
 
-  const notifyManager = async (productid,name,value) => {
+  const notifyManager = async (productid, name = "NA", value = "NA") => {
     // if (!user) {
     //   window.scrollTo({
     //     top: 0,
@@ -637,7 +637,7 @@ const SingleProduct = () => {
       onClick={notifyManager}
       className="bg-[#b3cc42] mt-3 w-1/2 md:w-auto h-12 rounded-[10px] font-Inter text-[16px] text-white px-10"
     >
-      {cartLoading ? "Loading" : "Notify Me"}
+      {cartLoading ? "Loading" : "Notify Me sss"}
     </Button>
   )}
 

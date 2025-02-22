@@ -186,24 +186,40 @@ const updateProductManager = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw Error("Invalid ID!!!");
     }
+    let product;
+    if (req.body.attrname === "NA") {
 
-    const product = await Product.findOneAndUpdate(
-      { 
-        _id: id,
-        // Match the specific attribute
-        "attributes.name": req.body.attrname,
-        "attributes.value": req.body.attrvalue
-      },
-      { 
-        $set: { 
-          ...formData,
-          "attributes.$.quantity": Number(req.body.attrquantity) 
+      console.log("called manager stock update direct");
+      console.log(req.body.quantity);
+      // Update quantity field directly
+      product = await Product.findOneAndUpdate(
+        { _id: id },
+        { $set: { stockQuantity: req.body.quantity, ...formData } },
+        { new: true }
+      );
+    } else {
+
+      product = await Product.findOneAndUpdate(
+        { 
+          _id: id,
+          // Match the specific attribute
+          "attributes.name": req.body.attrname,
+          "attributes.value": req.body.attrvalue
+        },
+        { 
+          $set: { 
+            ...formData,
+            "attributes.$.quantity": Number(req.body.attrquantity) 
+          }
+        },
+        { 
+          new: true 
         }
-      },
-      { 
-        new: true 
-      }
-    );
+      );
+
+    }
+
+   
 
     // Update the product in the database
     // const product = await Product.findOneAndUpdate(
