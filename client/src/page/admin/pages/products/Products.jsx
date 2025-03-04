@@ -12,6 +12,16 @@ import SearchBar from "../../../../components/SearchBar";
 import RangeDatePicker from "../../../../components/RangeDatePicker";
 import ClearFilterButton from "../../Components/ClearFilterButton";
 
+const TotalProductsCard = ({ total }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-5 mb-5">
+      <h2 className="text-lg font-semibold">Total Products</h2>
+      <p className="text-2xl font-bold">{total}</p>
+    </div>
+  );
+};
+
+
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -116,6 +126,9 @@ const Products = () => {
             <ClearFilterButton handleClick={removeFilters} />
           </div>
         </div>
+
+        <TotalProductsCard total={totalAvailableProducts} />
+        
         <div className="overflow-x-auto bg-white rounded-lg">
           {loading ? (
             <div className="flex items-center justify-center min-h-screen">

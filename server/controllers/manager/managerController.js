@@ -1,7 +1,7 @@
 const Product = require("../../model/productModel");
 const Enquiry = require("../../model/enquiryModel");
 const mongoose = require("mongoose");
-const { sendManagerNoti, sendEnquiryMail } = require("../../util/mailFunction");
+const { sendManagerNoti,sendEnquiryWhtspMsg, sendEnquiryMail } = require("../../util/mailFunction");
 const User = require("../../model/userModel");
 
 const notify = (req, res) => {
@@ -289,14 +289,15 @@ const addEnquiry = async (req, res) => {
 
     console.log("email sending process");
     // Sending notifications
-    if (emails.length > 0) {
-      for (const email of emails) {
-        console.log("email");
-        console.log(email);
+    // if (emails.length > 0) {
+    //   for (const email of emails) {
+    //     console.log("email");
+    //     console.log(email);
 
-        await sendEnquiryMail(email, enquiry);
-      }
-    }
+        // await sendEnquiryMail(email, enquiry);
+        await sendEnquiryWhtspMsg("email", enquiry);
+    //   }
+    // }
     res.status(200).json({ message: "Enquiry added successfully", enquiry });
 
 
