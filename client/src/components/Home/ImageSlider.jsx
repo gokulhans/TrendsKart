@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import HomeImg from "../../assets/trendskart/home/1Artboard 2.jpg";
-import Image2 from "../../assets/trendskart/home/1Artboard 3_1.jpg";
-import Image3 from "../../assets/trendskart/home/1Artboard 3_2.jpg";
+import HomeImg from "../../assets/trendskart/home/artbrd1.jpg";
+import Image2 from "../../assets/trendskart/home/artbrd2.jpg";
+import Image3 from "../../assets/trendskart/home/artbrd3.jpg";
 
 const images = [HomeImg, Image2, Image3 ];
 

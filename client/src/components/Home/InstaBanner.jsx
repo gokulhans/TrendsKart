@@ -23,7 +23,7 @@ const BannerSection = () => {
           Follow us on Instagram
         </p>
         <a
-          href="https://www.instagram.com/trend_kart_mukkam_?igsh=MWVoZGQzczNvMWRpcA%3D%3D&utm_source=qr"
+          href="https://www.instagram.com/trendkart_updates?igsh=MXN0NTFnemk1ZDQyNA%3D%3D&utm_source=qr"
           target="_blank"
           rel="noopener noreferrer"
         >
